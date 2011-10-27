@@ -148,7 +148,7 @@ public class Search extends Activity {
         roomSearch.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent();
-				intent.setClass(Search.this, RoomSearch.class);
+				intent.setClass(Search.this, CurrentClasses.class);
 				startActivityForResult(intent,0);
 			}
 		});

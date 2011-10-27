@@ -4,13 +4,16 @@ import static com.iBeiKe.InfoPortal.Constants.DATABASE_NAME;
 import static com.iBeiKe.InfoPortal.Constants.ROOM;
 import static com.iBeiKe.InfoPortal.Constants.BUILDING;
 
+import java.io.File;
+
 import static android.provider.BaseColumns._ID;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	private String[] table;
 	
 	public Database(Context ctx) {
@@ -35,7 +38,10 @@ public class Database extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		
+		String databaseName = "/data/data/com.iBeiKe.InfoPortal/databases/infoportal.db";
+		File file = new File(databaseName);   
+		if(file.isFile() && file.exists()){
+			file.delete();
+		}
 	}
-	
 }

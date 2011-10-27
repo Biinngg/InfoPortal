@@ -1,0 +1,2502 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<database id="initialize">
+<table id="info">
+	<info id="revision">201020110201.20110225</info>
+	<info id="begin">20110221</info>
+	<info id="end">20110610</info>
+</table>
+<table id="class">
+	<time id="1">08000935</time>
+	<time id="2">09351125</time>
+	<time id="3">11251435</time>
+	<time id="4">14351625</time>
+	<time id="5">16251815</time>
+	<time id="6">18152125</time>
+</table>
+<table id="Mon">
+    <build id="y">
+        <room id="101">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">195</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="102">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="104">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="105">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">33023</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="107">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="201">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="204">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="205">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">255</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="206">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="207">
+            <class id="1">255</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65408</class>
+        </room>
+        <room id="301">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="302">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">64512</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">61440</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="304">
+            <class id="1">65535</class>
+            <class id="2">65520</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">255</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="305">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">65472</class>
+        </room>
+        <room id="306">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="307">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="402">
+            <class id="1">255</class>
+            <class id="2">255</class>
+            <class id="3">65388</class>
+            <class id="4">61440</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="404">
+            <class id="1">0</class>
+            <class id="2">32768</class>
+            <class id="3">255</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="405">
+            <class id="1">0</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65280</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="406">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">61440</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="501">
+            <class id="1">65280</class>
+            <class id="2">31</class>
+            <class id="3">65535</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65311</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="503">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">21845</class>
+            <class id="4">65408</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="504">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">255</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65408</class>
+        </room>
+        <room id="505">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="506">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">255</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="507">
+            <class id="1">61440</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="601">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="602">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="603">
+            <class id="1">64512</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="604">
+            <class id="1">61440</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="605">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="606">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="607">
+            <class id="1">61440</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="705">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">255</class>
+        </room>
+        <room id="706">
+            <class id="1">61440</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="707">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="805">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="806">
+            <class id="1">61440</class>
+            <class id="2">61440</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+    </build>
+    <build id="j">
+        <room id="101">
+            <class id="1">0</class>
+            <class id="2">255</class>
+            <class id="3">254</class>
+            <class id="4">30</class>
+            <class id="5">65534</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="102">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="105">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="107">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="201">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">49407</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">128</class>
+            <class id="4">0</class>
+            <class id="5">65500</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="203">
+            <class id="1">65535</class>
+            <class id="2">32799</class>
+            <class id="3">255</class>
+            <class id="4">63488</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="301">
+            <class id="1">7</class>
+            <class id="2">0</class>
+            <class id="3">63</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">255</class>
+            <class id="2">255</class>
+            <class id="3">65535</class>
+            <class id="4">63</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="305">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="405">
+            <class id="1">255</class>
+            <class id="2">1792</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">255</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="409">
+            <class id="1">65280</class>
+            <class id="2">255</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="505">
+            <class id="1">65280</class>
+            <class id="2">255</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="507">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="509">
+            <class id="1">65280</class>
+            <class id="2">65535</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+    </build>
+</table>
+<table id="Tue">
+    <build id="y">
+        <room id="101">
+            <class id="1">32768</class>
+            <class id="2">0</class>
+            <class id="3">92</class>
+            <class id="4">49152</class>
+            <class id="5">65535</class>
+            <class id="6">65520</class>
+        </room>
+        <room id="102">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="104">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">0</class>
+        </room>
+        <room id="105">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">255</class>
+            <class id="6">57359</class>
+        </room>
+        <room id="107">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="204">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="205">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65408</class>
+            <class id="5">255</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="207">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="301">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="302">
+            <class id="1">255</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">61440</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">204</class>
+            <class id="5">65535</class>
+            <class id="6">49152</class>
+        </room>
+        <room id="304">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="305">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65280</class>
+        </room>
+        <room id="306">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="307">
+            <class id="1">65280</class>
+            <class id="2">65535</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">61440</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="402">
+            <class id="1">0</class>
+            <class id="2">61440</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">65280</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">0</class>
+            <class id="6">49152</class>
+        </room>
+        <room id="404">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="405">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65408</class>
+        </room>
+        <room id="406">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">63488</class>
+        </room>
+        <room id="407">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="501">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">65280</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="503">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="504">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">255</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="505">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="506">
+            <class id="1">65520</class>
+            <class id="2">65280</class>
+            <class id="3">0</class>
+            <class id="4">65408</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="507">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="601">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="602">
+            <class id="1">0</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="603">
+            <class id="1">65535</class>
+            <class id="2">32768</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="604">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="605">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="606">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="607">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">21845</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="705">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="706">
+            <class id="1">65408</class>
+            <class id="2">64512</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="707">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="805">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="806">
+            <class id="1">65520</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">0</class>
+        </room>
+    </build>
+    <build id="j">
+        <room id="101">
+            <class id="1">65534</class>
+            <class id="2">30</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="102">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="105">
+            <class id="1">255</class>
+            <class id="2">32768</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="107">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="201">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">255</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="203">
+            <class id="1">0</class>
+            <class id="2">65500</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65500</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="301">
+            <class id="1">0</class>
+            <class id="2">28</class>
+            <class id="3">32768</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">65535</class>
+            <class id="2">65520</class>
+            <class id="3">65535</class>
+            <class id="4">32768</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="305">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">65500</class>
+            <class id="4">65535</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65408</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">32768</class>
+            <class id="2">0</class>
+            <class id="3">65510</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="405">
+            <class id="1">65535</class>
+            <class id="2">9984</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">57344</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="409">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">15</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="505">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="507">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="509">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+    </build>
+</table>
+<table id="Wed">
+    <build id="y">
+        <room id="101">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">32768</class>
+            <class id="4">0</class>
+            <class id="5">65491</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="104">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">5</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="105">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">33023</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="107">
+            <class id="1">0</class>
+            <class id="2">63488</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="201">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">21844</class>
+            <class id="4">0</class>
+            <class id="5">31</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="204">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65280</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="205">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">255</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="207">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65408</class>
+        </room>
+        <room id="301">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">32768</class>
+            <class id="4">0</class>
+            <class id="5">255</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="302">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">0</class>
+            <class id="2">255</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">204</class>
+            <class id="6">0</class>
+        </room>
+        <room id="304">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">65520</class>
+            <class id="4">65535</class>
+            <class id="5">65024</class>
+            <class id="6">0</class>
+        </room>
+        <room id="305">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">61440</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65472</class>
+        </room>
+        <room id="306">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">61440</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="307">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="402">
+            <class id="1">32768</class>
+            <class id="2">255</class>
+            <class id="3">65535</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">57344</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="404">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">255</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="405">
+            <class id="1">0</class>
+            <class id="2">61440</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="406">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">63488</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">61440</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="501">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="503">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">61440</class>
+            <class id="5">0</class>
+            <class id="6">0</class>
+        </room>
+        <room id="504">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">255</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="505">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="506">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">127</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="507">
+            <class id="1">61440</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="601">
+            <class id="1">43648</class>
+            <class id="2">21824</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="602">
+            <class id="1">0</class>
+            <class id="2">43648</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="603">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">61440</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="604">
+            <class id="1">65280</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="605">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="606">
+            <class id="1">61440</class>
+            <class id="2">65280</class>
+            <class id="3">61440</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="607">
+            <class id="1">61440</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">21824</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="705">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="706">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">61440</class>
+            <class id="4">43690</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="707">
+            <class id="1">61440</class>
+            <class id="2">65535</class>
+            <class id="3">61440</class>
+            <class id="4">63488</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="805">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="806">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">61440</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+    </build>
+    <build id="j">
+        <room id="101">
+            <class id="1">0</class>
+            <class id="2">43648</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">32768</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="102">
+            <class id="1">21824</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">63488</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="105">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="107">
+            <class id="1">0</class>
+            <class id="2">255</class>
+            <class id="3">65280</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="201">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">0</class>
+            <class id="4">255</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="203">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">61440</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="301">
+            <class id="1">2</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">255</class>
+            <class id="2">255</class>
+            <class id="3">65535</class>
+            <class id="4">63</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="305">
+            <class id="1">0</class>
+            <class id="2">255</class>
+            <class id="3">0</class>
+            <class id="4">65030</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">65535</class>
+            <class id="2">63743</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">0</class>
+            <class id="2">65408</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="405">
+            <class id="1">65280</class>
+            <class id="2">9984</class>
+            <class id="3">0</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">255</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">31</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="409">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">255</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">65280</class>
+            <class id="2">255</class>
+            <class id="3">255</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="505">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="507">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="509">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+    </build>
+</table>
+<table id="Thu">
+    <build id="y">
+        <room id="101">
+            <class id="1">61440</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65520</class>
+        </room>
+        <room id="104">
+            <class id="1">255</class>
+            <class id="2">255</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="105">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="107">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65472</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="201">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65500</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65500</class>
+            <class id="4">65280</class>
+            <class id="5">65024</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="204">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="205">
+            <class id="1">65535</class>
+            <class id="2">65408</class>
+            <class id="3">0</class>
+            <class id="4">65500</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="207">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="301">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">32768</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="302">
+            <class id="1">127</class>
+            <class id="2">63488</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">61440</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="304">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="305">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">61440</class>
+        </room>
+        <room id="306">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="307">
+            <class id="1">65280</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">61440</class>
+        </room>
+        <room id="401">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">254</class>
+            <class id="5">61440</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="402">
+            <class id="1">61440</class>
+            <class id="2">15</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">65528</class>
+            <class id="2">61440</class>
+            <class id="3">65388</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="404">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="405">
+            <class id="1">65280</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="406">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="501">
+            <class id="1">43690</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="503">
+            <class id="1">57344</class>
+            <class id="2">65472</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="504">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">255</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="505">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57359</class>
+        </room>
+        <room id="506">
+            <class id="1">65408</class>
+            <class id="2">65280</class>
+            <class id="3">43690</class>
+            <class id="4">65408</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="507">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="601">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">21824</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="602">
+            <class id="1">21845</class>
+            <class id="2">43648</class>
+            <class id="3">21824</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="603">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="604">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="605">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="606">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="607">
+            <class id="1">21824</class>
+            <class id="2">43648</class>
+            <class id="3">21824</class>
+            <class id="4">21824</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="705">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="706">
+            <class id="1">65535</class>
+            <class id="2">64512</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="707">
+            <class id="1">0</class>
+            <class id="2">31</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65280</class>
+        </room>
+        <room id="805">
+            <class id="1">65535</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="806">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+    </build>
+    <build id="j">
+        <room id="101">
+            <class id="1">255</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">0</class>
+            <class id="5">65500</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="102">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="105">
+            <class id="1">0</class>
+            <class id="2">3</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="107">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="201">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">65280</class>
+            <class id="5">63488</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="203">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">49183</class>
+            <class id="4">0</class>
+            <class id="5">31</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="301">
+            <class id="1">0</class>
+            <class id="2">28</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">0</class>
+            <class id="2">65500</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65500</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="305">
+            <class id="1">65280</class>
+            <class id="2">65535</class>
+            <class id="3">255</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65408</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">65510</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="405">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">0</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="409">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">63488</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="505">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="507">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="509">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+    </build>
+</table>
+<table id="Fri">
+    <build id="y">
+        <room id="101">
+            <class id="1">255</class>
+            <class id="2">61440</class>
+            <class id="3">65520</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="104">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">247</class>
+            <class id="4">65527</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="105">
+            <class id="1">65472</class>
+            <class id="2">61664</class>
+            <class id="3">247</class>
+            <class id="4">65527</class>
+            <class id="5">65535</class>
+            <class id="6">58368</class>
+        </room>
+        <room id="107">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="201">
+            <class id="1">224</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">255</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="204">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">255</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="205">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">247</class>
+            <class id="4">65527</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="207">
+            <class id="1">255</class>
+            <class id="2">65535</class>
+            <class id="3">65535</class>
+            <class id="4">60074</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="301">
+            <class id="1">43690</class>
+            <class id="2">0</class>
+            <class id="3">8190</class>
+            <class id="4">7</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="302">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">43690</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">0</class>
+            <class id="5">32783</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="304">
+            <class id="1">0</class>
+            <class id="2">65520</class>
+            <class id="3">65024</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="305">
+            <class id="1">65280</class>
+            <class id="2">61440</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="306">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="307">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="402">
+            <class id="1">65472</class>
+            <class id="2">255</class>
+            <class id="3">65527</class>
+            <class id="4">65527</class>
+            <class id="5">65535</class>
+            <class id="6">65408</class>
+        </room>
+        <room id="403">
+            <class id="1">63488</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="404">
+            <class id="1">65280</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+        <room id="405">
+            <class id="1">0</class>
+            <class id="2">63488</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="406">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">65408</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">63488</class>
+            <class id="2">65504</class>
+            <class id="3">65527</class>
+            <class id="4">65503</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="501">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">255</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="503">
+            <class id="1">65535</class>
+            <class id="2">255</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="504">
+            <class id="1">65408</class>
+            <class id="2">65280</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="505">
+            <class id="1">65280</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="506">
+            <class id="1">0</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">64512</class>
+        </room>
+        <room id="507">
+            <class id="1">61440</class>
+            <class id="2">65535</class>
+            <class id="3">65527</class>
+            <class id="4">65527</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="601">
+            <class id="1">65535</class>
+            <class id="2">21824</class>
+            <class id="3">43648</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="602">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65280</class>
+            <class id="4">21824</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="603">
+            <class id="1">511</class>
+            <class id="2">84</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="604">
+            <class id="1">61440</class>
+            <class id="2">65535</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">57344</class>
+        </room>
+        <room id="605">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">255</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="606">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="607">
+            <class id="1">61440</class>
+            <class id="2">255</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="705">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="706">
+            <class id="1">61440</class>
+            <class id="2">61440</class>
+            <class id="3">65280</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="707">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65535</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="805">
+            <class id="1">65535</class>
+            <class id="2">61440</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="806">
+            <class id="1">61440</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">0</class>
+        </room>
+    </build>
+    <build id="j">
+        <room id="101">
+            <class id="1">49152</class>
+            <class id="2">32768</class>
+            <class id="3">65408</class>
+            <class id="4">57344</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="102">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">33023</class>
+            <class id="4">0</class>
+            <class id="5">0</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="105">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="107">
+            <class id="1">0</class>
+            <class id="2">65280</class>
+            <class id="3">0</class>
+            <class id="4">65535</class>
+            <class id="5">65280</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="201">
+            <class id="1">65535</class>
+            <class id="2">32816</class>
+            <class id="3">255</class>
+            <class id="4">16384</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="202">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="203">
+            <class id="1">65280</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">64767</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="301">
+            <class id="1">61440</class>
+            <class id="2">240</class>
+            <class id="3">0</class>
+            <class id="4">32770</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="303">
+            <class id="1">255</class>
+            <class id="2">255</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="305">
+            <class id="1">6</class>
+            <class id="2">33023</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="401">
+            <class id="1">65535</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="403">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="405">
+            <class id="1">65280</class>
+            <class id="2">12032</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="407">
+            <class id="1">0</class>
+            <class id="2">21824</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="409">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">65280</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="502">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="505">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65535</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="507">
+            <class id="1">0</class>
+            <class id="2">0</class>
+            <class id="3">0</class>
+            <class id="4">0</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+        <room id="509">
+            <class id="1">65535</class>
+            <class id="2">65280</class>
+            <class id="3">65535</class>
+            <class id="4">65280</class>
+            <class id="5">65535</class>
+            <class id="6">65535</class>
+        </room>
+    </build>
+</table>
+</database>

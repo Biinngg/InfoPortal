@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView
+		android:id="@+id/feed_back_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/feed_back_title"
+		android:textSize="18dip"
+		android:layout_marginBottom="10dip"
+		android:padding="3dip"
+		android:background="#35999999"/>
+	<EditText
+		android:id="@+id/feed_back_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingBottom="300dip"
+		android:layout_below="@+id/feed_back_title"/>
+	<Button 
+		android:id="@+id/post_button" 
+		android:layout_width="70dip" 
+		android:layout_height="wrap_content"
+		android:text="@string/post_button"
+		android:layout_margin="10dip"
+		android:layout_below="@+id/feed_back_text"
+		android:layout_toLeftOf="@+id/cancel_button" />
+	<Button 
+		android:id="@+id/cancel_button" 
+		android:layout_width="70dip" 
+		android:layout_height="wrap_content"
+		android:text="@string/cancel_button"
+		android:layout_margin="10dip"
+		android:layout_below="@+id/feed_back_text"
+		android:layout_alignRight="@+id/feed_back_text" />
+</RelativeLayout>

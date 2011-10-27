@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.iBeiKe.InfoPortal"
+      android:versionCode="2"
+      android:versionName="1.1"
+      android:installLocation="auto">
+  	<uses-sdk android:minSdkVersion="8"
+        android:targetSdkVersion="10"/>
+    <application android:icon="@drawable/ibeike" android:label="@string/app_name"
+    	android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name=".InfoPortal"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <receiver android:name=".widget"
+		android:label="@string/app_name"
+		android:icon="@drawable/ibeike" 
+		>
+		<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />				
+		</intent-filter>
+		<meta-data android:name="android.appwidget.provider" 
+				android:resource="@xml/widget_info" />
+		</receiver>
+        
+        <activity android:name=".Initialize"
+        		android:label="@string/initialize_title"
+        		android:theme="@android:style/Theme.Dialog">
+        </activity>
+        
+        <activity android:name=".classes.CurrentClasses"
+          android:theme="@android:style/Theme.NoTitleBar">
+        </activity>
+        
+        <activity android:name=".classes.Search"
+          android:theme="@android:style/Theme.NoTitleBar">
+        </activity>
+        
+        <activity android:name=".classes.RoomSearch"
+        		android:label="@string/search_room"
+        		android:theme="@android:style/Theme.Dialog">
+        </activity>
+        
+        <activity android:name=".lib.Library"
+        		android:theme="@android:style/Theme.NoTitleBar">
+        </activity>
+        
+        <activity android:name=".news.News"
+                  android:label="@string/app_name">
+        </activity>
+        
+        <activity android:name=".classes.Result"
+                  android:label="@string/app_name">
+        </activity>
+        
+        <activity android:name=".ErrorHandler"
+                  android:label="@string/app_name"
+				  android:theme="@android:style/Theme.Dialog">
+        </activity>
+        
+        <activity android:name=".Settings"
+                  android:label="@string/app_name">
+        </activity>
+        
+        <activity android:name=".FeedBack"
+                  android:label="@string/app_name">
+        </activity>
+        
+        <activity android:name=".About"
+                  android:label="@string/about_title"
+				  android:theme="@android:style/Theme.Dialog">
+        </activity>
+        
+       <activity android:name="com.google.zxing.client.android.CaptureActivity"
+              android:screenOrientation="landscape"
+              android:configChanges="orientation|keyboardHidden"
+              android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+              android:windowSoftInputMode="stateAlwaysHidden">
+      <intent-filter>
+        <action android:name="com.google.zxing.client.android.SCAN"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+      <!-- Allow web apps to launch Barcode Scanner by linking to http://zxing.appspot.com/scan. -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="http" android:host="zxing.appspot.com" android:path="/scan"/>
+      </intent-filter>
+      <!-- We also support a Google Product Search URL. -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="http" android:host="www.google.com" android:path="/m/products/scan"/>
+      </intent-filter>
+      <!-- And the UK version. -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="http" android:host="www.google.co.uk" android:path="/m/products/scan"/>
+      </intent-filter>
+    </activity>
+    <activity android:name=".PreferencesActivity"
+              android:label="@string/preferences_name">
+    </activity>
+    <activity android:name=".HelpActivity"
+              android:screenOrientation="user">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+    </activity>
+
+    </application>
+    
+  <uses-permission android:name="android.permission.CAMERA"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS"/>
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.FLASHLIGHT"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+</manifest> 

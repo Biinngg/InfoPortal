@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="@string/feed_back">
+		<PreferenceScreen
+			android:key="feed_back"
+			android:title="@string/feed_back"
+			android:summary="@string/feed_back_summary">
+		</PreferenceScreen>
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/db_settings">
+		<PreferenceScreen
+			android:key="db_update"
+			android:title="@string/db_update"
+			android:summary="@string/db_update_summary">
+		</PreferenceScreen>
+		<PreferenceScreen
+			android:key="db_initialize"
+			android:title="@string/db_initialize"
+			android:summary="@string/db_initialize_summary">
+		</PreferenceScreen>
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/others">
+		<PreferenceScreen
+			android:key="about"
+			android:title="@string/about_label"
+			android:summary="@string/about_label_summary">
+		</PreferenceScreen>
+	</PreferenceCategory>
+</PreferenceScreen>

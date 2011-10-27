@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">InfoPortal</string>
+    <string name="news">今日北科</string>
+    <string name="build_name">楼名</string>
+    <string name="build_name1">逸夫楼</string>
+    <string name="build_name2">教学楼</string>
+    <string name="floor_name">楼层</string>
+    <string name="class_name">节次</string>
+    <string name="search_button">确定</string>
+    <string name="search_room">高级搜索</string>
+    <string name="editor_name">教室: </string>
+    <string name="set_date">设置时间</string>
+    <string name="current_classes">当前无课教室</string>
+    <string name="room_search">教室搜索</string>
+    <string name="from">从</string>
+    <string name="to">到</string>
+    <string name="settings_label">设置</string>
+    <string name="settings_shortcut">s</string>
+    <string name="about_label">关于</string>
+    <string name="about_shortcut">a</string>
+    <string name="about_label_summary">查看此软件的相关信息</string>
+    <string name="quit_label">退出</string>
+    <string name="quit_shortcut">q</string>
+    <string name="refresh_label">刷新</string>
+    <string name="refresh_shortcut">r</string>
+    <string name="feed_back">意见反馈</string>
+    <string name="feed_back_summary">反馈错误的教室，以及对此软件的意见，帮助我们改进。</string>
+    <string name="db_settings">无课表设置</string>
+    <string name="db_update">更新数据</string>
+    <string name="db_update_summary">手动获取最新无课教室数据</string>
+    <string name="db_initialize">初始化数据</string>
+    <string name="db_initialize_summary">将无课表数据还原成新安装时的状态</string>
+    <string name="others">其它</string>
+    <string name="help">帮助</string>
+    <string name="help_summary">提供一些简单的操作技巧</string>
+    <string name="feed_back_title">在此留下你的意见：</string>
+    <string name="post_button">提交</string>
+    <string name="cancel_button">取消</string>
+    <string name="empty">Sorry,没有符合要求的教室。</string>
+    <string name="initialize_title">欢迎使用iBeiKe信息门户</string>
+    <string name="initialize_text">正在为第一次使用配置环境 ... </string>
+    <string name="about_title">iBeiKe信息门户</string>
+    <string name="about_text">提供对无课表内容特定时间，特定楼层的搜索，方便同学们上自习。\n
+    	同时提供校园最新动态，第一时间得到最新的消息。\n</string>
+    <string name="copy_text">Copyright © 2001-2011 iBeiKe All Rights Reserved\n</string>
+    <string name="page_label_go_back">扫描</string>
+    <string name="lib_search_tip">名称或ISBN码</string>
+</resources>

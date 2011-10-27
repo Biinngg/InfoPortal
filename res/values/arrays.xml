@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="build_array">
+        <item>逸夫楼</item>
+        <item>教学楼</item>
+    </string-array>
+    <string-array name="floor_array">
+    	<item>全部</item>
+        <item>一层</item>
+        <item>二层</item>
+        <item>三层</item>
+        <item>四层</item>
+        <item>五层</item>
+        <item>六层</item>
+        <item>七层</item>
+        <item>八层</item>
+    </string-array>
+    <string-array name="class_array">
+        <item>第一节</item>
+        <item>第二节</item>
+        <item>第三节</item>
+        <item>第四节</item>
+        <item>第五节</item>
+        <item>第六节</item>
+    </string-array>
+    <string-array name="refresh_frequercy">
+    	<item>两分钟</item>
+    	<item>五分钟</item>
+    	<item>十分钟</item>
+    	<item>半小时</item>
+    	<item>一小时</item>
+    </string-array>
+    <string-array name="refresh_frequercy_values">
+    	<item>1</item>
+    	<item>2</item>
+    	<item>3</item>
+    	<item>4</item>
+    	<item>5</item>
+    </string-array>
+</resources>

@@ -152,7 +152,7 @@ public final class R {
         public static final int Container=0x7f0b0044;
         public static final int LinearLayout01=0x7f0b0026;
         public static final int RadioGroup=0x7f0b004b;
-        public static final int about=0x7f0b0056;
+        public static final int about=0x7f0b0057;
         public static final int about_content=0x7f0b000a;
         /**  Messages IDs 
          */
@@ -192,6 +192,7 @@ public final class R {
         public static final int initialize=0x7f0b0040;
         public static final int launch_product_query=0x7f0b0004;
         public static final int lib=0x7f0b0046;
+        public static final int lib_content=0x7f0b0052;
         public static final int meta_text_view=0x7f0b001f;
         public static final int meta_text_view_label=0x7f0b001e;
         public static final int navigator=0x7f0b0045;
@@ -205,7 +206,7 @@ public final class R {
         public static final int quit=0x7f0b0005;
         public static final int radio_building1=0x7f0b004c;
         public static final int radio_building2=0x7f0b004d;
-        public static final int refresh=0x7f0b0057;
+        public static final int refresh=0x7f0b0058;
         public static final int restart_preview=0x7f0b0006;
         public static final int result_button_view=0x7f0b0022;
         public static final int result_view=0x7f0b0016;
@@ -218,10 +219,10 @@ public final class R {
         public static final int search_book_contents_succeeded=0x7f0b0009;
         public static final int search_button=0x7f0b0012;
         public static final int search_edit=0x7f0b003c;
-        public static final int search_section_list=0x7f0b0052;
+        public static final int search_section_list=0x7f0b0053;
         public static final int sendbox=0x7f0b002f;
         public static final int set_date=0x7f0b0013;
-        public static final int settings=0x7f0b0055;
+        public static final int settings=0x7f0b0056;
         public static final int shopper_button=0x7f0b0023;
         public static final int status_view=0x7f0b0024;
         public static final int text=0x7f0b004a;
@@ -237,8 +238,8 @@ public final class R {
         public static final int type_text_view_label=0x7f0b001a;
         public static final int viewfinder_view=0x7f0b0015;
         public static final int web_view=0x7f0b0049;
-        public static final int widget=0x7f0b0053;
-        public static final int widget_text=0x7f0b0054;
+        public static final int widget=0x7f0b0054;
+        public static final int widget_text=0x7f0b0055;
     }
     public static final class layout {
         public static final int about=0x7f030000;

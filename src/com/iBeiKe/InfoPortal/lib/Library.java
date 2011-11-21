@@ -4,9 +4,15 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.apache.http.util.ByteArrayBuffer;
 import org.apache.http.util.EncodingUtils;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
 
+import com.iBeiKe.InfoPortal.ExampleHandler;
 import com.iBeiKe.InfoPortal.R;
 
 import android.app.Activity;
@@ -41,39 +47,27 @@ public class Library extends Activity {
         txt = (EditText)findViewById(R.id.search_edit);
         btn = (ImageButton)findViewById(R.id.search);
         btn.setOnClickListener(new OnClickListener() {
-   
-   public void onClick(View v) {
-    dopost(txt.getText().toString());
-    
-   }
-  }); 
+        	public void onClick(View v) {
+        		dopost(txt.getText().toString());
+        	}
+        }); 
     }
-        private void dopost(String val){
-        try {
-	   URL url = new URL("http://lib.ustb.edu.cn:8080/opac/openlink.php?" +
-	   		"historyCount=1&strText="+val+"&doctype=ALL&strSearchType=title" +
-	   		"&match_flag=forward&displaypg=20&sort=CATA_DATE&orderby=desc&showmode=list&location=ALL");
-	   URLConnection urlConnection = url.openConnection();
-	   InputStream is = urlConnection.getInputStream();
-	   
-	   /* 用ByteArrayBuffer做缓存 */
-	            ByteArrayBuffer baf = new ByteArrayBuffer(50);
-	            int current = 0;
-	            
-	            while((current = is.read()) != -1){
-	                 baf.append((byte)current);
-	            }
-	            
-	            /* 将缓存的内容转化为String， 用UTF-8编码 */
-	            String myString = EncodingUtils.getString(baf.toByteArray(), "UTF-8");
-	           //myString = new String(baf.toByteArray());
-	            show.loadUrl("http://lib.ustb.edu.cn:8080/opac/search_rss.php?" +
-	            		"location=ALL&title="+val+"&doctype=ALL&lang_code=ALL" +
-	            		"&match_flag=forward&displaypg=20&showmode=list&orderby=DESC" +
-	            		"&sort=CATA_DATE&onlylendable=yes");
-	            
-	  } catch (Exception e) {
-	   e.printStackTrace();
-	  }
-	    }
+    private void dopost(String val){
+    	try {
+    		URL url = new URL("http://lib.ustb.edu.cn:8080/opac/openlink.php?" +
+    				"historyCount=1&strText="+val+"&doctype=ALL&strSearchType=title" +
+    				"&match_flag=forward&displaypg=20&sort=CATA_DATE&orderby=desc&showmode=list&location=ALL");
+    		URLConnection urlConnection = url.openConnection();
+    		InputStream is = urlConnection.getInputStream();
+
+    		SAXParserFactory spf = SAXParserFactory.newInstance();
+    		SAXParser sp = spf.newSAXParser();
+    		XMLReader xr = sp.getXMLReader();
+    		LibSearchResult myXMLHandler = new LibSearchResult();
+    		xr.setContentHandler(myXMLHandler);
+    		xr.parse(new InputSource(is));
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
 }

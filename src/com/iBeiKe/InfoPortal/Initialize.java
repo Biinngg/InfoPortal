@@ -25,7 +25,7 @@ public class Initialize extends Activity {
 	private static final int BUILD_TAG = 2;
 	private static final int TABLE_TAG = 5;
 	private String databaseName = "/data/data/com.iBeiKe.InfoPortal/databases/infoportal.db";
-	private String[] day_of_week = {"Mon", "Tue", "Wed", "Thu", "Fri"};
+	private String[] day_of_week = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 	private String className;
 	private String[] infoName = new String[3];
 	private String[] infoContent = new String[3];

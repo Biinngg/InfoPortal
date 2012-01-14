@@ -26,10 +26,10 @@ public class ErrorHandler extends Activity {
 	public String DisplayError(int ErrorNum) {
 		switch(ErrorNum) {
 		case 1:
-			error_msg = "\n没有符合查询要求的结果，试试其他楼层？\n\n";
+			error_msg = "\nû�з��ϲ�ѯҪ��Ľ������������¥�㣿\n\n";
 			break;
 		case 2:
-			error_msg = "今天是周末，你可以选择任何一个教室上课。\n";
+			error_msg = "��������ĩ�������ѡ���κ�һ�������ϿΡ�\n";
 			break;
 		}
 		return error_msg;

@@ -4,7 +4,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.iBeiKe.InfoPortal.ParsedXmlDataSet;
+import com.iBeiKe.InfoPortal.update.ParsedXmlDataSet;
 
 public class NewsHandler extends DefaultHandler {
 	private String title;

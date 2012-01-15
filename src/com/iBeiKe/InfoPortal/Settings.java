@@ -1,5 +1,7 @@
 package com.iBeiKe.InfoPortal;
 
+import com.iBeiKe.InfoPortal.update.Initialize;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;

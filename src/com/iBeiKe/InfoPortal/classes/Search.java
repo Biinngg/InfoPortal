@@ -40,18 +40,23 @@ public class Search extends Activity {
 	private int mYear;
 	private int mMonth;
 	private int mDay;
+	private int hourAndMin;
 	static final int DATE_DIALOG_ID = 0;
+    private String[] classArray = {
+    	"Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6"
+    };
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.classes); 
+        setContentView(R.layout.classes);
         
         times = new ComTimes();
         searchMillis = System.currentTimeMillis();
         mYear = times.getYear();
         mMonth = times.getMonth();
         mDay = times.getDay();
+        hourAndMin = times.getHourAndMinute();
         
         final CheckBox checkbox1 = (CheckBox) findViewById(R.id.build_box1);
         checkbox1.setOnClickListener(new OnClickListener() {
@@ -67,8 +72,8 @@ public class Search extends Activity {
         });
 
         Spinner floor_spinner1 = (Spinner) findViewById(R.id.floor_spinner1);
-        ArrayAdapter<CharSequence> floor_adapter1 = ArrayAdapter.createFromResource(
-                this, R.array.floor_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> floor_adapter1 = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, classArray);
         floor_adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         floor_spinner1.setAdapter(floor_adapter1);
         floor_spinner1.setOnItemSelectedListener(new MyOnFloorSelectedListener1());

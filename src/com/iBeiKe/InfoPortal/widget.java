@@ -11,6 +11,7 @@ import org.xml.sax.XMLReader;
 
 import com.iBeiKe.InfoPortal.news.News;
 import com.iBeiKe.InfoPortal.news.NewsHandler;
+import com.iBeiKe.InfoPortal.update.ParsedXmlDataSet;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

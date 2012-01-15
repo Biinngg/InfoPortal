@@ -57,7 +57,6 @@ public class RoomSearch extends Activity {
 	}
 	public class myOnRoomButtonClick implements OnClickListener {
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			try {
 				room = Integer.parseInt(editRoom.getText().toString());
 			} catch (Exception e) {

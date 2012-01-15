@@ -12,8 +12,8 @@ import org.apache.http.util.EncodingUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
-import com.iBeiKe.InfoPortal.ExampleHandler;
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.update.ExampleHandler;
 
 import android.app.Activity;
 import android.content.Intent;

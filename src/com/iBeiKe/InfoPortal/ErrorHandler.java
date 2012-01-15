@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+//TODO:用来处理更多的错误，或者舍弃不用。
 public class ErrorHandler extends Activity {
 	private StringBuilder builder = new StringBuilder();
 	private String error_msg;

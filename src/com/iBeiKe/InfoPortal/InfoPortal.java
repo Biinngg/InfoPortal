@@ -5,6 +5,7 @@ import java.io.File;
 
 import com.iBeiKe.InfoPortal.classes.Search;
 import com.iBeiKe.InfoPortal.news.News;
+import com.iBeiKe.InfoPortal.update.Initialize;
 import com.iBeiKe.InfoPortal.lib.Library;
 
 import android.app.ActivityGroup;
@@ -33,7 +34,6 @@ public class InfoPortal extends ActivityGroup {
 	private static final int clickLib = 1;
 	private static final int clickNews = 2;
 	
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

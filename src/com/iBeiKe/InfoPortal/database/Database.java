@@ -8,26 +8,10 @@ import java.io.File;
 
 import static android.provider.BaseColumns._ID;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * <b>数据表：</b>
- * 
- * <p>Mon, Tue, Wed, Thu, Fri, Sat, Sun
- * <li>用来存储每天的无课信息，包括：
- * <li>id, room, building, class 1~6.
- * 
- * <p>class
- * <li>用来存放每节课上下课时间，包括
- * <li>id, begin, end
- * <li>第0行存放学期起讫，其他行每个小节一个记录，使用time stamp。
- * 
- * <p>update
- * <li>用来存放每次更新版本信息，0为更新地址，包括：
- * <li>id, value
- * 
- */
 public class Database extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 3;
 	private String[] table;
@@ -46,8 +30,8 @@ public class Database extends SQLiteOpenHelper {
 					"class3 INTEGER, class4 INTEGER, class5 INTEGER, class6 INTEGER);");
 		db.execSQL("CREATE TABLE class (" + _ID +
 				" INTEGER PRIMARY KEY AUTOINCREMENT, begin INTEGER, end INTEGER);");
-		db.execSQL("CREATE TABLE update (" + _ID +
-				" INTEGER PRIMARY KEY AUTOINCREMENT, revision varchar(10)," +
+		db.execSQL("CREATE TABLE info (" + _ID +
+				" INTEGER PRIMARY KEY AUTOINCREMENT, revision varchar(20)," +
 				"begin INTEGER, end INTEGER, lastmodified INTEGER);");
 	}
 

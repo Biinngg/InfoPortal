@@ -5,13 +5,19 @@ import static com.iBeiKe.InfoPortal.Constants.BUILDING;
 import static com.iBeiKe.InfoPortal.Constants.CLASS;
 import static com.iBeiKe.InfoPortal.Constants.TABLE;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.iBeiKe.InfoPortal.database.Database;
 
-public class ExampleHandler extends DefaultHandler {
-	private String table;
+
+public class XMLHandler extends DefaultHandler {
 	private int table_num;
 	private int build;
 	private int class_num;
@@ -22,9 +28,41 @@ public class ExampleHandler extends DefaultHandler {
 	private int info_column;
 	private String info_name;
 	private String classTime;
-	private String tagName;
 	private String info;
+	//xml structure
+	private boolean strMark=false;
+	private String tagId;
+	private String tagName;
 	private int i;
+	//database structure
+	private int tableNum=0;
+	private String version;
+	private ArrayList<String> tableName = new ArrayList<String>();
+	private Map<String,String> column = new HashMap<String,String>();
+	private Map<String,Map<String,String>> dbStruct = new HashMap<String,Map<String,String>>();
+	private BlockingQueue<Map<String,Map<String,String>>> mapQueue;
+	private BlockingQueue<String> strQueue;
+	
+	public void add(Map<String,Map<String,String>> struct) throws InterruptedException {
+		mapQueue.put(struct);
+	}
+	public Map<String,Map<String,String>> fetchMap() throws InterruptedException {
+		if(mapQueue.isEmpty()) {
+			return null;
+		} else {
+			return mapQueue.take();
+		}
+	}
+	public void add(String sentense) throws InterruptedException {
+		strQueue.put(sentense);
+	}
+	public String fetchStr() throws InterruptedException {
+		if(strQueue.isEmpty()) {
+			return null;
+		} else {
+			return strQueue.take();
+		}
+	}
 
 	private ParsedXmlDataSet myParsedXmlDataSet = new ParsedXmlDataSet();
 	
@@ -32,9 +70,9 @@ public class ExampleHandler extends DefaultHandler {
 		return this.myParsedXmlDataSet;
 	}
 	
+	
 	@Override
 	public void startDocument() throws SAXException {
-		this.myParsedXmlDataSet = new ParsedXmlDataSet();
 	}
 
 	@Override
@@ -45,20 +83,29 @@ public class ExampleHandler extends DefaultHandler {
 	public void startElement(String namespaceURI, String localName,
 			String qName, Attributes atts) throws SAXException {
 		tagName = localName;
+		tagId = atts.getValue(0);
 		i = 0;
-		if (localName.equals("database")) {
-		}
-		else if (localName.equals(TABLE)) {
-			String[] table_name = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "class", "info"};
-			table = atts.getValue(0);
+		if(localName.equals("database")) {
+			if(tagId.equals("init")) {
+				//TODO 分为初始化，更新
+			}
+		} else if (localName.equals("table")) {
+			if(tagId.equals("struct")) {
+				strMark = true;
+			}
+			
+			
+			String[] table_name = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "time", "update"};
 			for(int i=0; i<7; i++) {
-				if(table_name[i].equals(table))
+				if(table_name[i].equals("table"))
 					table_num = i;
 			}
 			if(atts.getValue(0) == "info") {
 				info_column = 0;
 			}
-		} else if (localName.equals(BUILDING)) {
+		} else if(strMark && localName.equals("tag")) {
+		}
+		else if (localName.equals(BUILDING)) {
 			if(atts.getValue(0).equals("y"))
 				build = 0;
 			else
@@ -85,9 +132,24 @@ public class ExampleHandler extends DefaultHandler {
 	public void endElement(String namespaceURI, String localName, String qName)
 			throws SAXException {
 		if (localName.equals("database")) {
-		} else if (localName.equals(TABLE)) {
-		} else if (localName.equals(BUILDING)) {
-		} else if (localName.equals(ROOM)) {
+		} else if (localName.equals("table")) {
+			if(strMark) {
+				try {
+					this.add(dbStruct);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				strMark = false;
+			}
+		} else if (localName.equals("tag")) {
+			if(strMark && !column.isEmpty()) {
+				dbStruct.put(tableName.get(tableNum++), column);
+				column.clear();
+			}
+		}
+		
+		
+		else if (localName.equals(ROOM)) {
 			room_num++;
 		} else if (localName.equals("time")) {
 		}
@@ -95,6 +157,24 @@ public class ExampleHandler extends DefaultHandler {
 
 	@Override
 	public void characters(char ch[], int start, int length) {
+		if(strMark && tagName.equals("tag")) {
+			if(tagId.equals("ver")) {
+				version = new String(ch,start,length);
+			} else {
+				String[] tableNames = tagId.split(",");
+				for(String element : tableNames) {
+					tableName.add(element);
+				}
+			}
+		} else if(strMark && tagName.equals("col")) {
+			String character = new String(ch, start, length);
+			String[] columns = character.split(",");
+			for(String element : columns) {
+				column.put(element, tagId);
+			}
+		}
+		
+		
 		if(tagName.equals(CLASS) && i == 0){
 			i++;
 			String classes = new String(ch, start, length);
@@ -113,4 +193,4 @@ public class ExampleHandler extends DefaultHandler {
 			info_column++;
 		}
 	}
-}
+} 

@@ -9,7 +9,7 @@ public class Query extends Activity{
 	private int dbCounts;
 	
 	public Query() {
-		database = new Database(this);
+		database = new Database(this,null,null);
 	}
 	
     protected Cursor getCursor(String table_name,String[] columns, String selection, String orderBy) {

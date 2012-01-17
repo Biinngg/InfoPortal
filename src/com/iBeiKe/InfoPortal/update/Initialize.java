@@ -5,6 +5,9 @@ import static com.iBeiKe.InfoPortal.Constants.ROOM;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -22,17 +25,19 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
- * 初始化：用于第一次启动时创建数据库，每次启动显示logo画面，并且读取系统时间以及数据库中的课程时间，学期时间。
+ * 初始化：用于第一次启动时创建数据库，第一次启动显示介绍画面，并且读取系统时间以及数据库中的课程时间，学期时间。
  * 并且调用检测更新，附有进度条。
  * 
  */
 public class Initialize extends Activity implements Runnable {
-	private Database database = new Database(this);;
+	private Database database = new Database(this,null,null);
 	private static final int CLASS_TAG = 6;
 	private static final int ROOM_MAX = 80;
 	private static final int BUILD_TAG = 2;
 	private static final int TABLE_TAG = 5;
 	private String databaseName = "/data/data/com.iBeiKe.InfoPortal/databases/infoportal.db";
+	private Map<String,Map<String,String>> dbStruct;
+	private String version;
 	private String[] day_of_week = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 	private String className;
 	private String[] infoName = new String[3];
@@ -45,21 +50,12 @@ public class Initialize extends Activity implements Runnable {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.initialize);
+		Map<String,String> array= new HashMap<String,String>();
+		array.put("liubing","901214");
+		System.out.println(array.get(1));
 		
 		Thread thread = new Thread(this);
 		thread.start();
-
-		/* Create a new TextView to display the parsing result later. */
-		//TextView tv = new TextView(this);
-		/*
-    	new Thread(){
-    		public void run() {
-		database.close();
-		finish();
-	}
-	
-	}.start();
-	*/
 	}
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -74,7 +70,7 @@ public class Initialize extends Activity implements Runnable {
 	private void initial() {
 		try {
 			File file = new File(databaseName);   
-			if(file.isFile() && file.exists()){   
+			if(file.isFile() && file.exists()){
 				file.delete();
 			}
 			InputStream is = getAssets().open("initialize.xml");
@@ -82,12 +78,21 @@ public class Initialize extends Activity implements Runnable {
 			SAXParserFactory spf = SAXParserFactory.newInstance();
 			SAXParser sp = spf.newSAXParser();
 			XMLReader xr = sp.getXMLReader();
-			ExampleHandler myExampleHandler = new ExampleHandler();
+			XMLHandler myXMLHandler = new XMLHandler();
 
-			xr.setContentHandler(myExampleHandler);
+			xr.setContentHandler(myXMLHandler);
 			xr.parse(new InputSource(is));
 			
-			ParsedXmlDataSet parsedExampleDataSet = myExampleHandler
+			//TODO Not only database, but also progress bar.
+			do {
+				version = myXMLHandler.fetchStr();
+			} while(version==null);
+			do {
+				dbStruct = myXMLHandler.fetchMap();
+			} while(dbStruct==null);
+			Database database = new Database(this,version,dbStruct);
+			
+			ParsedXmlDataSet parsedExampleDataSet = myXMLHandler
 			.getParsedData();
 
 			for(int t=0; t<TABLE_TAG; t++) {
@@ -130,12 +135,7 @@ public class Initialize extends Activity implements Runnable {
 	    	values.put("lastmodified", System.currentTimeMillis());
 	    	db.insertOrThrow("info", null, values);
 
-			/* Set the result to be displayed in our GUI. */
-			//tv.setText(parsedExampleDataSet.toString());
-
 		} catch (Exception e) {
-			/* Display any Error to the GUI. */
-			//tv.setText("Error: " + e.getMessage());
 		}
 	}
 	

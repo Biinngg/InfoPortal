@@ -48,21 +48,21 @@ public class CurrentClasses extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
-        database = new Database(this);
+        database = new Database(this,null,null);
         databaseStatus();
         currentStatus();
 		WEEK_NUM = 1 << (week_in_term-1);
 		FROM = new String[]{ "room"};
-		str_title = year + "ÄêµÚ"+ term + "Ñ§ÆÚµÚ" + week_in_term + "ÖÜ\n" 
-				+ times.getDayInWeek(null) + "µÚ" + class_num + "½Ú\n";
+		str_title = year + "ï¿½ï¿½ï¿½"+ term + "Ñ§ï¿½Úµï¿½" + week_in_term + "ï¿½ï¿½\n" 
+				+ times.getDayInWeek(null) + "ï¿½ï¿½" + class_num + "ï¿½ï¿½\n";
 		builder.append(str_title);
 		WHERE = "class" + class_num + " & " + WEEK_NUM + " = " + WEEK_NUM;
 		
 		//the search and result to build the string.
 		WHERE1 = WHERE + " and build = 0 ";
-		str_building1 = "\nÒÝ·òÂ¥ Ã»ÓÐ¿ÎµÄ½ÌÊÒÎª:\n";
+		str_building1 = "\nï¿½Ý·ï¿½Â¥ Ã»ï¿½Ð¿ÎµÄ½ï¿½ï¿½ï¿½Îª:\n";
 		WHERE2 = WHERE + " and build = 1 ";
-		str_building2 = "\n½ÌÑ§Â¥ Ã»ÓÐ¿ÎµÄ½ÌÊÒÎª:\n";
+		str_building2 = "\nï¿½ï¿½Ñ§Â¥ Ã»ï¿½Ð¿ÎµÄ½ï¿½ï¿½ï¿½Îª:\n";
 		System.out.println(WHERE1);
 		System.out.println(WHERE2);
 		System.out.println(TABLE_NAME);
@@ -92,7 +92,7 @@ public class CurrentClasses extends Activity {
     	// Stuff them all into a big string
     	ROOM_RESULT = "\n";
     	if(cursor.getCount() == 0) {
-    		ROOM_RESULT += "Ã»ÓÐ·ûºÏ²éÑ¯ÒªÇóµÄ½á¹û¡£\n\n";
+    		ROOM_RESULT += "Ã»ï¿½Ð·ï¿½Ï²ï¿½Ñ¯Òªï¿½ï¿½Ä½ï¿½ï¿½\n\n";
     	}
 		int i = 0;
     	while (cursor.moveToNext()) {

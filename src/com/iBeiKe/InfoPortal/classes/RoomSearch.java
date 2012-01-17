@@ -41,7 +41,7 @@ public class RoomSearch extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.room_search);
-        database = new Database(this);
+        database = new Database(this,null,null);
 
 		intent=this.getIntent();
 		bl=intent.getExtras();

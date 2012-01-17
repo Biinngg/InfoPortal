@@ -48,7 +48,7 @@ public class Result extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
-        database = new Database(this);
+        database = new Database(this,null,null);
 		
         //Use Intent to transfer key-value.
 		intent=this.getIntent();
@@ -83,9 +83,9 @@ public class Result extends Activity {
 		else {
 			WHERE_F = "room > " + ROOM_NUM1 + " and room < " + ROOM_NUM2 + " and ";
 			if(FLOOR_NUM1 != FLOOR_NUM2)
-				str_floor = FLOOR_NUM1 +"²ãµ½" + FLOOR_NUM2 +"²ã,";
+				str_floor = FLOOR_NUM1 +"ï¿½ãµ½" + FLOOR_NUM2 +"ï¿½ï¿½,";
 			else
-				str_floor = FLOOR_NUM1 + "²ã";
+				str_floor = FLOOR_NUM1 + "ï¿½ï¿½";
 		}
 		
 		if(CLASS_NUM1 > CLASS_NUM2 ) {
@@ -95,13 +95,13 @@ public class Result extends Activity {
 			CLASS_NUM2 = swap;
 		}
 		WHERE = WHERE_F;
-		str_classes = "µÚ" + CLASS_NUM1 + "½Ú";
+		str_classes = "ï¿½ï¿½" + CLASS_NUM1 + "ï¿½ï¿½";
 		if(CLASS_NUM1 != CLASS_NUM2) {
 			for(int i=CLASS_NUM1; i<CLASS_NUM2; i++) {
 				CLASS_NAME = "class" + i;
 				WHERE += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
 			}
-			str_classes += "µ½µÚ" + CLASS_NUM2 + "½Ú";
+			str_classes += "ï¿½ï¿½ï¿½ï¿½" + CLASS_NUM2 + "ï¿½ï¿½";
 		}
 		CLASS_NAME = "class" + CLASS_NUM2;
 		WHERE += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
@@ -113,7 +113,7 @@ public class Result extends Activity {
 		}
 		if(BUILD_NAME1) {
 			WHERE1 = WHERE + "build = 0 ";
-			str_building = "\nÒÝ·òÂ¥";
+			str_building = "\nï¿½Ý·ï¿½Â¥";
 			try{
 				System.out.println("the original where1 "+WHERE1);
 				System.out.println(TABLE_NAME);
@@ -128,7 +128,7 @@ public class Result extends Activity {
 		}
 		if(BUILD_NAME2) {
 			WHERE2 = WHERE + "build = 1 ";
-			str_building = "\n½ÌÑ§Â¥";
+			str_building = "\nï¿½ï¿½Ñ§Â¥";
 			try{
 				System.out.println("the original where2 "+WHERE2);
 				Cursor cursor = getEvents(TABLE_NAME, WHERE2);
@@ -156,7 +156,7 @@ public class Result extends Activity {
     	// Stuff them all into a big string
     	ROOM_RESULT = "\n";
     	if(cursor.getCount() == 0) {
-    		ROOM_RESULT += "Ã»ÓÐ·ûºÏ²éÑ¯ÒªÇóµÄ½á¹û¡£\n\n";
+    		ROOM_RESULT += "Ã»ï¿½Ð·ï¿½Ï²ï¿½Ñ¯Òªï¿½ï¿½Ä½ï¿½ï¿½\n\n";
     	}
 		int i = 0;
     	while (cursor.moveToNext()) {
@@ -177,7 +177,7 @@ public class Result extends Activity {
     }
 /*    
     private String showRelative(String where) {
-    	String results = "Ïà¹Ø×ÔÏ°ÊÒ";
+    	String results = "ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½";
     	String str_class1 = "";
     	String str_class2 = "";
     	int result_number = 0;
@@ -190,7 +190,7 @@ public class Result extends Activity {
 	    	String where_fir = where;
 	    	String where_sec = where;
 			class_max--;
-			str_class1 = "\nµÚ" + CLASS_NUM1 + "½Ú";
+			str_class1 = "\nï¿½ï¿½" + CLASS_NUM1 + "ï¿½ï¿½";
 			if(CLASS_NUM1 > class_max) {
 				break;
 			}
@@ -199,7 +199,7 @@ public class Result extends Activity {
 					CLASS_NAME = "class" + i;
 					where_fir += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
 				}
-				str_class1 += "µ½µÚ" + class_max + "½Ú";
+				str_class1 += "ï¿½ï¿½ï¿½ï¿½" + class_max + "ï¿½ï¿½";
 			}
 			CLASS_NAME = "class" + class_max;
 			where_fir += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM ;
@@ -214,13 +214,13 @@ public class Result extends Activity {
 			}
 			
 			int class_begin = class_max+1;
-			str_class2 = "\nµÚ" + class_begin + "½Ú";
+			str_class2 = "\nï¿½ï¿½" + class_begin + "ï¿½ï¿½";
 			if(class_begin < CLASS_NUM2) {
 				for(int i=class_begin; i<CLASS_NUM2; i++) {
 					CLASS_NAME = "class" + i;
 					where_sec += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
 				}
-				str_class2 += "µ½µÚ" + CLASS_NUM2 + "½Ú";
+				str_class2 += "ï¿½ï¿½ï¿½ï¿½" + CLASS_NUM2 + "ï¿½ï¿½";
 			}
 			CLASS_NAME = "class" + CLASS_NUM2;
 			where_sec +=  CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM;

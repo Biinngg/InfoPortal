@@ -1,6 +1,10 @@
 package com.iBeiKe.InfoPortal.update;
 
-public class ParsedXmlDataSet {
+import android.app.Activity;
+
+import com.iBeiKe.InfoPortal.database.Database;
+
+public class ParsedXmlDataSet extends Activity {
 	private static final int CLASS_TAG = 6;
 	private static final int ROOM_MAX = 80;
 	private static final int BUILD_TAG = 2;
@@ -17,6 +21,7 @@ public class ParsedXmlDataSet {
 	//Handle the values posted by ExampleHandler.java
 	public void setExtractedWeek(int ext_week, int c, int r, int b, int t) {
 		week[t][b][r][c] = ext_week;
+		new Database(this,null,null);
 	}
 	public void setExtractedRoom(int ext_room, int r, int b, int t) {
 		room[t][b][r] = ext_room;

@@ -43,7 +43,12 @@ public class XMLHandler extends DefaultHandler {
 	private BlockingQueue<Map<String,Map<String,String>>> mapQueue;
 	private BlockingQueue<String> strQueue;
 	
+	public XMLHandler() {
+		System.out.println("Test: XMLHandler to begin");
+	}
+	
 	public void add(Map<String,Map<String,String>> struct) throws InterruptedException {
+		System.out.println("Begin to add to the blocking queue");
 		mapQueue.put(struct);
 	}
 	public Map<String,Map<String,String>> fetchMap() throws InterruptedException {
@@ -73,6 +78,7 @@ public class XMLHandler extends DefaultHandler {
 	
 	@Override
 	public void startDocument() throws SAXException {
+		System.out.println("Begin to handle xml file");
 	}
 
 	@Override
@@ -82,15 +88,19 @@ public class XMLHandler extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String localName,
 			String qName, Attributes atts) throws SAXException {
+		i++;
+		
+		System.out.println("Element num. " + i);
 		tagName = localName;
 		tagId = atts.getValue(0);
-		i = 0;
 		if(localName.equals("database")) {
 			if(tagId.equals("init")) {
+				System.out.println("xml初始化");
 				//TODO 分为初始化，更新
 			}
 		} else if (localName.equals("table")) {
 			if(tagId.equals("struct")) {
+				System.out.println("定义数据库结构");
 				strMark = true;
 			}
 			
@@ -136,6 +146,7 @@ public class XMLHandler extends DefaultHandler {
 			if(strMark) {
 				try {
 					this.add(dbStruct);
+					System.out.println("The structure: " + dbStruct.toString());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -144,6 +155,7 @@ public class XMLHandler extends DefaultHandler {
 		} else if (localName.equals("tag")) {
 			if(strMark && !column.isEmpty()) {
 				dbStruct.put(tableName.get(tableNum++), column);
+				System.out.println("The columns: " + column.toString());
 				column.clear();
 			}
 		}
@@ -163,6 +175,7 @@ public class XMLHandler extends DefaultHandler {
 			} else {
 				String[] tableNames = tagId.split(",");
 				for(String element : tableNames) {
+					System.out.println("table name " + element);
 					tableName.add(element);
 				}
 			}
@@ -170,6 +183,7 @@ public class XMLHandler extends DefaultHandler {
 			String character = new String(ch, start, length);
 			String[] columns = character.split(",");
 			for(String element : columns) {
+				System.out.println("column name " + element);
 				column.put(element, tagId);
 			}
 		}

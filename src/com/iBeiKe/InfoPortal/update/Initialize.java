@@ -16,6 +16,7 @@ import org.xml.sax.XMLReader;
 
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.database.Database;
+import com.iBeiKe.InfoPortal.update.XMLHandler;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -50,9 +51,6 @@ public class Initialize extends Activity implements Runnable {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.initialize);
-		Map<String,String> array= new HashMap<String,String>();
-		array.put("liubing","901214");
-		System.out.println(array.get(1));
 		
 		Thread thread = new Thread(this);
 		thread.start();
@@ -60,7 +58,7 @@ public class Initialize extends Activity implements Runnable {
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			database.close();
-			finish();
+			System.out.println("After handleMessage");
 		}
 	};
 	public void run() {
@@ -69,16 +67,20 @@ public class Initialize extends Activity implements Runnable {
 	}
 	private void initial() {
 		try {
+			System.out.println("Begin to initial");
 			File file = new File(databaseName);   
 			if(file.isFile() && file.exists()){
 				file.delete();
 			}
 			InputStream is = getAssets().open("initialize.xml");
-			
+			System.out.println("Opened the file");
 			SAXParserFactory spf = SAXParserFactory.newInstance();
 			SAXParser sp = spf.newSAXParser();
 			XMLReader xr = sp.getXMLReader();
+			System.out.println("Before xmlhandler initial");
 			XMLHandler myXMLHandler = new XMLHandler();
+			
+			System.out.println("Arrived Initialize.java");
 
 			xr.setContentHandler(myXMLHandler);
 			xr.parse(new InputSource(is));
@@ -91,6 +93,8 @@ public class Initialize extends Activity implements Runnable {
 				dbStruct = myXMLHandler.fetchMap();
 			} while(dbStruct==null);
 			Database database = new Database(this,version,dbStruct);
+			
+			
 			
 			ParsedXmlDataSet parsedExampleDataSet = myXMLHandler
 			.getParsedData();

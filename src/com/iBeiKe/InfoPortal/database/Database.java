@@ -1,6 +1,5 @@
 package com.iBeiKe.InfoPortal.database;
 
-import java.io.File;
 import java.util.Map;
 
 import static android.provider.BaseColumns._ID;
@@ -30,25 +29,18 @@ public class Database extends SQLiteOpenHelper {
 	private Map<String,Map<String,String>> struct;
 	
 	public Database(Context ctx, String version, Map<String,Map<String,String>> struct) {
-		super(ctx, DATABASE_NAME, null, 1);//原先version不够灵活，暂时不使用。
+		super(ctx, DATABASE_NAME, null, (Integer.parseInt(version.split("\\.")[0])));
 		this.struct = struct;
 	}
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		if(struct!= null) {
-			this.onRebuild(db);
-		}
+		onRebuild(db);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO 用于改变数据库表结构，重写
-		String databaseName = "/data/data/com.iBeiKe.InfoPortal/databases/infoportal.db";
-		File file = new File(databaseName);   
-		if(file.isFile() && file.exists()){
-			file.delete();
-		}
+		System.out.println("onUpgrade");
 	}
 	
 	public void onUpdate(SQLiteDatabase db, int oldRevision, int newRevision) {
@@ -56,18 +48,15 @@ public class Database extends SQLiteOpenHelper {
 	}
 	
 	public void onRebuild(SQLiteDatabase db) {
-		//TODO 用于数据库删除重建，大量数据修改
 		String SQLstring;
 		for(String tableName : struct.keySet()) {
-			SQLstring = "CREATE TABLE " + tableName + " ( " + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
-			for(Map<String,String> col: struct.values()) {
-				for(String colName : col.keySet()) {
-					String attri = col.get(colName);
-					SQLstring += colName + " " + attri + ", ";
-				}
+			SQLstring = "CREATE TABLE " + tableName + " ( " + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT";
+			Map<String,String> col = struct.get(tableName);
+			for(String colName : col.keySet()) {
+				String attri = col.get(colName);
+				SQLstring += ", " + colName + " " + attri;
 			}
 			SQLstring += ");";
-			System.out.println(SQLstring);
 			db.execSQL(SQLstring);
 		}
 	}

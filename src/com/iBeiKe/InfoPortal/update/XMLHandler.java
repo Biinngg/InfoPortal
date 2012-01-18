@@ -8,7 +8,9 @@ import static com.iBeiKe.InfoPortal.Constants.TABLE;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -43,12 +45,7 @@ public class XMLHandler extends DefaultHandler {
 	private BlockingQueue<Map<String,Map<String,String>>> mapQueue;
 	private BlockingQueue<String> strQueue;
 	
-	public XMLHandler() {
-		System.out.println("Test: XMLHandler to begin");
-	}
-	
 	public void add(Map<String,Map<String,String>> struct) throws InterruptedException {
-		System.out.println("Begin to add to the blocking queue");
 		mapQueue.put(struct);
 	}
 	public Map<String,Map<String,String>> fetchMap() throws InterruptedException {
@@ -90,7 +87,6 @@ public class XMLHandler extends DefaultHandler {
 			String qName, Attributes atts) throws SAXException {
 		i++;
 		
-		System.out.println("Element num. " + i);
 		tagName = localName;
 		tagId = atts.getValue(0);
 		if(localName.equals("database")) {
@@ -101,6 +97,8 @@ public class XMLHandler extends DefaultHandler {
 		} else if (localName.equals("table")) {
 			if(tagId.equals("struct")) {
 				System.out.println("定义数据库结构");
+				mapQueue = new ArrayBlockingQueue<Map<String,Map<String,String>>>(1);
+				strQueue = new LinkedBlockingQueue<String>();
 				strMark = true;
 			}
 			
@@ -113,7 +111,12 @@ public class XMLHandler extends DefaultHandler {
 			if(atts.getValue(0) == "info") {
 				info_column = 0;
 			}
-		} else if(strMark && localName.equals("tag")) {
+		} else if(strMark && localName.equals("tag") && !tagId.equals("ver")) {
+			//System.out.println(tagId);
+			String[] tableNames = tagId.split(",");
+			for(String element : tableNames) {
+				tableName.add(element);
+			}
 		}
 		else if (localName.equals(BUILDING)) {
 			if(atts.getValue(0).equals("y"))
@@ -145,8 +148,8 @@ public class XMLHandler extends DefaultHandler {
 		} else if (localName.equals("table")) {
 			if(strMark) {
 				try {
+					this.add(version);
 					this.add(dbStruct);
-					System.out.println("The structure: " + dbStruct.toString());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -154,9 +157,11 @@ public class XMLHandler extends DefaultHandler {
 			}
 		} else if (localName.equals("tag")) {
 			if(strMark && !column.isEmpty()) {
-				dbStruct.put(tableName.get(tableNum++), column);
-				System.out.println("The columns: " + column.toString());
-				column.clear();
+				int length = tableName.size();
+				while(tableNum < length) {
+					dbStruct.put(tableName.get(tableNum++), column);
+				}
+				column=new HashMap<String,String>();
 			}
 		}
 		
@@ -173,17 +178,11 @@ public class XMLHandler extends DefaultHandler {
 			if(tagId.equals("ver")) {
 				version = new String(ch,start,length);
 			} else {
-				String[] tableNames = tagId.split(",");
-				for(String element : tableNames) {
-					System.out.println("table name " + element);
-					tableName.add(element);
-				}
 			}
 		} else if(strMark && tagName.equals("col")) {
 			String character = new String(ch, start, length);
 			String[] columns = character.split(",");
 			for(String element : columns) {
-				System.out.println("column name " + element);
 				column.put(element, tagId);
 			}
 		}

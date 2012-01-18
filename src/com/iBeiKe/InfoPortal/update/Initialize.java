@@ -31,7 +31,7 @@ import android.os.Message;
  * 
  */
 public class Initialize extends Activity implements Runnable {
-	private Database database = new Database(this,null,null);
+	private Database database;
 	private static final int CLASS_TAG = 6;
 	private static final int ROOM_MAX = 80;
 	private static final int BUILD_TAG = 2;
@@ -57,12 +57,12 @@ public class Initialize extends Activity implements Runnable {
 	}
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
+			initial();
 			database.close();
 			System.out.println("After handleMessage");
 		}
 	};
 	public void run() {
-		initial();
 		mHandler.sendEmptyMessage(0);
 	}
 	private void initial() {
@@ -78,21 +78,19 @@ public class Initialize extends Activity implements Runnable {
 			SAXParser sp = spf.newSAXParser();
 			XMLReader xr = sp.getXMLReader();
 			System.out.println("Before xmlhandler initial");
-			XMLHandler myXMLHandler = new XMLHandler();
-			
-			System.out.println("Arrived Initialize.java");
+			XMLHandler myXMLHandler = null;
+			myXMLHandler = new XMLHandler();
 
 			xr.setContentHandler(myXMLHandler);
 			xr.parse(new InputSource(is));
 			
 			//TODO Not only database, but also progress bar.
-			do {
-				version = myXMLHandler.fetchStr();
-			} while(version==null);
-			do {
-				dbStruct = myXMLHandler.fetchMap();
-			} while(dbStruct==null);
-			Database database = new Database(this,version,dbStruct);
+			
+			version = myXMLHandler.fetchStr();
+			dbStruct = myXMLHandler.fetchMap();
+			database = new Database(this,version,dbStruct);
+
+			System.out.println("Arrived Initialize.java");
 			
 			
 			
@@ -140,6 +138,7 @@ public class Initialize extends Activity implements Runnable {
 	    	db.insertOrThrow("info", null, values);
 
 		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 	}
 	

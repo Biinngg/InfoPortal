@@ -48,7 +48,7 @@ public class CurrentClasses extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
-        database = new Database(this,null,null);
+        database = new Database(this);
         databaseStatus();
         currentStatus();
 		WEEK_NUM = 1 << (week_in_term-1);

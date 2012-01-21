@@ -1,9 +1,15 @@
 package com.iBeiKe.InfoPortal.database;
 
+import java.io.File;
 import java.util.Map;
 
+import com.iBeiKe.InfoPortal.classes.Result;
+import com.iBeiKe.InfoPortal.classes.Search;
+
 import static android.provider.BaseColumns._ID;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -27,15 +33,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "infoportal.db";
 	private Map<String,Map<String,String>> struct;
+	private SQLiteDatabase db;
 	
-	public Database(Context ctx, String version, Map<String,Map<String,String>> struct) {
-		super(ctx, DATABASE_NAME, null, (Integer.parseInt(version.split("\\.")[0])));
-		this.struct = struct;
+	public Database(Context ctx) {
+		super(ctx, DATABASE_NAME, null, 2);
 	}
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		onRebuild(db);
+		System.out.println("in onCreate.");
 	}
 
 	@Override
@@ -47,8 +53,9 @@ public class Database extends SQLiteOpenHelper {
 		//TODO 用于数据更新
 	}
 	
-	public void onRebuild(SQLiteDatabase db) {
+	public void onRebuild(Map<String,Map<String,String>> struct) {
 		String SQLstring;
+		db = this.getWritableDatabase();
 		for(String tableName : struct.keySet()) {
 			SQLstring = "CREATE TABLE " + tableName + " ( " + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT";
 			Map<String,String> col = struct.get(tableName);
@@ -58,6 +65,19 @@ public class Database extends SQLiteOpenHelper {
 			}
 			SQLstring += ");";
 			db.execSQL(SQLstring);
+			System.out.println("SQL string: " + SQLstring);
 		}
+		db.close();
+	}
+	
+	public void insert(SQLiteDatabase db, String table, Map<String,String> content) {
+    	ContentValues values = new ContentValues();
+    	if(table.matches("Mon|Tue|Wed|Thu|Fri|Sat|Sun")) {
+    		
+    	}
+    	for(String key : content.keySet()) {
+    		values.put(key, content.get(key));
+    	}
+    	db.insertOrThrow(table, null, values);
 	}
 }

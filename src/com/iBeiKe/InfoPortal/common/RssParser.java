@@ -9,8 +9,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.iBeiKe.InfoPortal.update.ParsedXmlDataSet;
-
 public class RssParser extends DefaultHandler {
 	private String table;
 	private int table_num;

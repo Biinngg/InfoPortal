@@ -10,8 +10,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import com.iBeiKe.InfoPortal.news.News;
-import com.iBeiKe.InfoPortal.news.NewsHandler;
-import com.iBeiKe.InfoPortal.update.ParsedXmlDataSet;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -37,18 +35,18 @@ public class widget extends AppWidgetProvider {
         	SAXParserFactory factory = SAXParserFactory.newInstance();
         	SAXParser parser = factory.newSAXParser();
         	XMLReader xmlreader = parser.getXMLReader();
-			NewsHandler myExampleHandler = new NewsHandler();
-			xmlreader.setContentHandler(myExampleHandler);
+			//NewsHandler myExampleHandler = new NewsHandler();
+			//xmlreader.setContentHandler(myExampleHandler);
 
         	InputStreamReader isr =new InputStreamReader(url.openStream());
         	InputSource is=new InputSource(isr);
         	System.out.println(url.getFile().toString());
         	xmlreader.parse(is);
-			ParsedXmlDataSet parsedNewsDataSet = myExampleHandler
-			.getParsedData();
+			//ParsedXmlDataSet parsedNewsDataSet = myExampleHandler
+			//.getParsedData();
 			result = "";
 			for(int i=0;i<5;i++) {
-				result += parsedNewsDataSet.getExtractedTitle(i) + "\n";
+				//result += parsedNewsDataSet.getExtractedTitle(i) + "\n";
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -48,7 +48,7 @@ public class Result extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
-        database = new Database(this,null,null);
+        database = new Database(this);
 		
         //Use Intent to transfer key-value.
 		intent=this.getIntent();

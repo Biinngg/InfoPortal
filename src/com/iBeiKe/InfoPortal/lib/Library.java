@@ -62,8 +62,8 @@ public class Library extends Activity {
     		SAXParserFactory spf = SAXParserFactory.newInstance();
     		SAXParser sp = spf.newSAXParser();
     		XMLReader xr = sp.getXMLReader();
-    		LibSearchResult myXMLHandler = new LibSearchResult();
-    		xr.setContentHandler(myXMLHandler);
+    		//LibSearchResult myXMLHandler = new LibSearchResult();
+    		//xr.setContentHandler(myXMLHandler);
     		xr.parse(new InputSource(is));
     	} catch (Exception e) {
     		e.printStackTrace();

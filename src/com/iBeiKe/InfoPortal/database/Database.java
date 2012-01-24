@@ -1,15 +1,10 @@
 package com.iBeiKe.InfoPortal.database;
 
-import java.io.File;
 import java.util.Map;
-
-import com.iBeiKe.InfoPortal.classes.Result;
-import com.iBeiKe.InfoPortal.classes.Search;
 
 import static android.provider.BaseColumns._ID;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -55,7 +50,6 @@ public class Database extends SQLiteOpenHelper {
 	
 	public void onRebuild(Map<String,Map<String,String>> struct) {
 		String SQLstring;
-		db = this.getWritableDatabase();
 		for(String tableName : struct.keySet()) {
 			SQLstring = "CREATE TABLE " + tableName + " ( " + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT";
 			Map<String,String> col = struct.get(tableName);
@@ -67,17 +61,27 @@ public class Database extends SQLiteOpenHelper {
 			db.execSQL(SQLstring);
 			System.out.println("SQL string: " + SQLstring);
 		}
-		db.close();
 	}
 	
-	public void insert(SQLiteDatabase db, String table, Map<String,String> content) {
+	public void insert(String table, Map<String,String> content) {
     	ContentValues values = new ContentValues();
-    	if(table.matches("Mon|Tue|Wed|Thu|Fri|Sat|Sun")) {
-    		
-    	}
     	for(String key : content.keySet()) {
     		values.put(key, content.get(key));
     	}
     	db.insertOrThrow(table, null, values);
+	}
+	/**
+	 * <p>Get a writable database.</p>
+	 * <b>Warning:</b>
+	 * <p>Remember to call close();</p>
+	 */
+	public void open() {
+		db = this.getWritableDatabase();
+	}
+	/**
+	 * <p>Close the database.</p>
+	 */
+	public void close() {
+		db.close();
 	}
 }

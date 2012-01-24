@@ -9,7 +9,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import javax.crypto.CipherInputStream;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -21,10 +20,7 @@ import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.update.XMLHandler;
 
 import android.app.Activity;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 
 /**
  * 初始化：用于第一次启动时创建数据库，第一次启动显示介绍画面，并且读取系统时间以及数据库中的课程时间，学期时间。
@@ -34,7 +30,6 @@ import android.os.Message;
 public class Initialize extends Activity {
 	private InputStream is;
 	private Database database = new Database(this);
-	private String version;
 	private BlockingQueue<Map<String,Map<String,String>>> structQueue
 	= new ArrayBlockingQueue<Map<String,Map<String,String>>>(1);
 	private BlockingQueue<Map<String,String>> contentQueue = new LinkedBlockingQueue<Map<String,String>>();
@@ -51,7 +46,7 @@ public class Initialize extends Activity {
 		ExecutorService exec = Executors.newCachedThreadPool();
 		exec.execute(new XMLParser(contentQueue,structQueue,is));
 		exec.execute(new DatabaseRebuild(contentQueue,structQueue,database));
-		//TODO 关闭线程：exec.shutdownNow();
+		//TODO 在适当时候关闭线程：exec.shutdownNow();
 	}
 	/*
     private void addTables(String table_name, int room, int building, 
@@ -112,14 +107,24 @@ class DatabaseRebuild implements Runnable {
 		this.database = database;
 	}
 	public void run() {
-		Map<String,String> version;
+		String table = null;
+		Map<String,String> content;
 		try {
 			if(!Thread.interrupted()) {
-				version = contentQueue.take();
 				dbStruct = structQueue.take();
-				System.out.println("ini version: " + version);
 				System.out.println("ini dbStruct: " + dbStruct);
+				database.open();
 				database.onRebuild(dbStruct);
+				while(!Thread.interrupted()) {
+					content = contentQueue.take();
+					System.out.println("insert content: " + content.toString());
+					if(content.containsKey("table")) {
+						table = content.get("table");
+					} else {
+						database.insert(table, content);
+					}
+				}
+				database.close();
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

@@ -20,9 +20,8 @@ public class XMLHandler extends DefaultHandler {
 	private Map<String,String> cirColumn;
 	//database structure
 	private int tableNum=0;
-	private String version;
 	private ArrayList<String> tableName;
-	private Map<String,String> column;
+	private Map<String,String> column = new HashMap<String,String>();
 	private Map<String,Map<String,String>> dbStruct;
 	private BlockingQueue<Map<String,String>> contentQueue;
 	private BlockingQueue<Map<String,Map<String,String>>> structQueue;
@@ -53,11 +52,9 @@ public class XMLHandler extends DefaultHandler {
 		} else if (localName.equals("table")) {
 			tabMark = true;
 			if(tagId.equals("struct")) {
-				//TODO 整合到if(..."init")中
 				//在标签属性为struct时更新数据库结构，并且都标记strMark为true.
 				//可能同一个文件中有两个结构的定义，所以每次都初始化。
 				tableName = new ArrayList<String>();
-				column = new HashMap<String,String>();
 				dbStruct = new HashMap<String,Map<String,String>>();
 				strMark = true;
 			} else {
@@ -92,11 +89,7 @@ public class XMLHandler extends DefaultHandler {
 		String character = new String(ch,start,length);
 		if(tabMark && !character.equals("\n")) {
 			if(strMark) {
-				if(tagName.equals("tag")) {
-					if(tagId.equals("ver")) {
-						version = character;
-					}
-				} else if(tagName.equals("col")) {
+				if(tagName.equals("col")) {
 					String[] columns = character.split(",");
 					for(String element : columns) {
 						column.put(element, tagId);
@@ -147,11 +140,10 @@ public class XMLHandler extends DefaultHandler {
 			}
 		}
 	}
-	public void addToQueue() {
+	private void addToQueue() {
 		column.putAll(cirColumn);
 		contentQueue.add(column);
 		cirColumn.remove(tagName);
-		System.out.println("columns: " + column.toString());
 		temTagName = "table";
 		column = new HashMap<String,String>();
 	}

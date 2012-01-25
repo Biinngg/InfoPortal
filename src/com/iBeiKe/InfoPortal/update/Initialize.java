@@ -16,118 +16,158 @@ import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.update.LoadingView;
 import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.update.XMLHandler;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.TextView;
 
 /**
  * 初始化：用于第一次启动时创建数据库，第一次启动显示介绍画面，并且读取系统时间以及数据库中的课程时间，学期时间。
  * 并且调用检测更新，附有进度条。
  * 
  */
-public class Initialize extends Activity {
+public class Initialize extends Activity implements Runnable {
+	private String message = "初始化...";
+    private LoadingView imageview;
+    private TextView textview;
 	private InputStream is;
 	private Database database = new Database(this);
-	private BlockingQueue<Map<String,Map<String,String>>> structQueue
-	= new ArrayBlockingQueue<Map<String,Map<String,String>>>(1);
-	private BlockingQueue<Map<String,String>> contentQueue = new LinkedBlockingQueue<Map<String,String>>();
+	private ExecutorService exec;
+    private Thread thread;
+	private BlockingQueue<Map<String,Map<String,String>>> structQueue =
+			new ArrayBlockingQueue<Map<String,Map<String,String>>>(1);
+	private BlockingQueue<Map<String,String>> contentQueue =
+			new LinkedBlockingQueue<Map<String,String>>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.initialize);
+		
+		textview = (TextView)findViewById(R.id.initial_text);
+        imageview = (LoadingView)findViewById(R.id.main_imageview);
+        initLoadingImages();
+        
+        thread = new Thread(this);
+        thread.start();
+
 		try {
 			is = getAssets().open("initialize.xml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ExecutorService exec = Executors.newCachedThreadPool();
+		exec = Executors.newCachedThreadPool();
 		exec.execute(new XMLParser(contentQueue,structQueue,is));
 		exec.execute(new DatabaseRebuild(contentQueue,structQueue,database));
-		//TODO 在适当时候关闭线程：exec.shutdownNow();
 	}
-	/*
-    private void addTables(String table_name, int room, int building, 
-    		int class1, int class2, int class3, int class4, int class5, int class6) {
-    	SQLiteDatabase db = database.getWritableDatabase();
-    	values.put(ROOM, room);
-    	values.put(BUILDING, building);
-    	values.put("class1", class1);
-    	values.put("class2", class2);
-    	values.put("class3", class3);
-    	values.put("class4", class4);
-    	values.put("class5", class5);
-    	values.put("class6", class6);
-    	db.insertOrThrow(table_name, null, values);
+	
+	public Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			if(msg.getData().containsKey("1")) {
+				exec.shutdown();
+				thread.stop();
+				finish();
+			} else {
+				message = msg.getData().get("0").toString();
+				textview.setText(message);
+			}
+    	}
+	};
+	
+	public void run() {
+        imageview.startAnim();
+	}
+	
+    private void initLoadingImages()
+    {
+        int[] imageIds = new int[6];
+        imageIds[0] = R.drawable.loader_frame_1;
+        imageIds[1] = R.drawable.loader_frame_2;
+        imageIds[2] = R.drawable.loader_frame_3;
+        imageIds[3] = R.drawable.loader_frame_4;
+        imageIds[4] = R.drawable.loader_frame_5;
+        imageIds[5] = R.drawable.loader_frame_6;
+        
+        imageview.setImageIds(imageIds);
     }
-    private void addClass(int begin, int end) {
-    	SQLiteDatabase db = database.getWritableDatabase();
-    	ContentValues values = new ContentValues();
-    	values.put("begin", begin);
-    	values.put("end", end);
-    	db.insertOrThrow("class", null, values);
-    }*/
-}
+    
+    private void messageSender(String key, String str) {
+		Message msg = new Message();
+		Bundle bul = new Bundle();
+		bul.putString(key, str);
+		msg.setData(bul);
+		mHandler.sendMessage(msg);
+    }
+    
+    class XMLParser implements Runnable {
+    	private XMLHandler myXMLHandler;
+    	private InputStream is;
+    	public XMLParser(BlockingQueue<Map<String,String>> contentQueue,
+    			BlockingQueue<Map<String,Map<String,String>>> structQueue,
+    			InputStream is) {
+    		messageSender("0","开始解析文件...");
+    		this.is = is;
+    		myXMLHandler = new XMLHandler(contentQueue, structQueue);
+    	}
+    	public void run() {
+    		try {
+    			if(!Thread.interrupted()) {
+    				SAXParserFactory spf = SAXParserFactory.newInstance();
+    				SAXParser sp = spf.newSAXParser();
+    				XMLReader xr = sp.getXMLReader();
+    				xr.setContentHandler(myXMLHandler);
+    				xr.parse(new InputSource(is));
+    			}
+    		} catch (Exception e) {
+    			System.out.println("XMLParser: " + e.toString());
+    		}
+    	}
+    }
 
-class XMLParser implements Runnable {
-	private XMLHandler myXMLHandler;
-	private InputStream is;
-	public XMLParser(BlockingQueue<Map<String,String>> contentQueue,
-			BlockingQueue<Map<String,Map<String,String>>> structQueue,InputStream is) {
-		this.is = is;
-		myXMLHandler = new XMLHandler(contentQueue, structQueue);
-	}
-	public void run() {
-		try {
-			if(!Thread.interrupted()) {
-				SAXParserFactory spf = SAXParserFactory.newInstance();
-				SAXParser sp = spf.newSAXParser();
-				XMLReader xr = sp.getXMLReader();
-				xr.setContentHandler(myXMLHandler);
-				xr.parse(new InputSource(is));
-			}
-		} catch (Exception e) {
-			System.out.println("XMLParser: " + e.toString());
-		}
-	}
-}
-
-class DatabaseRebuild implements Runnable {
-	private Database database;
-	private Map<String,Map<String,String>> dbStruct;
-	private BlockingQueue<Map<String,String>> contentQueue;
-	private BlockingQueue<Map<String,Map<String,String>>> structQueue;
-	public DatabaseRebuild(BlockingQueue<Map<String,String>> contentQueue,
-			BlockingQueue<Map<String,Map<String,String>>> structQueue,
-			Database database) {
-		this.contentQueue = contentQueue;
-		this.structQueue = structQueue;
-		this.database = database;
-	}
-	public void run() {
-		String table = null;
-		Map<String,String> content;
-		try {
-			if(!Thread.interrupted()) {
-				dbStruct = structQueue.take();
-				System.out.println("ini dbStruct: " + dbStruct);
-				database.open();
-				database.onRebuild(dbStruct);
-				while(!Thread.interrupted()) {
-					content = contentQueue.take();
-					System.out.println("insert content: " + content.toString());
-					if(content.containsKey("table")) {
-						table = content.get("table");
-					} else {
-						database.insert(table, content);
-					}
-				}
-				database.close();
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+    class DatabaseRebuild implements Runnable {
+    	private Database database;
+    	private Map<String,Map<String,String>> dbStruct;
+    	private BlockingQueue<Map<String,String>> contentQueue;
+    	private BlockingQueue<Map<String,Map<String,String>>> structQueue;
+    	public DatabaseRebuild(BlockingQueue<Map<String,String>> contentQueue,
+    			BlockingQueue<Map<String,Map<String,String>>> structQueue,
+    			Database database) {
+    		this.contentQueue = contentQueue;
+    		this.structQueue = structQueue;
+    		this.database = database;
+    	}
+    	public void run() {
+    		String table = null;
+    		Map<String,String> content;
+    		try {
+    			if(!Thread.interrupted()) {
+    				dbStruct = structQueue.take();
+    				messageSender("0", "创建数据库...");
+    				database.open();
+    				database.onRebuild(dbStruct);
+    				messageSender("0","初始化数据...");
+    				while(!Thread.interrupted()) {
+    					content = contentQueue.take();
+    					if(content.containsKey("table")) {
+    						table = content.get("table");
+    					} else if(content.containsKey(";")) {
+    						break;
+    					} else {
+    						database.insert(table, content);
+    					}
+    				}
+    				database.close();
+    				messageSender("0","完成！");
+    				messageSender("1","completed");
+    			}
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    }
 }

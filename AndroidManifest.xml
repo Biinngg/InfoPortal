@@ -29,7 +29,7 @@
 		
         <activity android:name=".update.Initialize"
         		android:label="@string/initialize_title"
-        		android:theme="@android:style/Theme.Dialog">
+        		android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         
         <activity android:name=".classes.CurrentClasses"

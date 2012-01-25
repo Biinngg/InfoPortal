@@ -27,21 +27,18 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class Database extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "infoportal.db";
-	private Map<String,Map<String,String>> struct;
 	private SQLiteDatabase db;
 	
 	public Database(Context ctx) {
-		super(ctx, DATABASE_NAME, null, 2);
+		super(ctx, DATABASE_NAME, null, 1);
 	}
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		System.out.println("in onCreate.");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		System.out.println("onUpgrade");
 	}
 	
 	public void onUpdate(SQLiteDatabase db, int oldRevision, int newRevision) {
@@ -59,7 +56,6 @@ public class Database extends SQLiteOpenHelper {
 			}
 			SQLstring += ");";
 			db.execSQL(SQLstring);
-			System.out.println("SQL string: " + SQLstring);
 		}
 	}
 	
@@ -82,6 +78,7 @@ public class Database extends SQLiteOpenHelper {
 	 * <p>Close the database.</p>
 	 */
 	public void close() {
+		super.close();
 		db.close();
 	}
 }

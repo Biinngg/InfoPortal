@@ -12,9 +12,9 @@ import org.xml.sax.helpers.DefaultHandler;
 public class XMLHandler extends DefaultHandler {
 	//xml structure
 	private boolean strMark=false;
-	private boolean tabMark=false;
 	private String tagId;
 	private String tagName;
+	private String character;
 	private String temTagName = "table";
 	private String cirTagName;//用于标记最内层嵌套
 	private Map<String,String> cirColumn;
@@ -26,6 +26,8 @@ public class XMLHandler extends DefaultHandler {
 	private BlockingQueue<Map<String,String>> contentQueue;
 	private BlockingQueue<Map<String,Map<String,String>>> structQueue;
 	
+	private StringBuilder sb = new StringBuilder();
+	
 	public XMLHandler(BlockingQueue<Map<String,String>> contentQueue,
 			BlockingQueue<Map<String,Map<String,String>>> structQueue) {
 		this.contentQueue = contentQueue;
@@ -34,10 +36,13 @@ public class XMLHandler extends DefaultHandler {
 	
 	@Override
 	public void startDocument() throws SAXException {
+		sb.setLength(0);
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
+		column.put(";", ";");
+		contentQueue.add(column);
 	}
 
 	@Override
@@ -45,12 +50,12 @@ public class XMLHandler extends DefaultHandler {
 			String qName, Attributes atts) throws SAXException {
 		tagName = localName;
 		tagId = atts.getValue(0);
+		sb.setLength(0);//必须每次清空，以排除夹在关闭标签与开启标签之间的字符
 		if(localName.equals("database")) {
 			if(tagId.equals("init")) {
 				//TODO 分为初始化，更新
 			}
 		} else if (localName.equals("table")) {
-			tabMark = true;
 			if(tagId.equals("struct")) {
 				//在标签属性为struct时更新数据库结构，并且都标记strMark为true.
 				//可能同一个文件中有两个结构的定义，所以每次都初始化。
@@ -80,46 +85,18 @@ public class XMLHandler extends DefaultHandler {
 		}
 	}
 
-	/**
-	 *<b>Notice:</b>
-	 *<p> Execute only if the tag doesn't contain characters.
-	 */
 	@Override
-	public void characters(char ch[], int start, int length) {
-		String character = new String(ch,start,length);
-		if(tabMark && !character.equals("\n")) {
-			if(strMark) {
-				if(tagName.equals("col")) {
-					String[] columns = character.split(",");
-					for(String element : columns) {
-						column.put(element, tagId);
-					}
-				}
-			} else {
-				if(tagId != null) {
-					//允许tagName与tagId合成列名
-					if(tagName.equals(temTagName)) {
-						cirColumn.remove(temTagName);
-						temTagName = cirTagName;
-					}
-					tagName += tagId;
-				} else {
-					//在标签有id但没有内容时，此标签才为嵌套标签。
-					cirTagName = temTagName;
-				}
-				if(column.containsKey(tagName)) {
-					//重复出现的列也算循环，需考虑tagName+=tagId
-					addToQueue();
-				}
-				column.put(tagName, character);
-			}
-		}
+	public void characters(char ch[], int start, int length) throws SAXException {
+		super.characters(ch, start, length);
+		sb.append(ch,start,length);//解决换行符带来的bug
 	}
 	
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName)
 			throws SAXException {
-		tagName = localName;
+		//System.out.println("tagName: " + tagName + " localName: " + localName +
+				//" tagId: " + tagId + " chara: " + character + " sb: " + sb.toString());
+		character = sb.toString();
 		if(strMark) {
 			if(localName.equals("table")) {
 				structQueue.add(dbStruct);
@@ -130,15 +107,38 @@ public class XMLHandler extends DefaultHandler {
 					dbStruct.put(tableName.get(tableNum++), column);
 				}
 				column=new HashMap<String,String>();
+			} else 	if(localName.equals("col")) {
+				String[] columns = character.split(",");
+				for(String element : columns) {
+					column.put(element, tagId);
+				}
 			}
 		} else {
-			if(localName.equals("table")) {
-				tabMark = false;
-			}
 			if(localName.equals(cirTagName)) {
 				addToQueue();
 			}
+			if(column.containsKey(tagName)) {
+				//重复出现的列也算循环，需考虑tagName+=tagId
+				addToQueue();
+			}
+			if(character != null && tagName != null) {
+				if(tagId != null) {
+					//允许tagName与tagId合成列名
+					if(tagName.equals(temTagName)) {
+						cirColumn.remove(temTagName);
+						temTagName = cirTagName;
+					}
+					tagName = localName + tagId;
+				} else {
+					//在标签有id但没有内容时，此标签才为嵌套标签。
+					cirTagName = temTagName;
+				}
+				column.put(tagName, character);
+			}
 		}
+		tagName = null;
+		tagId = null;
+		sb.setLength(0);//使用完毕，不再有意义
 	}
 	private void addToQueue() {
 		column.putAll(cirColumn);

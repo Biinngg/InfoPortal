@@ -15,14 +15,20 @@ import android.database.sqlite.SQLiteOpenHelper;
  * <li>用来存储每天的无课信息，包括：
  * <li>id, room, building, class 1~6.
  * 
- * <p>time
+ * <p>class_time
  * <li>用来存放每节课上下课时间，包括
  * <li>id, begin, end
- * <li>第0行存放学期起讫，其他行每个小节一个记录，使用time stamp。
+ * <li>第1行存放学期起讫，其他行每个小节一个记录。
  * 
- * <p>update
- * <li>用来存放每次更新版本信息，0为更新地址，包括：
+ * <p>class_update
+ * <li>用来存放无课表每次更新版本信息,包括：
  * <li>id, value(varchar(50))
+ * <li>第1行为无课表更新地址，其余行为版本值，对应本地缓存的版本更新文件名</li>
+ * 
+ * <p>lib_history
+ * <li>用来存放书籍搜索信息,包括：
+ * <li>id, value(varchar(50))
+ * <li>第1行为图书馆搜索地址，其余行为搜索内容，对应本地缓存的文件名</li>
  * 
  */
 public class Database extends SQLiteOpenHelper {

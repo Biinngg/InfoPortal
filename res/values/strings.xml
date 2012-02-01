@@ -46,4 +46,7 @@
     <string name="copy_text">Copyright © 2001-2011 iBeiKe All Rights Reserved\n</string>
     <string name="page_label_go_back">扫描</string>
     <string name="lib_search_tip">名称或ISBN码</string>
+    <string name="book_author">责任者</string>
+    <string name="book_num">索书号</string>
+    <string name="book_publisher">出版信息</string>
 </resources>

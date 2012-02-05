@@ -17,6 +17,7 @@ import org.xml.sax.XMLReader;
 
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.update.LoadingView;
+import com.iBeiKe.InfoPortal.common.MessageHandler;
 import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.update.XMLHandler;
 
@@ -39,6 +40,7 @@ public class Initialize extends Activity implements Runnable {
 	private Database database = new Database(this);
 	private ExecutorService exec;
     private Thread thread;
+	private MessageHandler mcr;
 	private BlockingQueue<Map<String,Map<String,String>>> structQueue =
 			new ArrayBlockingQueue<Map<String,Map<String,String>>>(1);
 	private BlockingQueue<Map<String,String>> contentQueue =
@@ -73,8 +75,7 @@ public class Initialize extends Activity implements Runnable {
 				thread.stop();
 				finish();
 			} else {
-				message = msg.getData().get("0").toString();
-				textview.setText(message);
+				textview.setText(mcr.getString("0", msg));
 			}
     	}
 	};
@@ -83,8 +84,7 @@ public class Initialize extends Activity implements Runnable {
         imageview.startAnim();
 	}
 	
-    private void initLoadingImages()
-    {
+    private void initLoadingImages() {
         int[] imageIds = new int[6];
         imageIds[0] = R.drawable.loader_frame_1;
         imageIds[1] = R.drawable.loader_frame_2;
@@ -97,11 +97,9 @@ public class Initialize extends Activity implements Runnable {
     }
     
     private void messageSender(String key, String str) {
-		Message msg = new Message();
-		Bundle bul = new Bundle();
-		bul.putString(key, str);
-		msg.setData(bul);
-		mHandler.sendMessage(msg);
+    	mcr = new MessageHandler();
+    	mcr.bundle(key, str);
+		mHandler.sendMessage(mcr.get());
     }
     
     class XMLParser implements Runnable {

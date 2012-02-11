@@ -12,14 +12,14 @@ public class Query extends Activity{
 		database = new Database(this);
 	}
 	
-    protected Cursor getCursor(String table_name,String[] columns, String selection, String orderBy) {
+    public Cursor getCursor(String table_name,String[] columns, String selection, String orderBy) {
     	SQLiteDatabase db = database.getReadableDatabase();
     	Cursor result = db.query(table_name, columns, selection, null, null, null, orderBy);
     	startManagingCursor(result);
     	return result;
     }
     
-    protected int[] getIntResults(Cursor cursor) {
+    public int[] getIntResults(Cursor cursor) {
     	dbCounts = cursor.getCount();
     	int[] queryResult = new int[dbCounts];
     	int i=0;
@@ -33,7 +33,7 @@ public class Query extends Activity{
     	}
     }
 
-    protected String[] getStringResults(Cursor cursor) {
+    public String[] getStringResults(Cursor cursor) {
     	dbCounts = cursor.getCount();
     	String[] queryResult = new String[dbCounts];
     	int i=0;

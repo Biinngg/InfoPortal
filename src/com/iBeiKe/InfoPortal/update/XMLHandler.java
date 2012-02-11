@@ -12,11 +12,9 @@ import org.xml.sax.helpers.DefaultHandler;
 public class XMLHandler extends DefaultHandler {
 	//xml structure
 	private boolean strMark=false;
-	private String tagId;
-	private String tagName;
-	private String character;
-	private String temTagName = "table";
-	private String cirTagName;//用于标记最内层嵌套
+	private String tagId = null;
+	private String tagName = null;
+	private String character = null;
 	private Map<String,String> cirColumn;
 	//database structure
 	private int tableNum=0;
@@ -49,11 +47,13 @@ public class XMLHandler extends DefaultHandler {
 	public void startElement(String namespaceURI, String localName,
 			String qName, Attributes atts) throws SAXException {
 		tagName = localName;
-		tagId = atts.getValue(0);
 		sb.setLength(0);//必须每次清空，以排除夹在关闭标签与开启标签之间的字符
+		tagId = atts.getValue(0);
 		if(localName.equals("database")) {
 			if(tagId.equals("init")) {
-				//TODO 分为初始化，更新
+			} else if(tagId.equals("alter")) {
+				//TODO 分为drop,add,与struct并列
+				//TODO 而update与delete直接在table标签中添加属性
 			}
 		} else if (localName.equals("table")) {
 			if(tagId.equals("struct")) {
@@ -78,10 +78,8 @@ public class XMLHandler extends DefaultHandler {
 				}
 			}
 		} else if(tagId!=null) {
-			//tagName作为关键字，用来保留外层嵌套，更新内层
-			cirTagName = temTagName;
-			temTagName = localName;
-			cirColumn.put(temTagName, tagId);
+			//若有id，暂时标记为循环
+			cirColumn.put(localName, tagId);
 		}
 	}
 
@@ -94,8 +92,6 @@ public class XMLHandler extends DefaultHandler {
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName)
 			throws SAXException {
-		//System.out.println("tagName: " + tagName + " localName: " + localName +
-				//" tagId: " + tagId + " chara: " + character + " sb: " + sb.toString());
 		character = sb.toString();
 		if(strMark) {
 			if(localName.equals("table")) {
@@ -114,26 +110,25 @@ public class XMLHandler extends DefaultHandler {
 				}
 			}
 		} else {
-			if(localName.equals(cirTagName)) {
-				addToQueue();
-			}
 			if(column.containsKey(tagName)) {
-				//重复出现的列也算循环，需考虑tagName+=tagId
+				//循环1/2：重复出现的列算作循环，需考虑tagName+=tagId
 				addToQueue();
 			}
 			if(character != null && tagName != null) {
 				if(tagId != null) {
+					//若有id、内容和标签名，不算做循环
+					cirColumn.remove(localName);
 					//允许tagName与tagId合成列名
-					if(tagName.equals(temTagName)) {
-						cirColumn.remove(temTagName);
-						temTagName = cirTagName;
-					}
 					tagName = localName + tagId;
-				} else {
-					//在标签有id但没有内容时，此标签才为嵌套标签。
-					cirTagName = temTagName;
 				}
 				column.put(tagName, character);
+			}
+			if(!column.isEmpty()) {
+				//排除掉连续的关闭标签，只第一个关闭标签有效
+				if(cirColumn.containsKey(localName)) {
+					//循环2/2：若cirColumn中存在此标签，即为循环
+					addToQueue();
+				}
 			}
 		}
 		tagName = null;
@@ -144,7 +139,6 @@ public class XMLHandler extends DefaultHandler {
 		column.putAll(cirColumn);
 		contentQueue.add(column);
 		cirColumn.remove(tagName);
-		temTagName = "table";
 		column = new HashMap<String,String>();
 	}
 }

@@ -49,4 +49,6 @@
     <string name="book_author">责任者</string>
     <string name="book_num">索书号</string>
     <string name="book_publisher">出版信息</string>
+    <string name="lib_time_title">开放时间:</string>
+    <string name="lib_borrow_title">当前借阅:</string>
 </resources>

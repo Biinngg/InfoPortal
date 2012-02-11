@@ -9,10 +9,6 @@
   	<!-- Header -->
   	<include layout="@layout/header"/>
   	 
-	<ScrollView
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" >
 	<RelativeLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical"
@@ -30,25 +26,14 @@
 	    	android:background="#65999999"
 	    	android:textColor="@color/status_text"
 		/>
-		<CheckBox 
-	    	android:id="@+id/build_box1"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:text="@string/build_name1"
+		
+	 	<ScrollView
+	    	android:id="@+id/cla_build"
+	  		android:layout_width="fill_parent"
+	  		android:layout_height="wrap_content"
 	    	android:layout_marginTop="2dip"
 	    	android:layout_marginLeft="25dip"
 	    	android:layout_below="@+id/building"
-	    	android:textColor="#000"
-		/>
-		<CheckBox 
-	    	android:id="@+id/build_box2"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-		    android:text="@string/build_name2"
-		    android:layout_marginTop="2dip"
-		    android:layout_marginLeft="25dip"
-		    android:layout_below="@+id/building"
-		    android:layout_toRightOf="@+id/build_box1"
 	    	android:textColor="#000"
 		/>
 	
@@ -58,7 +43,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginTop="2dip"
 		    android:text="@string/floor_name"
-		    android:layout_below="@+id/build_box1"
+		    android:layout_below="@+id/cla_build"
 		    android:padding="3dip"
 		    android:background="#65999999"
 	    	android:textColor="@color/status_text"
@@ -67,11 +52,12 @@
 			android:id="@+id/floor_from"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:layout_marginTop="2dip"
 		    android:text="@string/from"
+		    android:textColor="@color/black"
+		    android:textSize="15dip"
 		    android:layout_below="@+id/floor"
 		    android:layout_marginLeft="10dip"
-	    	android:textColor="@color/status_text"
+		    android:layout_marginTop="12dip"
 		/>
 		<Spinner 
 		    android:id="@+id/floor_spinner1"
@@ -88,11 +74,12 @@
 			android:id="@+id/floor_to"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:layout_marginTop="1dip"
 		    android:text="@string/to"
+		    android:textColor="@color/black"
+		    android:textSize="15dip"
 		    android:layout_below="@+id/floor_spinner1"
 		    android:layout_marginLeft="10dip"
-	    	android:textColor="@color/status_text"
+		    android:layout_marginTop="12dip"
 		/>
 		<Spinner 
 		    android:id="@+id/floor_spinner2"
@@ -119,11 +106,12 @@
 			android:id="@+id/class_from"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:layout_marginTop="2dip"
 		    android:text="@string/from"
+		    android:textColor="@color/black"
+		    android:textSize="15dip"
 		    android:layout_below="@+id/classes"
 		    android:layout_marginLeft="10dip"
-	    	android:textColor="@color/status_text"
+		    android:layout_marginTop="12dip"
 		/>
 		<Spinner 
 		    android:id="@+id/class_spinner1"
@@ -140,11 +128,12 @@
 			android:id="@+id/class_to"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:layout_marginTop="1dip"
 		    android:text="@string/to"
+		    android:textColor="@color/black"
+		    android:textSize="15dip"
 		    android:layout_below="@+id/class_spinner1"
 		    android:layout_marginLeft="10dip"
-	    	android:textColor="@color/status_text"
+		    android:layout_marginTop="12dip"
 		/>
 		<Spinner 
 		    android:id="@+id/class_spinner2"
@@ -178,5 +167,4 @@
 		    android:layout_toRightOf="@+id/search_button"
 		/>
 	</RelativeLayout>
-	</ScrollView>  
 </LinearLayout>

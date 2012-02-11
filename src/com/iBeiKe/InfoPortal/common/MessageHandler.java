@@ -11,7 +11,9 @@ public class MessageHandler {
 	private Bundle bul;
 	
 	public MessageHandler() {
-		msg = new Message();
+		//Message.obtain() is preferable to Message m = new Message()
+		//(because it recycles used messages under the hood)
+		msg = Message.obtain();
 		bul = new Bundle();
 	}
 	

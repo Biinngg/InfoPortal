@@ -3,8 +3,11 @@ package com.iBeiKe.InfoPortal.database;
 import java.util.Map;
 
 import static android.provider.BaseColumns._ID;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -34,6 +37,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "infoportal.db";
 	private SQLiteDatabase db;
+	private Cursor cursor;
 	
 	public Database(Context ctx) {
 		super(ctx, DATABASE_NAME, null, 1);
@@ -72,12 +76,32 @@ public class Database extends SQLiteOpenHelper {
     	}
     	db.insertOrThrow(table, null, values);
 	}
+    
+    public String[] getString(String table, String column,
+    		String selection, String orderBy) {
+		String[] columns = new String[]{column};
+    	cursor = (SQLiteCursor) db.query(table, columns, selection, null, null, null, orderBy);
+    	int count = cursor.getCount();
+    	String[] queryResult = new String[count];
+    	int i=0;
+    	if(count != 0) {
+    		while(cursor.moveToNext()) {
+    			queryResult[i++] = cursor.getString(0); 
+    		}
+    		return queryResult;
+    	} else {
+    		return null;
+    	}
+    }
 	/**
-	 * <p>Get a writable database.</p>
+	 * <p>Get a writable/readable database.</p>
 	 * <b>Warning:</b>
 	 * <p>Remember to call close();</p>
 	 */
-	public void open() {
+	public void read() {
+		db = this.getReadableDatabase();
+	}
+	public void write() {
 		db = this.getWritableDatabase();
 	}
 	/**

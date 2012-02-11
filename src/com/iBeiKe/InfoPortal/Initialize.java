@@ -1,5 +1,6 @@
-package com.iBeiKe.InfoPortal.update;
+package com.iBeiKe.InfoPortal;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -22,13 +23,15 @@ import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.update.XMLHandler;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.TextView;
 
 /**
- * 初始化：用于第一次启动时创建数据库，第一次启动显示介绍画面，并且读取系统时间以及数据库中的课程时间，学期时间。
+ * 初始化：用于第一次启动时创建数据库，第一次启动显示介绍画面，读取系统时间以及数据库中的课程时间，学期时间。
  * 并且调用检测更新，附有进度条。
  * 
  */
@@ -41,6 +44,7 @@ public class Initialize extends Activity implements Runnable {
 	private ExecutorService exec;
     private Thread thread;
 	private MessageHandler mcr;
+	private Intent intent;
 	private BlockingQueue<Map<String,Map<String,String>>> structQueue =
 			new ArrayBlockingQueue<Map<String,Map<String,String>>>(1);
 	private BlockingQueue<Map<String,String>> contentQueue =
@@ -49,23 +53,34 @@ public class Initialize extends Activity implements Runnable {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.initialize);
-		
-		textview = (TextView)findViewById(R.id.initial_text);
-        imageview = (LoadingView)findViewById(R.id.main_imageview);
-        initLoadingImages();
-        
-        thread = new Thread(this);
-        thread.start();
-
-		try {
-			is = getAssets().open("initialize.xml");
-		} catch (IOException e) {
-			e.printStackTrace();
+		File file = new File("/data/data/com.iBeiKe.InfoPortal/databases/infoportal.db");
+		intent = new Intent(this, InfoPortal.class);
+		if(file.exists()) {
+			startActivity(intent);
+		} else {
+			setContentView(R.layout.initialize);
+			
+			textview = (TextView)findViewById(R.id.initial_text);
+	        imageview = (LoadingView)findViewById(R.id.main_imageview);
+	        initLoadingImages();
+	        
+	        thread = new Thread(this);
+	        thread.start();
+	
+			try {
+				is = getAssets().open("initialize.xml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			exec = Executors.newCachedThreadPool();
+			exec.execute(new XMLParser(contentQueue,structQueue,is));
+			exec.execute(new DatabaseRebuild(contentQueue,structQueue,database));
 		}
-		exec = Executors.newCachedThreadPool();
-		exec.execute(new XMLParser(contentQueue,structQueue,is));
-		exec.execute(new DatabaseRebuild(contentQueue,structQueue,database));
+	}
+	
+	public void onStop() {
+		super.onStop();
+		finish();
 	}
 	
 	public Handler mHandler = new Handler() {
@@ -73,7 +88,7 @@ public class Initialize extends Activity implements Runnable {
 			if(msg.getData().containsKey("1")) {
 				exec.shutdown();
 				thread.stop();
-				finish();
+				startActivity(intent);
 			} else {
 				textview.setText(mcr.getString("0", msg));
 			}
@@ -122,7 +137,7 @@ public class Initialize extends Activity implements Runnable {
     				xr.parse(new InputSource(is));
     			}
     		} catch (Exception e) {
-    			System.out.println("XMLParser: " + e.toString());
+    			Log.e("XMLParser Exception", e.toString());
     		}
     	}
     }
@@ -146,7 +161,7 @@ public class Initialize extends Activity implements Runnable {
     			if(!Thread.interrupted()) {
     				dbStruct = structQueue.take();
     				messageSender("0", "创建数据库...");
-    				database.open();
+    				database.write();
     				database.onRebuild(dbStruct);
     				messageSender("0","初始化数据...");
     				while(!Thread.interrupted()) {

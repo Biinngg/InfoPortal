@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_alignLeft="@+id/library_content"
+    android:layout_below="@+id/library_content"
+    android:padding="8dip">
+	<TextView
+		android:id="@+id/library_title"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="3dip"
+	    android:layout_below="@+id/LinearLayout01"
+	    android:background="#65999999"
+	    android:textColor="@color/status_text"
+	/>
+	 <ListView
+	    android:id="@+id/library_list"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="fill_parent"
+	  	android:layout_weight="1" 
+ 	    android:cacheColorHint="#00000000"
+	    android:fadeScrollbars="true"
+    	android:divider="@drawable/dashed_line"
+    	android:dividerHeight="1dip"
+    	android:fastScrollEnabled="true"
+	/>
+</RelativeLayout>

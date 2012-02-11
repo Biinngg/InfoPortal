@@ -42,6 +42,7 @@ public class BooksListAdapter extends BaseAdapter {
 		String[] descripItem = new String[3];
 		int[] n = new int[]{0,0,0};
 		String[] descripName = new String[]{"责任者:","索书号:","出版信息:"};
+		final int WIDTH = 30;
 		for(String key : item.keySet()) {
 			if(key.equals("title")) {
 				title = item.get(key);
@@ -63,9 +64,10 @@ public class BooksListAdapter extends BaseAdapter {
 		descripItem[0] = description.substring(n[1]+descripName[1].length(), n[2]-1);
 		descripItem[1] = description.substring(n[0]+descripName[0].length(), n[1]-2);
 		descripItem[2] = description.substring(n[2]+descripName[2].length());
+		int totalLength = descripItem[1].length() + descripItem[2].length();
 		for(int i=1;i<3;i++) {
-			if(descripItem[i].length()>=14) {
-				descripItem[i] = descripItem[i].substring(0, 12);
+			if(totalLength >= WIDTH && descripItem[i].length()>=WIDTH/2) {
+				descripItem[i] = descripItem[i].substring(0, WIDTH/2-3);
 				descripItem[i] += "..";
 			}
 		}

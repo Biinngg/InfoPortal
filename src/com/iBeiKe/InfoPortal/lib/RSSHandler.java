@@ -42,6 +42,8 @@ public class RSSHandler extends DefaultHandler {
 
 	@Override
 	public void endDocument() throws SAXException {
+		content.put(";", ";");
+		queue.add(content);
 	}
 
 	@Override

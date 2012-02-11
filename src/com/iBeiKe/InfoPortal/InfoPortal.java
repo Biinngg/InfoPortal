@@ -1,16 +1,15 @@
 package com.iBeiKe.InfoPortal;
 
-
 import java.io.File;
 
 import com.iBeiKe.InfoPortal.classes.Search;
 import com.iBeiKe.InfoPortal.news.News;
-import com.iBeiKe.InfoPortal.update.Initialize;
 import com.iBeiKe.InfoPortal.lib.Library;
 
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +21,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * 整个程序主要可见Activity的容器，提供底部导航按钮;
+ * 提供程序常量
+ *
+ */
 public class InfoPortal extends ActivityGroup {
 	Button classes;
 	Button lib;
@@ -36,16 +40,11 @@ public class InfoPortal extends ActivityGroup {
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
+		
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         container = (LinearLayout) findViewById(R.id.Container);
         navigationButtonEvent();
-
-		File file = new File("/data/data/com.iBeiKe.InfoPortal/databases/infoportal.db");
-		if(!file.exists()) {
-			Intent i = new Intent(this, Initialize.class);
-			startActivity(i);
-		}
     }
     
 	private void navigationButtonEvent() {
@@ -132,7 +131,7 @@ public class InfoPortal extends ActivityGroup {
 				intent.setClass(InfoPortal.this, Settings.class);
 				startActivity(intent);
     		}catch(Exception e){
-    			System.out.println(e);
+    			Log.e("Menu Exception", e.toString());
     		}
     		break;
     	case R.id.about:
@@ -141,7 +140,7 @@ public class InfoPortal extends ActivityGroup {
 				intent.setClass(InfoPortal.this, About.class);
 				startActivity(intent);
     		}catch(Exception e){
-    			System.out.println(e);
+    			Log.e("Menu Exception", e.toString());
     		}
     		break;
     	case R.id.quit:

@@ -30,26 +30,15 @@
 	    	android:background="#65999999"
 	    	android:textColor="@color/status_text"
 		/>
-		<CheckBox 
-	    	android:id="@+id/build_box1"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:text="@string/build_name1"
+		
+	 	<ScrollView
+	    	android:id="@+id/cla_build"
+	  		android:layout_width="fill_parent"
+	  		android:layout_height="wrap_content"
 	    	android:layout_marginTop="2dip"
 	    	android:layout_marginLeft="25dip"
 	    	android:layout_below="@+id/building"
-	    	android:textColor="@color/status_text"
-		/>
-		<CheckBox 
-	    	android:id="@+id/build_box2"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-		    android:text="@string/build_name2"
-		    android:layout_marginTop="2dip"
-		    android:layout_marginLeft="25dip"
-		    android:layout_below="@+id/building"
-		    android:layout_toRightOf="@+id/build_box1"
-	    	android:textColor="@color/status_text"
+	    	android:textColor="#000"
 		/>
 	
 		<TextView
@@ -58,7 +47,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginTop="2dip"
 		    android:text="@string/floor_name"
-		    android:layout_below="@+id/build_box1"
+		    android:layout_below="@+id/cla_build"
 		    android:padding="3dip"
 		    android:background="#65999999"
 	    	android:textColor="@color/status_text"

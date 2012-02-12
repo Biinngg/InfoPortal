@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -31,6 +32,8 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Search extends Activity {
+	private int orientation;
+	private Database db;
 	private String where;
 	private String[] build;
 	private String[] floor;
@@ -57,36 +60,65 @@ public class Search extends Activity {
 					classSpinner1, classSpinner2;
 	private ArrayAdapter<String> floorAdapter1, floorAdapter2,
 					classAdapter1, classAdapter2;
-    private LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT);
-    private LayoutParams FFLayoutParams = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.FILL_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT);
 	
+	private boolean isVertical() {
+        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            return false;
+        } else {
+        	return true;
+        }
+	}
+	
+    private void getBuildCheckBox() {
+    	CheckBox checkBox;
+    	LinearLayout layoutH = null;
+    	LinearLayout layoutV = new LinearLayout(this);
+        LayoutParams hLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        LayoutParams vLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        boolean vertical = isVertical();
+        for(int i=0;i<build.length;i++) {
+        	if(vertical && i%2==0) {
+        		if(layoutH != null) {
+        			layoutV.addView(layoutH);
+        		}
+	        	layoutH = new LinearLayout(this);
+	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
+        	} else if(i%4==0){
+        		if(layoutH != null) {
+        			layoutV.addView(layoutH);
+        		}
+	        	layoutH = new LinearLayout(this);
+	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
+        	}
+        	checkBox = new CheckBox(this);
+        	checkBox.setId(i);
+        	checkBox.setText(build[i]);
+            checkBox.setTextColor(R.color.black);
+            checkBox.setWidth(180);
+            checkBox.setTextSize(18);
+            checkBox.setSelected(true);
+            checkBox.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                	build1 = ((CheckBox) v).isChecked();
+                }
+            });
+            layoutH.addView(checkBox, hLayoutParams);
+        }
+		layoutV.addView(layoutH);
+        ScrollView listView = (ScrollView) findViewById(R.id.cla_build);
+        listView.addView(layoutV);
+    }
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classes);
         getInitData();
-
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.HORIZONTAL);
-        CheckBox checkBox0 = new CheckBox(this);
-        checkBox0.setId(0);
-        checkBox0.setText(build[0]);
-        checkBox0.setTextColor(R.color.black);
-        checkBox0.setWidth(180);
-        checkBox0.setTextSize(18);
-        layout.addView(checkBox0, mLayoutParams);
-        CheckBox checkBox1 = new CheckBox(this);
-        checkBox1.setId(0);
-        checkBox1.setText(build[0]);
-        checkBox1.setTextColor(R.color.black);
-        checkBox1.setTextSize(18);
-        layout.addView(checkBox1, mLayoutParams);
-        ScrollView listView = (ScrollView) findViewById(R.id.cla_build);
-        listView.addView(layout);
+        getBuildCheckBox();
         
         /*
         final CheckBox checkbox1 = (CheckBox) findViewById(R.id.build_box1);
@@ -190,25 +222,25 @@ public class Search extends Activity {
         searchMillis = System.currentTimeMillis();
         hourAndMin = times.getHourAndMinute();
         
-        Database db = new Database(this);
+        db = new Database(this);
         db.read();
-    	build = db.getString("cla_build", "name", null, null);
-    	where = "build=" + buildNum;
-    	floor = db.getString("cla_floor", "name", where, null);
+    	build = db.getString("cla_build", "name", null, null, 0);
+    	int[] buildNums = db.getInt(
+    			"cla_build", "_id", null, "floor_num DESC", 1);
+    	where = "build=" + buildNums[0];
+    	floor = db.getString("cla_floor", "name", where, null, 0);
     	where = "period=1";
-    	classes = db.getString("cla_time", "name", where, null);
+    	classes = db.getString("cla_time", "name", where, null, 0);
     	
-    	if(hourAndMin < 800) {
-    		curSelection = 0;
-    	} else if(hourAndMin > 2125) {
+    	if(hourAndMin >= 2125 && hourAndMin < 2400) {
     		curSelection = 0;
     		searchMillis += 86400000;//86400000ms = 1day
-    	} else {
+    	} else if(hourAndMin < 2125){
     		String[] curClass = null;
     		for(int t=hourAndMin; curClass==null ||
     				curClass.length==0; t+=45) {
 	        	where = "begin <= " + t + " AND end >= " + t;
-	    		curClass = db.getString("cla_time", "name", where, null);
+	    		curClass = db.getString("cla_time", "name", where, null, 0);
     		}
     		for(String str : classes) {
     			if(str.equals(curClass[0])) {
@@ -216,6 +248,8 @@ public class Search extends Activity {
     			}
     			curSelection++;
     		}
+    	} else {
+    		curSelection = 0;
     	}
     	db.close();
 

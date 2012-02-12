@@ -128,6 +128,9 @@ public class XMLHandler extends DefaultHandler {
 				if(cirColumn.containsKey(localName)) {
 					//循环2/2：若cirColumn中存在此标签，即为循环
 					addToQueue();
+				} else if(localName.equals("table")) {
+					//循环标签的特殊情况，由于table并不存入cirColumn，所以需要独立写出
+					addToQueue();
 				}
 			}
 		}

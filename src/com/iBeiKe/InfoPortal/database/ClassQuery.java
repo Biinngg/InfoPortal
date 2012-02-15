@@ -68,7 +68,8 @@ public class ClassQuery extends Query {
 			int room1;
 			int room2;
 			String className;
-			int weekInTerm = times.getWeekInTerm();
+			//int weekInTerm = times.getWeekInTerm();
+			int weekInTerm = 1;
 			int weekNum = 1 << (weekInTerm-1);
 			turnASC(floor1,floor2);
 			room1 = floor1 * 100;

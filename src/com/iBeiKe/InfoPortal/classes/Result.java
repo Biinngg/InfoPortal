@@ -1,243 +1,137 @@
 package com.iBeiKe.InfoPortal.classes;
 
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.database.ClassQuery;
+import com.iBeiKe.InfoPortal.common.ComTimes;
 import com.iBeiKe.InfoPortal.database.Database;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.Button;
+import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;  
 
 public class Result extends Activity {
-	public static String TABLE_NAME;
-	public static String CLASS_NAME;
-	private static String WHERE_F;
-	private static String WHERE;
-	private static String WHERE1;
-	private static String WHERE2;
-	private static String ROOM_RESULT;
-	public static boolean BUILD_NAME1;
-	public static boolean BUILD_NAME2;
-	public static int CLASS_NUM1;
-	public static int CLASS_NUM2;
-	public static int FLOOR_NUM1;
-	public static int FLOOR_NUM2;
-	public static int ROOM_NUM1;
-	public static int ROOM_NUM2;
-	public static int WEEK_NUM;
-	private static String[] FROM;
-	private String str_building;
-	private String str_floor;
-	private String str_classes;
+	private Database db;
 	private long searchMillis;
-	private Database database;
-	private int result_number = 0;
-	Bundle bl;
-	Intent intent;
-	Button btn;
-	private int even;
-	private int odd;
-	private StringBuilder builder = new StringBuilder();
+	private int buiSelection;
+	private int floorNum1;
+	private int floorNum2;
+	private int classNum1;
+	private int classNum2;
+	private int weekInTerm;
+	private String titleText;
+	private String tableName;
+	private ResultListAdapter adapter;
+	private boolean isVertical;
+
+	private boolean isVertical() {
+        if(this.getResources().getConfiguration().orientation
+        		== Configuration.ORIENTATION_LANDSCAPE) {
+            return false;
+        } else {
+        	return true;
+        }
+	}
+	
+	private void getInitData(long searchMillis) {
+		int start = 0;
+		ComTimes ct = new ComTimes();
+		ct.setTime(searchMillis);
+		String[] columns = new String[]{"name", "period", "begin"};
+		String where = "_id=1";
+		Cursor cursor = db.getCursor("cla_time", columns, where, null);
+		if(cursor.moveToFirst()) {
+			titleText = cursor.getString(0);
+			titleText += " " + cursor.getString(1);
+			start = cursor.getInt(2);
+		}
+		weekInTerm = ct.getWeekInTerm(start);
+		titleText += " 第" + weekInTerm + "周";
+    	tableName = ct.getDayInWeek(java.util.Locale.US);
+    	isVertical = isVertical();
+	}
+	
+	private void showResult() {
+		int filter = 1;
+		String where = "";
+		String[] col = new String[]{"_id","room"};
+		int binWeek = 1 << (weekInTerm - 1);
+		for(int i=classNum1;i<=classNum2;i++) {
+			where += "class" + i + " & " + binWeek + "=" + binWeek + " AND ";
+		}
+		if(floorNum1 == floorNum2) {
+			int floor = floorNum1 * 100;
+			where += "room=" + floor + " AND ";
+		} else {
+			int floor1 = floorNum1 * 100;
+			int floor2 = floorNum2 * 100;
+			where += "room>" + floor1 + " AND room<" + floor2 + " AND ";
+		}
+		for(int i=1; filter<buiSelection; i++) {
+			int res = buiSelection & filter;
+			if(res == filter) {
+				String selection = where + "build=" + i;
+				String build = "_id=" + i;
+				Log.d("sql", "Select " + col.toString() + " from " + tableName + " where " + selection);
+				resultQuery(build, tableName, col, selection, "room ASC");
+			}
+			filter = filter << 1;
+		}
+	}
+	
+	private void resultQuery(String building, String tableName,
+			String[] column, String selection, String orderBy) {
+		String[] buil = db.getString("cla_build", "name", building, null, 0);
+		Cursor cursor = db.getCursor(tableName, column, selection, orderBy);
+		int length = cursor.getCount();
+		int num, floor = 1;
+		if(isVertical) {
+			num = 4;
+		} else {
+			num = 8;
+		}
+		int[] id = new int[num], room = new int[num];
+		for(int i=0; i<length; i++) {
+			cursor.moveToNext();
+			id[i%num] = cursor.getInt(0);
+			room[i%num] = cursor.getInt(1);
+			if(i == 0) {
+				adapter.setData(buil[0], id, room);
+			} else 	if(i%num == 0) {
+				adapter.setData(null, id, room);
+				id = new int[num];
+				room = new int[num];
+			}
+		}
+	}
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
-        database = new Database(this);
-		
         //Use Intent to transfer key-value.
-		intent=this.getIntent();
-		bl=intent.getExtras();
-		CLASS_NUM1 = bl.getInt("class_num1");
-		CLASS_NUM2 = bl.getInt("class_num2");
-		BUILD_NAME1 = bl.getBoolean("build_name1");
-		BUILD_NAME2 = bl.getBoolean("build_name2");
-		FLOOR_NUM1 = bl.getInt("floor_num1");
-		FLOOR_NUM2 = bl.getInt("floor_num2");
-		TABLE_NAME = bl.getString("table_name");
-		searchMillis = bl.getLong("search_millis");
-		WEEK_NUM = 1 << (5-1);
-		FROM = new String[]{ "room"};
-		
-		ClassQuery query = new ClassQuery();
-		query.setQuery(FLOOR_NUM1, FLOOR_NUM2, CLASS_NUM1, CLASS_NUM2, BUILD_NAME1, BUILD_NAME2, searchMillis);
-		
-		//Create SQL query WHERE and the search result title
-		if(FLOOR_NUM1 > FLOOR_NUM2) {
-			int swap;
-			swap = FLOOR_NUM1;
-			FLOOR_NUM1 = FLOOR_NUM2;
-			FLOOR_NUM2 = swap;
-		}
-		ROOM_NUM1 = FLOOR_NUM1 * 100;
-		ROOM_NUM2 = (FLOOR_NUM2 + 1) * 100;
-		if(FLOOR_NUM1 == 0) {
-			WHERE_F = "";
-			str_floor = "";
-		}
-		else {
-			WHERE_F = "room > " + ROOM_NUM1 + " and room < " + ROOM_NUM2 + " and ";
-			if(FLOOR_NUM1 != FLOOR_NUM2)
-				str_floor = FLOOR_NUM1 +"�㵽" + FLOOR_NUM2 +"��,";
-			else
-				str_floor = FLOOR_NUM1 + "��";
-		}
-		
-		if(CLASS_NUM1 > CLASS_NUM2 ) {
-			int swap;
-			swap = CLASS_NUM1;
-			CLASS_NUM1 = CLASS_NUM2;
-			CLASS_NUM2 = swap;
-		}
-		WHERE = WHERE_F;
-		str_classes = "��" + CLASS_NUM1 + "��";
-		if(CLASS_NUM1 != CLASS_NUM2) {
-			for(int i=CLASS_NUM1; i<CLASS_NUM2; i++) {
-				CLASS_NAME = "class" + i;
-				WHERE += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
-			}
-			str_classes += "����" + CLASS_NUM2 + "��";
-		}
-		CLASS_NAME = "class" + CLASS_NUM2;
-		WHERE += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
-		
-		//the search and result to build the string.
-		if(!(BUILD_NAME1 || BUILD_NAME2)) {
-			BUILD_NAME1 = true;
-			BUILD_NAME2 = true;
-		}
-		if(BUILD_NAME1) {
-			WHERE1 = WHERE + "build = 0 ";
-			str_building = "\n�ݷ�¥";
-			try{
-				System.out.println("the original where1 "+WHERE1);
-				System.out.println(TABLE_NAME);
-				Cursor cursor = getEvents(TABLE_NAME,WHERE1);
-				result_number += cursor.getCount();
-				builder.append(str_building).append(str_floor).append(str_classes).append("\n");
-				builder.append(showEvents(cursor,true)).append("\n");
-				//builder.append(showRelative(WHERE_F + " build = 0 and "));
-			} finally {
-				database.close();
-			}
-		}
-		if(BUILD_NAME2) {
-			WHERE2 = WHERE + "build = 1 ";
-			str_building = "\n��ѧ¥";
-			try{
-				System.out.println("the original where2 "+WHERE2);
-				Cursor cursor = getEvents(TABLE_NAME, WHERE2);
-				result_number += cursor.getCount();
-				builder.append(str_building).append(str_floor).append(str_classes).append("\n");
-				builder.append(showEvents(cursor,true)).append("\n");
-				//builder.append(showRelative(WHERE_F + " build = 1 and "));
-			} finally {
-				database.close();
-			}
-		}
-    	// Display on the screen
-    	TextView text = (TextView) findViewById(R.id.text);
-    	text.setText(builder);
-    }
+		Intent intent=this.getIntent();
+		Bundle bl=intent.getExtras();
+		searchMillis = bl.getLong("searchMillis");
+		buiSelection = bl.getInt("buiSelection");
+		floorNum1 = bl.getInt("floorNum1");
+		floorNum2 = bl.getInt("floorNum2");
+		classNum1 = bl.getInt("classNum1");
+		classNum2 = bl.getInt("classNum2");
 
-    public Cursor getEvents(String table_name, String selection) {
-    	SQLiteDatabase db = database.getReadableDatabase();
-    	Cursor cursor = db.query(table_name, FROM, selection, null, null, null, " room ASC ");
-    	startManagingCursor(cursor);
-    	return cursor;
-    }
-    
-    public String showEvents(Cursor cursor, boolean mode) {
-    	// Stuff them all into a big string
-    	ROOM_RESULT = "\n";
-    	if(cursor.getCount() == 0) {
-    		ROOM_RESULT += "û�з�ϲ�ѯҪ��Ľ��\n\n";
-    	}
-		int i = 0;
-    	while (cursor.moveToNext()) {
-    		int room = cursor.getInt(0);
-	    	if(i % 2 == 0) {
-	    		even = room;
-	    		if(i == 0)
-	    			odd=room;
-	    	}
-	    	else
-	    		odd = room;
-	    	if(((even - odd) > 50 || (odd - even) > 50) && mode)
-	    		ROOM_RESULT += "\n\n";
-	    	ROOM_RESULT += room + "    ";
-	    	i++;
-    	}
-		return ROOM_RESULT;
-    }
-/*    
-    private String showRelative(String where) {
-    	String results = "�����ϰ��";
-    	String str_class1 = "";
-    	String str_class2 = "";
-    	int result_number = 0;
-    	int first_num;
-    	String first_result = "";
-    	String second_result = "";
-    	String WHERE;
-		int class_max = CLASS_NUM2;
-		while(result_number <= 10) {
-	    	String where_fir = where;
-	    	String where_sec = where;
-			class_max--;
-			str_class1 = "\n��" + CLASS_NUM1 + "��";
-			if(CLASS_NUM1 > class_max) {
-				break;
-			}
-			if(CLASS_NUM1 < class_max) {
-				for(int i=CLASS_NUM1; i<class_max; i++) {
-					CLASS_NAME = "class" + i;
-					where_fir += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
-				}
-				str_class1 += "����" + class_max + "��";
-			}
-			CLASS_NAME = "class" + class_max;
-			where_fir += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM ;
-			
-			try{
-				Cursor cursor = getEvents(TABLE_NAME, where_fir);
-				first_num = cursor.getCount();
-				result_number += cursor.getCount();
-				first_result = showEvents(cursor,false);
-			} finally {
-				database.close();
-			}
-			
-			int class_begin = class_max+1;
-			str_class2 = "\n��" + class_begin + "��";
-			if(class_begin < CLASS_NUM2) {
-				for(int i=class_begin; i<CLASS_NUM2; i++) {
-					CLASS_NAME = "class" + i;
-					where_sec += CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM + " and ";
-				}
-				str_class2 += "����" + CLASS_NUM2 + "��";
-			}
-			CLASS_NAME = "class" + CLASS_NUM2;
-			where_sec +=  CLASS_NAME + " & " + WEEK_NUM + " = " + WEEK_NUM;
-			
-			try{
-				Cursor cursor = getEvents(TABLE_NAME, where_sec);
-				second_result = showEvents(cursor,false);
-			} finally {
-				database.close();
-			}
-			results += str_class1 + "\n" + first_result + "\n" + str_class2 + "\n" + second_result;
-		}
-		return results;
-    }
-   */
-    public void onPause() {
-    	super.onPause();
-    	finish();
+		TextView title = (TextView)findViewById(R.id.class_result_title);
+        ListView listView = (ListView) findViewById(R.id.class_result_list);
+        adapter = new ResultListAdapter(this);
+        db = new Database(this);
+        db.read();
+        getInitData(searchMillis);
+        showResult();
+        db.close();
+        title.setText(titleText);
+        listView.setAdapter(adapter);
     }
 }

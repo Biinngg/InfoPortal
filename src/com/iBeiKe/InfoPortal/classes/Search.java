@@ -1,19 +1,18 @@
 package com.iBeiKe.InfoPortal.classes;
 
-import com.iBeiKe.InfoPortal.ErrorHandler;
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.common.*;
 import com.iBeiKe.InfoPortal.database.Database;
-import com.iBeiKe.InfoPortal.lib.BooksListAdapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -23,30 +22,19 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Search extends Activity {
-	private int orientation;
-	private Database db;
-	private String where;
 	private String[] build;
 	private String[] floor;
 	private String[] classes;
-	private int buildNum = 1;
 	private int curSelection = 0;
-	private String tableName;
-	private int weekInTerm;
-	private StringBuilder searchDate;
+	private int buiSelection = 0;
     private ComTimes times;
 	private long searchMillis;
-	private boolean build1;
-	private boolean build2;
 	private int floorNum1;
 	private int floorNum2;
 	private int classNum1;
@@ -54,64 +42,7 @@ public class Search extends Activity {
 	private int mYear;
 	private int mMonth;
 	private int mDay;
-	private int hourAndMin;
 	static final int DATE_DIALOG_ID = 0;
-	private Spinner floorSpinner1, floorSpinner2,
-					classSpinner1, classSpinner2;
-	private ArrayAdapter<String> floorAdapter1, floorAdapter2,
-					classAdapter1, classAdapter2;
-	
-	private boolean isVertical() {
-        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            return false;
-        } else {
-        	return true;
-        }
-	}
-	
-    private void getBuildCheckBox() {
-    	CheckBox checkBox;
-    	LinearLayout layoutH = null;
-    	LinearLayout layoutV = new LinearLayout(this);
-        LayoutParams hLayoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        LayoutParams vLayoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.FILL_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        boolean vertical = isVertical();
-        for(int i=0;i<build.length;i++) {
-        	if(vertical && i%2==0) {
-        		if(layoutH != null) {
-        			layoutV.addView(layoutH);
-        		}
-	        	layoutH = new LinearLayout(this);
-	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
-        	} else if(i%4==0){
-        		if(layoutH != null) {
-        			layoutV.addView(layoutH);
-        		}
-	        	layoutH = new LinearLayout(this);
-	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
-        	}
-        	checkBox = new CheckBox(this);
-        	checkBox.setId(i);
-        	checkBox.setText(build[i]);
-            checkBox.setTextColor(R.color.black);
-            checkBox.setWidth(180);
-            checkBox.setTextSize(18);
-            checkBox.setSelected(true);
-            checkBox.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                	build1 = ((CheckBox) v).isChecked();
-                }
-            });
-            layoutH.addView(checkBox, hLayoutParams);
-        }
-		layoutV.addView(layoutH);
-        ScrollView listView = (ScrollView) findViewById(R.id.cla_build);
-        listView.addView(layoutV);
-    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,85 +50,57 @@ public class Search extends Activity {
         setContentView(R.layout.classes);
         getInitData();
         getBuildCheckBox();
-        
-        /*
-        final CheckBox checkbox1 = (CheckBox) findViewById(R.id.build_box1);
-        checkbox1.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-            	build1 = ((CheckBox) v).isChecked();
-            }
-        });
-        final CheckBox checkbox2 = (CheckBox) findViewById(R.id.build_box2);
-        checkbox2.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-            	build2 = ((CheckBox) v).isChecked();
-            }
-        });
-        */
 
-        floorSpinner1 = (Spinner) findViewById(R.id.floor_spinner1);
-        floorAdapter1 = new ArrayAdapter<String>(
+        ArrayAdapter<String> floorAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, floor);
-        floorAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        floorSpinner1.setAdapter(floorAdapter1);
+        floorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> classAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, classes);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        Spinner floorSpinner1 = (Spinner) findViewById(R.id.floor_spinner1);
+        floorSpinner1.setAdapter(floorAdapter);
         floorSpinner1.setOnItemSelectedListener(new MyOnFloorSelectedListener1());
         floorSpinner1.setSelection(0);
         
-        floorSpinner2 = (Spinner) findViewById(R.id.floor_spinner2);
-        floorAdapter2 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, floor);
-        floorAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        floorSpinner2.setAdapter(floorAdapter2);
+        Spinner floorSpinner2 = (Spinner) findViewById(R.id.floor_spinner2);
+        floorSpinner2.setAdapter(floorAdapter);
         floorSpinner2.setOnItemSelectedListener(new MyOnFloorSelectedListener2());
         floorSpinner2.setSelection(floor.length - 1);
         
-        classSpinner1 = (Spinner) findViewById(R.id.class_spinner1);
-        classAdapter1 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, classes);
-        classAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classSpinner1.setAdapter(classAdapter1);
+        Spinner classSpinner1 = (Spinner) findViewById(R.id.class_spinner1);
+        classSpinner1.setAdapter(classAdapter);
         classSpinner1.setOnItemSelectedListener(new MyOnClassSelectedListener1());
         classSpinner1.setSelection(curSelection);
 
-        classSpinner2 = (Spinner) findViewById(R.id.class_spinner2);
-        classAdapter2 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, classes);
-        classAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classSpinner2.setAdapter(classAdapter2);
+        Spinner classSpinner2 = (Spinner) findViewById(R.id.class_spinner2);
+        classSpinner2.setAdapter(classAdapter);
         classSpinner2.setOnItemSelectedListener(new MyOnClassSelectedListener2());
         classSpinner2.setSelection(curSelection);
         
         final Button search_button = (Button) findViewById(R.id.search_button);
         search_button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	times.setTime(searchMillis);
-            	weekInTerm = times.getWeekInTerm();
-            	tableName = times.getDayInWeek(java.util.Locale.US);
-
-        		if(("Sat".equals(tableName)) || ("Sun".equals(tableName))) {
-        			int ErrorNum = 2;
-        			Intent intent = new Intent();
-        			intent.setClass(Search.this, ErrorHandler.class);
-        			Bundle bl = new Bundle();
-        			bl.putInt("ErrorNum", ErrorNum);
-        			intent.putExtras(bl);
-        			startActivity(intent);
-        		} else {
+            	if(isOutOfTerm(searchMillis)) {
+            		showAlert();
+            	} else {
+	            	times.setTime(searchMillis);
+	            	turnASC(floorNum1, floorNum2);
+	            	turnASC(classNum1, classNum2);
+	
 					Intent intent = new Intent();
 					intent.setClass(Search.this, Result.class);
 					Bundle bl = new Bundle();
-					bl.putInt("class_num1", classNum1);
-					bl.putInt("class_num2", classNum2);
-					bl.putBoolean("build_name1", build1);
-					bl.putBoolean("build_name2", build2);
-					bl.putInt("floor_num1", floorNum1);
-					bl.putInt("floor_num2", floorNum2);
-					bl.putLong("search_millis", searchMillis);
-					bl.putString("table_name", tableName);
+					bl.putLong("searchMillis", searchMillis);
+					bl.putInt("buiSelection", buiSelection);
+					bl.putInt("floorNum1", floorNum1);
+					bl.putInt("floorNum2", floorNum2);
+					bl.putInt("classNum1", classNum1);
+					bl.putInt("classNum2", classNum2);
 					intent.putExtras(bl);
 					startActivityForResult(intent, 0);
-        			}
-                }
+            	}
+            }
         });
         
         final Button date_button = (Button) findViewById(R.id.set_date);
@@ -210,24 +113,76 @@ public class Search extends Activity {
         final ImageButton roomSearch = (ImageButton) findViewById(R.id.search);
         roomSearch.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				intent.setClass(Search.this, CurrentClasses.class);
-				startActivityForResult(intent,0);
+				//Intent intent = new Intent();
+				//intent.setClass(Search.this, CurrentClasses.class);
+				//startActivityForResult(intent,0);
 			}
 		});
     }
     
+	private boolean isVertical() {
+        if(this.getResources().getConfiguration().orientation
+        		== Configuration.ORIENTATION_LANDSCAPE) {
+            return false;
+        } else {
+        	return true;
+        }
+	}
+
+	private void turnASC(int num1, int num2) {
+		if(num1 > num2) {
+			int swap;
+			swap = num1;
+			num1 = num2;
+			num2 = swap;
+		}
+	}
+	
+	private void showAlert() {
+		AlertDialog dialog = new AlertDialog.Builder(this).create();
+		String message = getString(R.string.out_of_term);
+		dialog.setCancelable(true);
+		dialog.setCanceledOnTouchOutside(true);
+		dialog.setTitle(R.string.app_name);
+		dialog.setMessage(message);
+		dialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.ok),
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+		dialog.show();
+	}
+	
+	private boolean isOutOfTerm(long searchMillis) {
+		Database db = new Database(this);
+		ComTimes ct = new ComTimes();
+		ct.setTime(searchMillis);
+		int yearMonthDay = ct.getYear() * 10000
+				+ ct.getMonth() * 100 + ct.getDay();
+		String where = "_id=1";
+		db.read();
+		int[] termBegin = db.getInt("cla_time", "begin", where, null, 0);
+		int[] termEnd = db.getInt("cla_time", "end", where, null, 0);
+		db.close();
+		if(yearMonthDay > termEnd[0] || yearMonthDay < termBegin[0]) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+    
     private void getInitData() {
+        Database db = new Database(this);
         times = new ComTimes();
         searchMillis = System.currentTimeMillis();
-        hourAndMin = times.getHourAndMinute();
+        int hourAndMin = times.getHourAndMinute();
         
-        db = new Database(this);
         db.read();
     	build = db.getString("cla_build", "name", null, null, 0);
     	int[] buildNums = db.getInt(
     			"cla_build", "_id", null, "floor_num DESC", 1);
-    	where = "build=" + buildNums[0];
+    	String where = "build=" + buildNums[0];
     	floor = db.getString("cla_floor", "name", where, null, 0);
     	where = "period=1";
     	classes = db.getString("cla_time", "name", where, null, 0);
@@ -258,12 +213,61 @@ public class Search extends Activity {
         mMonth = times.getMonth();
         mDay = times.getDay();
     }
+	
+    private void getBuildCheckBox() {
+    	LinearLayout layoutH = null;
+    	LinearLayout layoutV = new LinearLayout(this);
+        LayoutParams hLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        LayoutParams vLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        boolean vertical = isVertical();
+        layoutV.setOrientation(LinearLayout.VERTICAL);
+        for(int i=0;i<build.length;i++) {
+        	if(vertical && i%2==0) {
+        		if(layoutH != null) {
+        			layoutV.addView(layoutH,vLayoutParams);
+        		}
+	        	layoutH = new LinearLayout(this);
+	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
+        	} else if(i%4==0){
+        		if(layoutH != null) {
+        			layoutV.addView(layoutH,vLayoutParams);
+        		}
+	        	layoutH = new LinearLayout(this);
+	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
+        	}
+        	CheckBox checkBox = new CheckBox(this);
+        	checkBox.setId(i);
+        	checkBox.setText(build[i]);
+            checkBox.setTextColor(R.color.black);
+            checkBox.setWidth(180);
+            checkBox.setTextSize(18);
+            checkBox.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                	boolean checked = ((CheckBox) v).isChecked();
+                	int id = v.getId();
+                	if(checked) {
+                		buiSelection += 1 << id;
+                	} else {
+                		buiSelection -= 1 << id;
+                	}
+                }
+            });
+            layoutH.addView(checkBox, hLayoutParams);
+        }
+		layoutV.addView(layoutH,vLayoutParams);
+        ScrollView listView = (ScrollView) findViewById(R.id.cla_build);
+        listView.addView(layoutV);
+    }
 
 /**********************The spinner selected listener***********************/
     public class MyOnFloorSelectedListener1 implements OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        	floorNum1 = pos;
+        	floorNum1 = pos + 1;
         }
 
         public void onNothingSelected(AdapterView parent) {
@@ -274,7 +278,7 @@ public class Search extends Activity {
     public class MyOnFloorSelectedListener2 implements OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        	floorNum2 = pos;
+        	floorNum2 = pos + 1;
         }
 
         public void onNothingSelected(AdapterView parent) {
@@ -329,11 +333,11 @@ public class Search extends Activity {
     }
     
     private void updateDisplay() {
-        searchDate = new StringBuilder();
+        StringBuilder searchDate = new StringBuilder();
         searchDate.append(mYear);
     	if(mMonth < 10)
     		searchDate.append("0");
     	searchDate.append(mMonth).append(mDay);
     	searchMillis = times.stringToMillis("yyyyMMdd", searchDate.toString());
     }
-}
+} 

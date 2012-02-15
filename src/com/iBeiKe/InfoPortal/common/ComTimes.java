@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import android.util.Log;
+
 public class ComTimes {
 	private long timeMillis;
 	
@@ -32,14 +34,9 @@ public class ComTimes {
 		try {
 			millis = formater.parse(time).getTime();
 		} catch (ParseException e) {
-			e.printStackTrace();
+			Log.e("ParseException", e.toString());
 		}
 		return millis;
-	}
-	public long getTermStartMillis() {
-		String termStart = "20110912";// TODO This should get from the database.
-		long termStartMillis = stringToMillis("yyyyMMdd",termStart);
-		return termStartMillis;
 	}
 	/**
 	 * <p><b>Return</b><br/>
@@ -47,8 +44,8 @@ public class ComTimes {
 	 * <p><b>Style</b><br/>
 	 * An integer.</p>
 	 */
-	public int getWeekInTerm() {
-		long termStartMillis = getTermStartMillis();
+	public int getWeekInTerm(int termStart) {
+		long termStartMillis = stringToMillis("yyyyMMdd",termStart + "");
 		long dit = (timeMillis - termStartMillis)/86400000;
 		int weekInTerm = (int) (dit/7) + 1;
 		return weekInTerm;

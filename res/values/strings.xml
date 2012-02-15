@@ -51,4 +51,6 @@
     <string name="book_publisher">出版信息</string>
     <string name="lib_time_title">开放时间:</string>
     <string name="lib_borrow_title">当前借阅:</string>
+    <string name="out_of_term">查询时间超出本地存储的无课表数据范围，请修改查询时间或者更新无课表数据。</string>
+    <string name="ok">确定</string>
 </resources>

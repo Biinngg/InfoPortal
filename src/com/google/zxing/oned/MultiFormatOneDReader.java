@@ -51,7 +51,8 @@ public final class MultiFormatOneDReader extends OneDReader {
     }
   }
 
-  public Result decodeRow(int rowNumber, BitArray row, Hashtable hints) throws NotFoundException {
+  @Override
+public Result decodeRow(int rowNumber, BitArray row, Hashtable hints) throws NotFoundException {
     int size = readers.size();
     for (int i = 0; i < size; i++) {
       OneDReader reader = (OneDReader) readers.elementAt(i);
@@ -65,7 +66,8 @@ public final class MultiFormatOneDReader extends OneDReader {
     throw NotFoundException.getNotFoundInstance();
   }
 
-  public void reset() {
+  @Override
+public void reset() {
     int size = readers.size();
     for (int i = 0; i < size; i++) {
       Reader reader = (Reader) readers.elementAt(i);

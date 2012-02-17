@@ -52,7 +52,8 @@ public final class MultiFormatUPCEANReader extends OneDReader {
     }
   }
 
-  public Result decodeRow(int rowNumber, BitArray row, Hashtable hints) throws NotFoundException {
+  @Override
+public Result decodeRow(int rowNumber, BitArray row, Hashtable hints) throws NotFoundException {
     // Compute this location once and reuse it on multiple implementations
     int[] startGuardPattern = UPCEANReader.findStartGuardPattern(row);
     int size = readers.size();
@@ -71,7 +72,8 @@ public final class MultiFormatUPCEANReader extends OneDReader {
     throw NotFoundException.getNotFoundInstance();
   }
 
-  public void reset() {
+  @Override
+public void reset() {
     int size = readers.size();
     for (int i = 0; i < size; i++) {
       Reader reader = (Reader) readers.elementAt(i);

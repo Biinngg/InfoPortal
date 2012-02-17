@@ -205,7 +205,8 @@ public final class BitMatrix {
     return height;
   }
 
-  public boolean equals(Object o) {
+  @Override
+public boolean equals(Object o) {
     if (!(o instanceof BitMatrix)) {
       return false;
     }
@@ -222,7 +223,8 @@ public final class BitMatrix {
     return true;
   }
 
-  public int hashCode() {
+  @Override
+public int hashCode() {
     int hash = width;
     hash = 31 * hash + width;
     hash = 31 * hash + height;
@@ -233,7 +235,8 @@ public final class BitMatrix {
     return hash;
   }
 
-  public String toString() {
+  @Override
+public String toString() {
     StringBuffer result = new StringBuffer(height * (width + 1));
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {

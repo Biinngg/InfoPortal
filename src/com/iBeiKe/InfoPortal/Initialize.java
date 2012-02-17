@@ -78,12 +78,14 @@ public class Initialize extends Activity implements Runnable {
 		}
 	}
 	
+	@Override
 	public void onStop() {
 		super.onStop();
 		finish();
 	}
 	
 	public Handler mHandler = new Handler() {
+		@Override
 		public void handleMessage(Message msg) {
 			if(msg.getData().containsKey("1")) {
 				exec.shutdown();

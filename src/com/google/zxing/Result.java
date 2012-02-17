@@ -132,7 +132,8 @@ public final class Result {
     return timestamp;
   }
 
-  public String toString() {
+  @Override
+public String toString() {
     if (text == null) {
       return "[" + rawBytes.length + " bytes]";
     } else {

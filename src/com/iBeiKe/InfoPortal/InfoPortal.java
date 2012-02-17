@@ -1,7 +1,5 @@
 package com.iBeiKe.InfoPortal;
 
-import java.io.File;
-
 import com.iBeiKe.InfoPortal.classes.Search;
 import com.iBeiKe.InfoPortal.news.News;
 import com.iBeiKe.InfoPortal.lib.Library;

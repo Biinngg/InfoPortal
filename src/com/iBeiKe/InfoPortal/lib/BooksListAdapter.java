@@ -2,8 +2,6 @@ package com.iBeiKe.InfoPortal.lib;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.concurrent.BlockingQueue;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;

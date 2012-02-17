@@ -22,10 +22,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.common.MessageHandler;
-import com.iBeiKe.InfoPortal.lib.ListViewActivity.ListViewAdapter;
-
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,7 +42,6 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class BookSearch extends Activity implements Runnable {
     private WebView show;
@@ -171,6 +167,7 @@ public class BookSearch extends Activity implements Runnable {
     }
 	
 	public Handler mHandler = new Handler() {
+		@Override
 		public void handleMessage(Message msg) {
 			if(msg.getData().containsKey("0")) {
 				Map<String,String> item = mcr.getMap("0", msg);

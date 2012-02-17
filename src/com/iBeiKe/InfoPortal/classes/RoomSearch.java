@@ -1,8 +1,6 @@
 package com.iBeiKe.InfoPortal.classes;
 
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.R.id;
-import com.iBeiKe.InfoPortal.R.layout;
 import com.iBeiKe.InfoPortal.database.Database;
 
 import android.app.Activity;

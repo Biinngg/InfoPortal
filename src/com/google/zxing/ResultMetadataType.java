@@ -91,7 +91,8 @@ public final class ResultMetadataType {
     return name;
   }
 
-  public String toString() {
+  @Override
+public String toString() {
     return name;
   }
 

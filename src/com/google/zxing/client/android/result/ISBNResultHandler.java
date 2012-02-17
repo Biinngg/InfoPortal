@@ -24,7 +24,6 @@ import com.iBeiKe.InfoPortal.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.view.View;
 
 /**
  * Handles books encoded by their ISBN values.

@@ -27,6 +27,33 @@ public class Result extends Activity {
 	private ResultListAdapter adapter;
 	private boolean isVertical;
 
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.result);
+        //Use Intent to transfer key-value.
+		Intent intent=this.getIntent();
+		Bundle bl=intent.getExtras();
+		searchMillis = bl.getLong("searchMillis");
+		buiSelection = bl.getInt("buiSelection");
+		floorNum1 = bl.getInt("floorNum1");
+		floorNum2 = bl.getInt("floorNum2");
+		classNum1 = bl.getInt("classNum1");
+		classNum2 = bl.getInt("classNum2");
+
+		TextView title = (TextView)findViewById(R.id.class_result_title);
+        ListView listView = (ListView) findViewById(R.id.class_result_list);
+        adapter = new ResultListAdapter(this);
+        db = new Database(this);
+        db.read();
+        getInitData(searchMillis);
+        showResult();
+        db.close();
+        title.setText(titleText);
+        listView.setAdapter(adapter);
+    }
+    
 	private boolean isVertical() {
         if(this.getResources().getConfiguration().orientation
         		== Configuration.ORIENTATION_LANDSCAPE) {
@@ -100,38 +127,13 @@ public class Result extends Activity {
 			room[i%num] = cursor.getInt(1);
 			if(i == 0) {
 				adapter.setData(buil[0], id, room);
-			} else 	if(i%num == 0) {
+			} else 	if((i%num) == (num-1)) {
 				adapter.setData(null, id, room);
 				id = new int[num];
 				room = new int[num];
+			} else {
+				adapter.setData(null, id, room);
 			}
 		}
 	}
-	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.result);
-        //Use Intent to transfer key-value.
-		Intent intent=this.getIntent();
-		Bundle bl=intent.getExtras();
-		searchMillis = bl.getLong("searchMillis");
-		buiSelection = bl.getInt("buiSelection");
-		floorNum1 = bl.getInt("floorNum1");
-		floorNum2 = bl.getInt("floorNum2");
-		classNum1 = bl.getInt("classNum1");
-		classNum2 = bl.getInt("classNum2");
-
-		TextView title = (TextView)findViewById(R.id.class_result_title);
-        ListView listView = (ListView) findViewById(R.id.class_result_list);
-        adapter = new ResultListAdapter(this);
-        db = new Database(this);
-        db.read();
-        getInitData(searchMillis);
-        showResult();
-        db.close();
-        title.setText(titleText);
-        listView.setAdapter(adapter);
-    }
 }

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-//TODO:ÓÃÀ´´¦Àí¸ü¶àµÄ´íÎó£¬»òÕßÉáÆú²»ÓÃ¡£
+//TODO:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ó£¬»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
 public class ErrorHandler extends Activity {
 	private StringBuilder builder = new StringBuilder();
 	private String error_msg;
@@ -27,15 +27,16 @@ public class ErrorHandler extends Activity {
 	public String DisplayError(int ErrorNum) {
 		switch(ErrorNum) {
 		case 1:
-			error_msg = "\nÃ»ÓĞ·ûºÏ²éÑ¯ÒªÇóµÄ½á¹û£¬ÊÔÊÔÆäËûÂ¥²ã£¿\n\n";
+			error_msg = "\nÃ»ï¿½Ğ·ï¿½Ï²ï¿½Ñ¯Òªï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ï¿½ã£¿\n\n";
 			break;
 		case 2:
-			error_msg = "½ñÌìÊÇÖÜÄ©£¬Äã¿ÉÒÔÑ¡ÔñÈÎºÎÒ»¸ö½ÌÊÒÉÏ¿Î¡£\n";
+			error_msg = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿Î¡ï¿½\n";
 			break;
 		}
 		return error_msg;
 	}
 	
+	@Override
 	protected void onPause() {
 		super.onPause();
 		finish();

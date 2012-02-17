@@ -68,7 +68,7 @@ public abstract class ResultParser {
 
   protected static String unescapeBackslash(String escaped) {
     if (escaped != null) {
-      int backslash = escaped.indexOf((int) '\\');
+      int backslash = escaped.indexOf('\\');
       if (backslash >= 0) {
         int max = escaped.length();
         StringBuffer unescaped = new StringBuffer(max - 1);
@@ -242,7 +242,7 @@ public abstract class ResultParser {
       int start = i; // Found the start of a match here
       boolean done = false;
       while (!done) {
-        i = rawText.indexOf((int) endChar, i);
+        i = rawText.indexOf(endChar, i);
         if (i < 0) {
           // No terminating end character? uh, done. Set i such that loop terminates and break
           i = rawText.length();

@@ -1,10 +1,6 @@
 package com.iBeiKe.InfoPortal.news;
 
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.R.id;
-import com.iBeiKe.InfoPortal.R.layout;
-import com.iBeiKe.InfoPortal.R.menu;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;

@@ -466,7 +466,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     metaTextView.setVisibility(View.GONE);
     metaTextViewLabel.setVisibility(View.GONE);
     Map<ResultMetadataType,Object> metadata =
-        (Map<ResultMetadataType,Object>) rawResult.getResultMetadata();
+        rawResult.getResultMetadata();
     if (metadata != null) {
       StringBuilder metadataText = new StringBuilder(20);
       for (Map.Entry<ResultMetadataType,Object> entry : metadata.entrySet()) {

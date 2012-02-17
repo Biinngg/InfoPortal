@@ -3,10 +3,8 @@ package com.iBeiKe.InfoPortal.database;
 import java.util.Map;
 
 import static android.provider.BaseColumns._ID;
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -125,6 +123,7 @@ public class Database extends SQLiteOpenHelper {
 	/**
 	 * <p>Close the database.</p>
 	 */
+	@Override
 	public void close() {
 		super.close();
 		db.close();

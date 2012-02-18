@@ -10,7 +10,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,10 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -119,15 +118,6 @@ public class Search extends Activity {
 		});
     }
     
-	private boolean isVertical() {
-        if(this.getResources().getConfiguration().orientation
-        		== Configuration.ORIENTATION_LANDSCAPE) {
-            return false;
-        } else {
-        	return true;
-        }
-	}
-
 	private void turnASC(int num1, int num2) {
 		if(num1 > num2) {
 			int swap;
@@ -214,30 +204,12 @@ public class Search extends Activity {
     }
 	
     private void getBuildCheckBox() {
-    	LinearLayout layoutH = null;
-    	LinearLayout layoutV = new LinearLayout(this);
-        LayoutParams hLayoutParams = new LinearLayout.LayoutParams(
+    	LinearLayout layout = new LinearLayout(this);
+        LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
                 android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-        LayoutParams vLayoutParams = new LinearLayout.LayoutParams(
-                android.view.ViewGroup.LayoutParams.FILL_PARENT,
-                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-        boolean vertical = isVertical();
-        layoutV.setOrientation(LinearLayout.VERTICAL);
+        layout.setOrientation(LinearLayout.HORIZONTAL);
         for(int i=0;i<build.length;i++) {
-        	if(vertical && i%2==0) {
-        		if(layoutH != null) {
-        			layoutV.addView(layoutH,vLayoutParams);
-        		}
-	        	layoutH = new LinearLayout(this);
-	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
-        	} else if(i%4==0){
-        		if(layoutH != null) {
-        			layoutV.addView(layoutH,vLayoutParams);
-        		}
-	        	layoutH = new LinearLayout(this);
-	        	layoutH.setOrientation(LinearLayout.HORIZONTAL);
-        	}
         	CheckBox checkBox = new CheckBox(this);
         	checkBox.setId(i);
         	checkBox.setText(build[i]);
@@ -255,11 +227,10 @@ public class Search extends Activity {
                 	}
                 }
             });
-            layoutH.addView(checkBox, hLayoutParams);
+            layout.addView(checkBox, layoutParams);
         }
-		layoutV.addView(layoutH,vLayoutParams);
-        ScrollView listView = (ScrollView) findViewById(R.id.cla_build);
-        listView.addView(layoutV);
+        HorizontalScrollView listView = (HorizontalScrollView) findViewById(R.id.cla_build);
+        listView.addView(layout);
     }
 
 /**********************The spinner selected listener***********************/

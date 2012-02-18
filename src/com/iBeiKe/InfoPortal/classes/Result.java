@@ -102,7 +102,7 @@ public class Result extends Activity {
 			if(res == filter) {
 				String selection = where + "build=" + i;
 				String build = "_id=" + i;
-				Log.d("sql", "Select " + col.toString() + " from " + tableName + " where " + selection);
+				Log.d("sql", "Select _id , room" + " from " + tableName + " where " + selection);
 				resultQuery(build, tableName, col, selection, "room ASC");
 			}
 			filter = filter << 1;
@@ -111,28 +111,41 @@ public class Result extends Activity {
 	
 	private void resultQuery(String building, String tableName,
 			String[] column, String selection, String orderBy) {
-		String[] buil = db.getString("cla_build", "name", building, null, 0);
 		Cursor cursor = db.getCursor(tableName, column, selection, orderBy);
 		int length = cursor.getCount();
-		int num, floor = 1;
+		int num, roomNum=0, floor=1, i=0;
 		if(isVertical) {
 			num = 4;
 		} else {
 			num = 8;
 		}
-		int[] id = new int[num], room = new int[num];
-		for(int i=0; i<length; i++) {
-			cursor.moveToNext();
-			id[i%num] = cursor.getInt(0);
-			room[i%num] = cursor.getInt(1);
-			if(i == 0) {
-				adapter.setData(buil[0], id, room);
-			} else 	if((i%num) == (num-1)) {
-				adapter.setData(null, id, room);
+		int[] id = new int[num];
+		String[] room = new String[num];
+		room[0] = db.getString("cla_build", "name", building, null, 0)[0];
+		adapter.setData(num, id, room);
+		room = new String[num];
+		while(cursor.moveToNext()) {
+			roomNum = cursor.getInt(1);
+			if(i==0) {
+				floor = roomNum/100;
+			} else 	if((roomNum/100) > floor) {
+				adapter.setData(num, id, room);
+				i=0;
 				id = new int[num];
-				room = new int[num];
-			} else {
-				adapter.setData(null, id, room);
+				room = new String[num];
+				floor = roomNum/100;
+			}
+			length--;
+			id[i] = cursor.getInt(0);
+			room[i] = roomNum + "";
+			i++;
+			if(i == num) {
+				adapter.setData(num, id, room);
+				i = 0;
+				id = new int[num];
+				room = new String[num];
+			} else if(length == 0) {
+				adapter.setData(num, id, room);
 			}
 		}
 	}

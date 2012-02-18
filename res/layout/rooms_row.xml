@@ -6,93 +6,98 @@
     android:orientation="horizontal"
     android:layout_alignLeft="@+id/room_result1">
 
-    <TextView
-        android:id="@+id/room_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dip" />
-
     <LinearLayout 
         android:id="@+id/room_layout1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
+        android:layout_weight="1"
 		android:clickable="true"
+		android:visibility="gone"
     	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result1"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 	<!-- 垂直分隔条 -->
 	<View
 	    android:id="@+id/separater1"
-		android:background="@drawable/vertical_separation_line_repeat"
+		android:background="@drawable/dashed_line"
 		android:layout_width="1.0dip"
 		android:layout_height="fill_parent"
+		android:visibility="gone"
 		>
 	</View>
 
     <LinearLayout 
         android:id="@+id/room_layout2"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
+        android:layout_weight="1"
 		android:clickable="true"
+		android:visibility="gone"
     	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result2"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 	<!-- 垂直分隔条 -->
 	<View
 	    android:id="@+id/separater2"
-		android:background="@drawable/vertical_separation_line_repeat"
+		android:background="@drawable/dashed_line"
 		android:layout_width="1.0dip"
 		android:layout_height="fill_parent"
+		android:visibility="gone"
 		>
 	</View>
 
     <LinearLayout 
         android:id="@+id/room_layout3"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
 		android:clickable="true"
-    	android:background="@drawable/list_selector"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip">
+		android:visibility="gone"
+    	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result3"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 	<!-- 垂直分隔条 -->
 	<View
 	    android:id="@+id/separater3"
-		android:background="@drawable/vertical_separation_line_repeat"
+		android:background="@drawable/dashed_line"
 		android:layout_width="1.0dip"
 		android:layout_height="fill_parent"
+		android:visibility="gone"
 		>
 	</View>
 
     <LinearLayout 
         android:id="@+id/room_layout4"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
 		android:clickable="true"
-    	android:background="@drawable/list_selector"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip">
+		android:visibility="gone"
+    	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result4"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 	<!-- 垂直分隔条 -->
@@ -101,21 +106,25 @@
 		android:background="@drawable/vertical_separation_line_repeat"
 		android:layout_width="1.0dip"
 		android:layout_height="fill_parent"
+		android:visibility="gone"
 		>
 	</View>
 
+
     <LinearLayout 
         android:id="@+id/room_layout5"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
 		android:clickable="true"
-    	android:background="@drawable/list_selector"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip">
+		android:visibility="gone"
+    	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result5"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 	<!-- 垂直分隔条 -->
@@ -124,21 +133,24 @@
 		android:background="@drawable/vertical_separation_line_repeat"
 		android:layout_width="1.0dip"
 		android:layout_height="fill_parent"
+		android:visibility="gone"
 		>
 	</View>
 
     <LinearLayout 
         android:id="@+id/room_layout6"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
 		android:clickable="true"
-    	android:background="@drawable/list_selector"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip">
+		android:visibility="gone"
+    	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result6"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 	<!-- 垂直分隔条 -->
@@ -147,21 +159,24 @@
 		android:background="@drawable/vertical_separation_line_repeat"
 		android:layout_width="1.0dip"
 		android:layout_height="fill_parent"
+		android:visibility="gone"
 		>
 	</View>
 
     <LinearLayout 
         android:id="@+id/room_layout7"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
 		android:clickable="true"
-    	android:background="@drawable/list_selector"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip">
+		android:visibility="gone"
+    	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result7"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 	<!-- 垂直分隔条 -->
@@ -170,21 +185,24 @@
 		android:background="@drawable/vertical_separation_line_repeat"
 		android:layout_width="1.0dip"
 		android:layout_height="fill_parent"
+		android:visibility="gone"
 		>
 	</View>
 
     <LinearLayout 
         android:id="@+id/room_layout8"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
 		android:clickable="true"
-    	android:background="@drawable/list_selector"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip">
+		android:visibility="gone"
+    	android:background="@drawable/list_selector">
     	<TextView
         	android:id="@+id/room_result8"
-       		android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:gravity="center"
+        	android:textColor="@color/black"
         	android:textSize="18dip" />
     </LinearLayout>
 </LinearLayout>

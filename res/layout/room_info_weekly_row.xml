@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:clickable="false"
+    android:layout_alignLeft="@+id/room_result1">
+
+    <TextView
+        android:id="@+id/room_info1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+	<!-- 垂直分隔条 -->
+	<View
+		android:background="@drawable/dashed_line"
+		android:layout_width="1.0dip"
+		android:layout_height="fill_parent"
+		>
+	</View>
+	
+    <TextView
+        android:id="@+id/room_info2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+	<!-- 垂直分隔条 -->
+	<View
+		android:background="@drawable/dashed_line"
+		android:layout_width="1.0dip"
+		android:layout_height="fill_parent"
+		>
+	</View>
+	
+    <TextView
+        android:id="@+id/room_info3"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+	<!-- 垂直分隔条 -->
+	<View
+		android:background="@drawable/dashed_line"
+		android:layout_width="1.0dip"
+		android:layout_height="fill_parent"
+		>
+	</View>
+	
+    <TextView
+        android:id="@+id/room_info4"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+	<!-- 垂直分隔条 -->
+	<View
+		android:background="@drawable/dashed_line"
+		android:layout_width="1.0dip"
+		android:layout_height="fill_parent"
+		>
+	</View>
+	
+    <TextView
+        android:id="@+id/room_info5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+	<!-- 垂直分隔条 -->
+	<View
+		android:background="@drawable/dashed_line"
+		android:layout_width="1.0dip"
+		android:layout_height="fill_parent"
+		>
+	</View>
+	
+    <TextView
+        android:id="@+id/room_info6"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+	<!-- 垂直分隔条 -->
+	<View
+		android:background="@drawable/dashed_line"
+		android:layout_width="1.0dip"
+		android:layout_height="fill_parent"
+		>
+	</View>
+	
+    <TextView
+        android:id="@+id/room_info7"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+	<!-- 垂直分隔条 -->
+	<View
+		android:background="@drawable/dashed_line"
+		android:layout_width="1.0dip"
+		android:layout_height="fill_parent"
+		>
+	</View>
+	
+    <TextView
+        android:id="@+id/room_info8"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18dip" />
+</LinearLayout>

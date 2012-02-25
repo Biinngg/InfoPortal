@@ -32,7 +32,7 @@
         		android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         
-        <activity android:name=".classes.CurrentClasses"
+        <activity android:name=".classes.RoomInfo"
           android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         

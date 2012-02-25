@@ -44,7 +44,7 @@ public class Result extends Activity {
 
 		TextView title = (TextView)findViewById(R.id.class_result_title);
         ListView listView = (ListView) findViewById(R.id.class_result_list);
-        adapter = new ResultListAdapter(this);
+        adapter = new ResultListAdapter(this, searchMillis);
         db = new Database(this);
         db.read();
         getInitData(searchMillis);
@@ -64,8 +64,7 @@ public class Result extends Activity {
 	}
 	
 	private void getInitData(long searchMillis) {
-		int start = 0;
-		ComTimes ct = new ComTimes();
+		ComTimes ct = new ComTimes(this);
 		ct.setTime(searchMillis);
 		String[] columns = new String[]{"name", "period", "begin"};
 		String where = "_id=1";
@@ -73,11 +72,10 @@ public class Result extends Activity {
 		if(cursor.moveToFirst()) {
 			titleText = cursor.getString(0);
 			titleText += " " + cursor.getString(1);
-			start = cursor.getInt(2);
 		}
-		weekInTerm = ct.getWeekInTerm(start);
+		weekInTerm = ct.getWeekInTerm(db);
 		titleText += " 第" + weekInTerm + "周";
-    	tableName = ct.getDayInWeek(java.util.Locale.US);
+    	tableName = ct.getNextDayInWeek(java.util.Locale.US);
     	isVertical = isVertical();
 	}
 	

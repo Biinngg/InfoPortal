@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,9 @@ import com.iBeiKe.InfoPortal.R;
 
 public class ResultListAdapter extends BaseAdapter {
 	private Context context;
+	private long timeMillis;
 	private int num;
+	private int n;
 	private final int[] resultId, layoutId, separateId;
 	private LayoutInflater mInflater;
 	private ArrayList<ResultList> rooms;
@@ -31,8 +34,9 @@ public class ResultListAdapter extends BaseAdapter {
     	}
     }
 	
-	public ResultListAdapter(Context context) {
+	public ResultListAdapter(Context context, long timeMillis) {
 		this.context = context;
+		this.timeMillis = timeMillis;
 		mInflater = LayoutInflater.from(context);
 		rooms = new ArrayList<ResultList>();
 		resultId = new int[]{R.id.room_result1, R.id.room_result2,
@@ -81,21 +85,23 @@ public class ResultListAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder)v.getTag();
 		}
+		//若通过判断position或holder.resultList中的内容来改变布局都会在滚动时产生混乱，费解
 		holder.resultList = getItem(position);
-		for(int i=0; i<num; i++) {
-			holder.result[i].setText(holder.resultList.room[i]);
-			holder.layout[i].setVisibility(View.VISIBLE);
-			holder.layout[i].setId(holder.resultList.id[i]);
-			if(i<num-1)
-				holder.view[i].setVisibility(View.VISIBLE);
-			holder.layout[i].setOnClickListener(new OnClickListener() {
+		for(n=0; n<num; n++) {
+			holder.result[n].setText(holder.resultList.room[n]);
+			holder.layout[n].setVisibility(View.VISIBLE);
+			holder.layout[n].setId(holder.resultList.id[n]);
+			if(n<num-1)
+				holder.view[n].setVisibility(View.VISIBLE);
+			holder.layout[n].setOnClickListener(new OnClickListener() {
 		        public void onClick(View v) {
 					Intent intent = new Intent();
-					intent.setClass(context, About.class);
+					intent.setClass(context, RoomInfo.class);
 					Log.d("id", "id=" + v.getId());
-					//Bundle bl = new Bundle();
-					//bl.putInt("id", holder.resultList.id[i]);
-					//intent.putExtras(bl);
+					Bundle bl = new Bundle();
+					bl.putInt("id", v.getId());
+					bl.putLong("timeMillis", timeMillis);
+					intent.putExtras(bl);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 					context.startActivity(intent);
 				}

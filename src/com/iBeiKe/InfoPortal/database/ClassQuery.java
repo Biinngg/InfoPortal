@@ -20,7 +20,7 @@ public class ClassQuery extends Query {
     public ClassQuery() {
 		column = new String[]{"room"};
 		orderBy = " room ASC ";
-		times = new ComTimes();
+		times = new ComTimes(this);
     }
 	public void setQuery(int floorNum1, int floorNum2, int classesNum1, int classesNum2,
 			boolean buildName1, boolean buildName2, long timeMillis) {

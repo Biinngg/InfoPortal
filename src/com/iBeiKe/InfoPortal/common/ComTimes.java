@@ -4,13 +4,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import com.iBeiKe.InfoPortal.database.Database;
+
+import android.content.Context;
 import android.util.Log;
 
 public class ComTimes {
 	private long timeMillis;
+	private long nextMillis;
+	private Context context;
+	private long msDay = 86400000;
 	
-	public ComTimes() {
+	public ComTimes(Context context) {
 		timeMillis = System.currentTimeMillis();
+		nextMillis = timeMillis;
+		this.context = context;
 	}
 	/**
 	 * Give the time millis.
@@ -19,6 +27,7 @@ public class ComTimes {
 	 */
 	public void setTime(long timeMillis) {
 		this.timeMillis = timeMillis;
+		nextMillis = timeMillis;
 	}
 	/**
 	 * return the time stamp as the given pattern and the given time.<br/>
@@ -40,13 +49,24 @@ public class ComTimes {
 	}
 	/**
 	 * <p><b>Return</b><br/>
+	 * The beginning of a term.</p>
+	 * <p><b>Style</b><br/>
+	 * An integer.</p>
+	 */
+	public int getTermStart(Database db) {
+		int[] start = db.getInt("cla_time", "begin", "_id=1", null, 0);
+		return start[0];
+	}
+	
+	/**
+	 * <p><b>Return</b><br/>
 	 * The current week in a term.</p>
 	 * <p><b>Style</b><br/>
 	 * An integer.</p>
 	 */
-	public int getWeekInTerm(int termStart) {
-		long termStartMillis = stringToMillis("yyyyMMdd",termStart + "");
-		long dit = (timeMillis - termStartMillis)/86400000;
+	public int getWeekInTerm(Database db) {
+		long termStartMillis = stringToMillis("yyyyMMdd",getTermStart(db) + "");
+		long dit = (timeMillis - termStartMillis)/msDay;
 		int weekInTerm = (int) (dit/7) + 1;
 		return weekInTerm;
 	}
@@ -56,10 +76,14 @@ public class ComTimes {
 	 * Times as the given pattern.<br/>
 	 * Function as the SimpleDateFormat.</p>
 	 */
-	public int getTimes(String type) {
-		SimpleDateFormat timeType = new SimpleDateFormat(type);
-		String sTime = timeType.format(timeMillis);
-		int time = Integer.parseInt(sTime);
+	public String getTimes(long timeMillis, String type, Locale locale) {
+		SimpleDateFormat timeType;
+		if(locale == null) {
+			timeType = new SimpleDateFormat(type);
+		} else {
+			timeType = new SimpleDateFormat(type, locale);
+		}
+		String time = timeType.format(timeMillis);
 		return time;
 	}
 	/**
@@ -70,7 +94,8 @@ public class ComTimes {
 	 */
 	public int getYear() {
 		String type = "yyyy";
-		return getTimes(type);
+		int year = Integer.parseInt(getTimes(timeMillis, type, null));
+		return year;
 	}
 	/**
 	 * <p><b>Return</b><br/>
@@ -80,7 +105,8 @@ public class ComTimes {
 	 */
 	public int getMonth() {
 		String type = "MM";
-		return getTimes(type);
+		int month = Integer.parseInt(getTimes(timeMillis, type, null));
+		return month;
 	}
 	/**
 	 * <p><b>Return</b><br/>
@@ -90,7 +116,24 @@ public class ComTimes {
 	 */
 	public int getDay() {
 		String type = "dd";
-		return getTimes(type);
+		int day = Integer.parseInt(getTimes(timeMillis, type, null));
+		return day;
+	}
+	/**
+	 * <p><b>Return</b><br/>
+	 * The day in a week.</p>
+	 * <p><b>Style</b><br/>
+	 * Default shows as the system's location setting.<br/>
+	 * Loop calling will get the next day in week.</p>
+	 * <p>For example:<br/>
+	 * American: "Mon", "Tue", "Wed"...<br/>
+	 * Chinese: "周一", "周二", "周三" ...</p>
+	 */
+	public String getNextDayInWeek(Locale locale) {
+		String type = "E";
+		String dayInWeek = getTimes(nextMillis, type, locale);
+		nextMillis += msDay;
+		return dayInWeek;
 	}
 	/**
 	 * <p><b>Return</b><br/>
@@ -100,25 +143,7 @@ public class ComTimes {
 	 */
 	public int getHourAndMinute() {
 		String type = "kkmm";
-		return getTimes(type);
-	}
-	/**
-	 * <p><b>Return</b><br/>
-	 * The day in a week.</p>
-	 * <p><b>Style</b><br/>
-	 * Default shows as the system's location setting.</p>
-	 * <p>For example:<br/>
-	 * American: "Mon", "Tue", "Wed"...<br/>
-	 * China: "周一", "周二", "周三" ...</p>
-	 */
-	public String getDayInWeek(Locale locale) {
-		SimpleDateFormat diw;
-		if(locale == null) {
-		    diw = new SimpleDateFormat("E");
-		} else {
-			diw = new SimpleDateFormat("E", locale);
-		}
-		String dayInWeek = diw.format(timeMillis);
-		return dayInWeek;
+		int hm = Integer.parseInt(getTimes(timeMillis, type, null));
+		return hm;
 	}
 }

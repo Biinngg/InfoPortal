@@ -39,7 +39,6 @@
     <string name="cancel_button">取消</string>
     <string name="empty">Sorry,没有符合要求的教室。</string>
     <string name="initialize_title">欢迎使用iBeiKe信息门户</string>
-    <string name="initialize_text">正在为第一次使用配置环境 ... </string>
     <string name="about_title">iBeiKe信息门户</string>
     <string name="about_text">提供对无课表内容特定时间，特定楼层的搜索，方便同学们上自习。\n
     	同时提供校园最新动态，第一时间得到最新的消息。\n</string>
@@ -53,4 +52,7 @@
     <string name="lib_borrow_title">当前借阅:</string>
     <string name="out_of_term">查询时间超出本地存储的无课表数据范围，请修改查询时间或者更新无课表数据。</string>
     <string name="ok">确定</string>
+    <string name="room_info_title1">一周教室使用情况</string>
+    <string name="have">有</string>
+    <string name="none">无</string>
 </resources>

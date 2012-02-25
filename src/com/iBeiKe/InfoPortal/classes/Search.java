@@ -145,7 +145,7 @@ public class Search extends Activity {
 	
 	private boolean isOutOfTerm(long searchMillis) {
 		Database db = new Database(this);
-		ComTimes ct = new ComTimes();
+		ComTimes ct = new ComTimes(this);
 		ct.setTime(searchMillis);
 		int yearMonthDay = ct.getYear() * 10000
 				+ ct.getMonth() * 100 + ct.getDay();
@@ -163,7 +163,7 @@ public class Search extends Activity {
     
     private void getInitData() {
         Database db = new Database(this);
-        times = new ComTimes();
+        times = new ComTimes(this);
         searchMillis = System.currentTimeMillis();
         int hourAndMin = times.getHourAndMinute();
         

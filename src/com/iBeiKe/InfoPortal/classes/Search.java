@@ -111,9 +111,9 @@ public class Search extends Activity {
         final ImageButton roomSearch = (ImageButton) findViewById(R.id.search);
         roomSearch.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				//Intent intent = new Intent();
-				//intent.setClass(Search.this, CurrentClasses.class);
-				//startActivityForResult(intent,0);
+				Intent intent = new Intent();
+				intent.setClass(Search.this, RoomSearch.class);
+				startActivityForResult(intent,0);
 			}
 		});
     }

@@ -41,7 +41,7 @@
         </activity>
         
         <activity android:name=".classes.RoomSearch"
-        		android:label="@string/search_room"
+        		android:label="@string/room_search"
         		android:theme="@android:style/Theme.Dialog">
         </activity>
         

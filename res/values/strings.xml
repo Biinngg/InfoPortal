@@ -8,11 +8,10 @@
     <string name="floor_name">楼层</string>
     <string name="class_name">节次</string>
     <string name="search_button">确定</string>
-    <string name="search_room">高级搜索</string>
+    <string name="room_search">教室搜索</string>
     <string name="editor_name">教室: </string>
     <string name="set_date">设置时间</string>
     <string name="current_classes">当前无课教室</string>
-    <string name="room_search">教室搜索</string>
     <string name="from">从</string>
     <string name="to">到</string>
     <string name="settings_label">设置</string>
@@ -55,4 +54,7 @@
     <string name="room_info_title1">一周教室使用情况</string>
     <string name="have">有</string>
     <string name="none">无</string>
+    <string name="build_spinner_name">楼名: </string>
+    <string name="room_search_none">在所选时间，没有此教室的数据，请换其他教室查询或者更改查询时间。</string>
+    <string name="room_search_error">输入格式有误，请重新输入教室房间号。</string>
 </resources>

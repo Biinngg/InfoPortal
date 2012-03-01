@@ -54,10 +54,13 @@ public class RoomInfo extends Activity {
 		weekInTerm = ct.getWeekInTerm(db);
 		int month = ct.getMonth();
 		int day = ct.getDay();
-		String tableName = ct.getNextDayInWeek(Locale.US);
+		String tableName = ct.getDayInWeek(Locale.US);
+		ct.moveToNextDays(7);
+		int monthNext = ct.getMonth();
+		int dayNext = ct.getDay();
 		roomInfoTitle1 = getString(R.string.room_info_title1);
 		roomInfoTitle1 += "(" + month + "." + day
-				+ " - " + month + "." + (day+7) + ")";
+				+ " - " + monthNext + "." + dayNext + ")";
 		
 		String where = "_id=" + id;
 		String[] columns = new String[] {"build", "room"};
@@ -84,12 +87,14 @@ public class RoomInfo extends Activity {
 					if(n == 0) {
 						row[n] = null;
 					} else {
-						row[n] = ct.getNextDayInWeek(Locale.US);
+						row[n] = ct.getDayInWeek(Locale.US);
+						ct.moveToNextDays(1);
 					}
 				} else if(n == 0) {
 					row[n] = i + "";
 				} else {
-					String tableName = ct.getNextDayInWeek(Locale.US);
+					String tableName = ct.getDayInWeek(Locale.US);
+					ct.moveToNextDays(1);
 					String selection = "build=" + buildNum
 							+ " AND room=" + roomNum + " AND class" + i
 							+ " & " + binWeekInTerm + "=" + binWeekInTerm;

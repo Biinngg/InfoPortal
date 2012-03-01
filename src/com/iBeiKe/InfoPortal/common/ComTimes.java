@@ -2,7 +2,9 @@ package com.iBeiKe.InfoPortal.common;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
+import java.text.DateFormat;
 
 import com.iBeiKe.InfoPortal.database.Database;
 
@@ -11,23 +13,25 @@ import android.util.Log;
 
 public class ComTimes {
 	private long timeMillis;
-	private long nextMillis;
 	private Context context;
 	private long msDay = 86400000;
 	
 	public ComTimes(Context context) {
 		timeMillis = System.currentTimeMillis();
-		nextMillis = timeMillis;
 		this.context = context;
 	}
 	/**
 	 * Give the time millis.
+	 * Remember to call before get times.
 	 * @param timeMillis
 	 * the time to query.
+	 * 
 	 */
 	public void setTime(long timeMillis) {
 		this.timeMillis = timeMillis;
-		nextMillis = timeMillis;
+	}
+	public void moveToNextDays(int num) {
+		timeMillis += num * msDay;
 	}
 	/**
 	 * return the time stamp as the given pattern and the given time.<br/>
@@ -129,11 +133,15 @@ public class ComTimes {
 	 * American: "Mon", "Tue", "Wed"...<br/>
 	 * Chinese: "周一", "周二", "周三" ...</p>
 	 */
-	public String getNextDayInWeek(Locale locale) {
+	public String getDayInWeek(Locale locale) {
 		String type = "E";
-		String dayInWeek = getTimes(nextMillis, type, locale);
-		nextMillis += msDay;
+		String dayInWeek = getTimes(timeMillis, type, locale);
 		return dayInWeek;
+	}
+	public int getDayInWeek() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(timeMillis);
+		return calendar.get(Calendar.DAY_OF_WEEK)-1;
 	}
 	/**
 	 * <p><b>Return</b><br/>

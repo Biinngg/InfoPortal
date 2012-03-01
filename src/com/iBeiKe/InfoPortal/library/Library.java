@@ -1,4 +1,4 @@
-package com.iBeiKe.InfoPortal.lib;
+package com.iBeiKe.InfoPortal.library;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,20 +20,32 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.common.ComTimes;
 import com.iBeiKe.InfoPortal.common.MessageHandler;
+import com.iBeiKe.InfoPortal.database.Database;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 public class Library extends Activity {
+	ComTimes ct;
+	String timeTodayText;
+	String timeTomorrowText;
     private EditText txt;
     private ImageButton btn;
     private Map<String,String> item;
@@ -42,35 +54,78 @@ public class Library extends Activity {
 	private MessageHandler mcr;
 	private ExecutorService exec;
 	private int listNum;
-    private ListView timeList;
     private ListView borrowList;
     private BooksListAdapter timeAdapter;
     private BooksListAdapter borrowAdapter;
+    
+    private void getInitData() {
+    	ct = new ComTimes(this);
+    	int yearMonthDay = ct.getYear() * 10000 + ct.getMonth() * 100 + ct.getDay();
+    	timeTodayText = getOpenTime(yearMonthDay);
+    	Log.d("getInitData", timeTodayText);
+    	ct.moveToNextDays(1);
+    	yearMonthDay = ct.getYear() * 10000 + ct.getMonth() * 100 + ct.getDay();
+    	timeTomorrowText = getOpenTime(yearMonthDay);
+    }
+    
+    private String getOpenTime(int yearMonthDay) {
+    	Database db = new Database(this);
+    	db.read();
+    	String where = "begin<=" + yearMonthDay + " AND end>=" + yearMonthDay;
+    	String[] timeTexts = db.getString("lib_time", "value", where, "_id DESC", 0);
+    	if(timeTexts == null) {
+    		int dayInWeek = ct.getDayInWeek();
+    		Log.d("Library getOpenTime", "day in week is " + dayInWeek);
+    		where = "begin<=" + dayInWeek + " AND end>=" + dayInWeek;
+    		timeTexts = db.getString("lib_time", "value", where, "_id DESC", 0);
+    	}
+    	String timeText = timeTexts[0];
+    	if(timeText.contains(",")) {
+    		timeText = timeText.replace(",", "\n");
+    	}
+    	db.close();
+    	return timeText;
+    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.library);
 
-        timeList = (ListView)findViewById(R.id.library_time_list);
+        getInitData();
+        TextView timeToday = (TextView)findViewById(R.id.library_time_today);
+        TextView timeTomorrow = (TextView)findViewById(R.id.library_time_tomorrow);
+        timeToday.setText(timeTodayText);
+        timeTomorrow.setText(timeTomorrowText);
         borrowList = (ListView)findViewById(R.id.library_borrow_list);
         txt = (EditText)findViewById(R.id.search_edit);
-        btn = (ImageButton)findViewById(R.id.search);
-        
-        timeAdapter = new BooksListAdapter(this);
-        borrowAdapter = new BooksListAdapter(this);
-        timeList.setAdapter(timeAdapter);
-        borrowList.setAdapter(borrowAdapter);
-        
-		queue = new LinkedBlockingQueue<Map<String,String>>();
-        
-        btn.setOnClickListener(new OnClickListener() {
+        txt.setFocusable(false);
+        txt.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
-        		if(txt.getText().toString() != null) {
-        		}
-        		txt.setText(txt.getText().toString());
+        		Intent intent = new Intent();
+        		intent.setClass(Library.this, BookSearch.class);
+        		startActivity(intent);
         	}
         });
+        btn = (ImageButton)findViewById(R.id.search);
+        btn.setOnClickListener(new OnClickListener() {
+        	public void onClick(View v) {
+        		Intent intent = new Intent();
+        		intent.setClass(Library.this, BookSearch.class);
+        		startActivity(intent);
+        	}
+        });
+        Button roomSearch = (Button) findViewById(R.id.top_back);
+        roomSearch.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(Library.this, com.google.zxing.client.android.CaptureActivity.class);
+				startActivityForResult(intent,0);
+			}
+		});
+        
+        borrowAdapter = new BooksListAdapter(this);
+        borrowList.setAdapter(borrowAdapter);
     }
 	
 	public Handler mHandler = new Handler() {

@@ -1,4 +1,4 @@
-package com.iBeiKe.InfoPortal.lib;
+package com.iBeiKe.InfoPortal.library;
 
 import android.app.ListActivity;
 import android.os.Bundle;

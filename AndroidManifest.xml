@@ -45,15 +45,15 @@
         		android:theme="@android:style/Theme.Dialog">
         </activity>
         
-        <activity android:name=".lib.Library"
+        <activity android:name=".library.Library"
         		android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         
-        <activity android:name=".lib.BookSearch"
+        <activity android:name=".library.BookSearch"
         		android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         
-        <activity android:name=".lib.LibSearch"
+        <activity android:name=".library.LibSearch"
                   android:label="@string/about_title"
 				  android:theme="@android:style/Theme.Dialog">
         </activity>

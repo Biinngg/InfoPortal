@@ -75,7 +75,7 @@ public class Result extends Activity {
 		}
 		weekInTerm = ct.getWeekInTerm(db);
 		titleText += " 第" + weekInTerm + "周";
-    	tableName = ct.getNextDayInWeek(java.util.Locale.US);
+    	tableName = ct.getDayInWeek(java.util.Locale.US);
     	isVertical = isVertical();
 	}
 	

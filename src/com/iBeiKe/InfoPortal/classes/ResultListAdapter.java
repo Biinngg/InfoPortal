@@ -14,8 +14,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.iBeiKe.InfoPortal.About;
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.About;
 
 public class ResultListAdapter extends BaseAdapter {
 	private Context context;

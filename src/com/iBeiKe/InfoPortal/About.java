@@ -1,5 +1,7 @@
 package com.iBeiKe.InfoPortal;
 
+import com.iBeiKe.InfoPortal.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.iBeiKe.InfoPortal.lib;
+package com.iBeiKe.InfoPortal.library;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +22,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.common.MessageHandler;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

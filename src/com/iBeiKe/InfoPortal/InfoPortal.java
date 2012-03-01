@@ -1,8 +1,9 @@
 package com.iBeiKe.InfoPortal;
 
+import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.classes.Search;
+import com.iBeiKe.InfoPortal.library.Library;
 import com.iBeiKe.InfoPortal.news.News;
-import com.iBeiKe.InfoPortal.lib.Library;
 
 import android.app.ActivityGroup;
 import android.content.Intent;

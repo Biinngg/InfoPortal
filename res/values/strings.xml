@@ -57,4 +57,6 @@
     <string name="build_spinner_name">楼名: </string>
     <string name="room_search_none">在所选时间，没有此教室的数据，请换其他教室查询或者更改查询时间。</string>
     <string name="room_search_error">输入格式有误，请重新输入教室房间号。</string>
+    <string name="today">今天</string>
+    <string name="tomorrow">明天</string>
 </resources>

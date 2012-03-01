@@ -17,9 +17,9 @@ import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.update.LoadingView;
 import com.iBeiKe.InfoPortal.common.MessageHandler;
 import com.iBeiKe.InfoPortal.database.Database;
+import com.iBeiKe.InfoPortal.update.LoadingView;
 import com.iBeiKe.InfoPortal.update.XMLHandler;
 
 import android.app.Activity;

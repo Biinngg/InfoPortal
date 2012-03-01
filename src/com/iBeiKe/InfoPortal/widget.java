@@ -9,6 +9,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.news.News;
 
 import android.app.PendingIntent;

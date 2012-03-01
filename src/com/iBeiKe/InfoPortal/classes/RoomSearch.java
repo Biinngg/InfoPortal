@@ -94,7 +94,7 @@ public class RoomSearch extends Activity {
 			if(text.length() == 3) {
 				int roomNum = 0;
 				times.setTime(searchMillis);
-				String table = times.getNextDayInWeek(Locale.US);
+				String table = times.getDayInWeek(Locale.US);
 				try {
 					roomNum = Integer.parseInt(text);
 				} catch(Exception e) {

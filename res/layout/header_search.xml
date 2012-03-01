@@ -19,8 +19,10 @@
           />
            
         <!-- 搜索按钮 -->
-        <ImageButton android:id="@+id/search"
+        <ImageButton
+           android:id="@+id/search"
            android:background="@null"
+           android:contentDescription="搜索"
            android:src="@drawable/top_search_selector"
            android:layout_width="wrap_content"
            android:layout_height="fill_parent"

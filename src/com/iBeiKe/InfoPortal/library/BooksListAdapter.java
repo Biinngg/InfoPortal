@@ -1,4 +1,4 @@
-package com.iBeiKe.InfoPortal.lib;
+package com.iBeiKe.InfoPortal.library;
 
 import java.util.ArrayList;
 import java.util.Map;

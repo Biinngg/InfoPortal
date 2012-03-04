@@ -89,7 +89,8 @@ public class Initialize extends Activity implements Runnable {
 		public void handleMessage(Message msg) {
 			if(msg.getData().containsKey("1")) {
 				exec.shutdown();
-				thread.stop();
+				
+				//thread.stop();
 				startActivity(intent);
 			} else {
 				textview.setText(mcr.getString("0", msg));

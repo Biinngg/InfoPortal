@@ -59,4 +59,10 @@
     <string name="room_search_error">输入格式有误，请重新输入教室房间号。</string>
     <string name="today">今天</string>
     <string name="tomorrow">明天</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="lib_username_tip">输入学号或邮箱</string>
+    <string name="lib_password_tip">密码</string>
+    <string name="encrypt_error">加密时产生错误，请重新输入密码。</string>
+    <string name="decrypt_error">解密时产生错误，请重新输入密码。</string>
 </resources>

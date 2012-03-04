@@ -58,6 +58,10 @@ public class Database extends SQLiteOpenHelper {
     	}
     	db.insertOrThrow(table, null, values);
 	}
+
+	public void insert(String table, ContentValues contentValues) {
+    	db.insertOrThrow(table, null, contentValues);
+	}
 	
 	public SQLiteCursor getCursor(String table,
 			String[] columns, String selection, String orderBy) {

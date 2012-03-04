@@ -75,8 +75,54 @@
 	    android:padding="3dip"
 	    android:background="#65999999"
 	    android:textColor="@color/status_text"
-	    android:textStyle="bold"
-	/>
+	    android:textStyle="bold" />
+	<RelativeLayout 
+	    android:id="@+id/lib_login"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:visibility="gone">
+		<TextView
+	    	android:id="@+id/lib_username_name"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginTop="10dip"
+	    	android:text="@string/username"
+	    	android:textColor="@color/black"
+	    	android:textStyle="bold" />
+		<EditText 
+		    android:id="@+id/lib_username"
+		    android:layout_width="200dip"
+		    android:layout_height="wrap_content"
+		    android:layout_toRightOf="@id/lib_username_name"
+		    android:hint="@string/lib_username_tip"
+		    android:layout_marginLeft="10dip"
+		    android:inputType="text" />
+		<TextView
+	    	android:id="@+id/lib_password_name"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginTop="10dip"
+	    	android:layout_below="@id/lib_username"
+	    	android:text="@string/password"
+	    	android:textColor="@color/black"
+	    	android:textStyle="bold" />
+		<EditText 
+		    android:id="@+id/lib_password"
+		    android:layout_width="200dip"
+		    android:layout_height="wrap_content"
+		    android:layout_alignLeft="@id/lib_username"
+		    android:layout_below="@id/lib_username"
+		    android:hint="@string/lib_password_tip"
+		    android:inputType="textPassword" />
+		<Button 
+		    android:id="@+id/lib_login_button"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/ok"
+		    android:layout_alignLeft="@id/lib_password"
+		    android:layout_below="@id/lib_password"/>
+	</RelativeLayout>
 	 <ListView
 	    android:id="@+id/library_borrow_list"
 	  	android:layout_width="fill_parent"

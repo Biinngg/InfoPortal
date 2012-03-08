@@ -44,7 +44,7 @@ public class LoginHelper {
             Toast.makeText(context, context.getString(R.string.decrypt_error), Toast.LENGTH_SHORT);
             return null;
         }
-		
+
 		columns = new String[] {"_id", "name", "value"};
 		cursor = db.getCursor("lib_login", columns, null, null);
 		while(cursor.moveToNext()) {
@@ -53,14 +53,16 @@ public class LoginHelper {
 			String value = cursor.getString(2);
 			if(id == type) {
 				result.put(name, value);
-			} else if(name.equals("url")) {
-				result.put("url", value);
 			} else if(name.equals("user")) {
 				result.put(value, user);
 			} else if(name.equals("passwd")) {
 				result.put(value, passwd);
 			}
 		}
+		String[] myLibUrl = db.getString("lib_urls", "value", "name=\'lib_my\'", null, 0);
+		String[] loginUrl = db.getString("lib_urls", "value", "name=\'lib_login\'", null, 0);
+		result.put("myUrl", myLibUrl[0]);
+		result.put("logUrl", loginUrl[0]);
 		db.close();
 		return result;
 	}
@@ -69,9 +71,9 @@ public class LoginHelper {
 		int type;
 		ContentValues cv = new ContentValues();
 		if(user.contains("@")) {
-			type = 5;
-		} else {
 			type = 4;
+		} else {
+			type = 3;
 		}
         try{
             passwd = AESEncryptor.encrypt(seed, passwd);

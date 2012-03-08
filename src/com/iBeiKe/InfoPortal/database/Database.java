@@ -51,6 +51,10 @@ public class Database extends SQLiteOpenHelper {
 		}
 	}
 	
+	public int delete(String table, String where) {
+		return db.delete(table, where, null);
+	}
+	
 	public void insert(String table, Map<String,String> content) {
     	ContentValues values = new ContentValues();
     	for(String key : content.keySet()) {

@@ -1,5 +1,6 @@
 package com.iBeiKe.InfoPortal.library;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.iBeiKe.InfoPortal.R;
@@ -22,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Library extends Activity implements Runnable{
+	private Database db;
 	private ComTimes ct;
 	private String timeTodayText;
 	private String timeTomorrowText;
@@ -30,7 +32,7 @@ public class Library extends Activity implements Runnable{
     private EditText txt, userName, password;
     private ImageButton btn;
     private ListView borrowList;
-    private BooksListAdapter borrowAdapter;
+	private LibraryListAdapter adapter;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,6 @@ public class Library extends Activity implements Runnable{
         timeToday.setText(timeTodayText);
         timeTomorrow.setText(timeTomorrowText);
         borrowList = (ListView)findViewById(R.id.library_borrow_list);
-        borrowAdapter = new BooksListAdapter(this);
-        borrowList.setAdapter(borrowAdapter);
         txt = (EditText)findViewById(R.id.search_edit);
         txt.setFocusable(false);
         txt.setOnClickListener(new SearchClickListener());
@@ -52,6 +52,10 @@ public class Library extends Activity implements Runnable{
         btn.setOnClickListener(new SearchClickListener());
         Button roomSearch = (Button) findViewById(R.id.top_back);
         roomSearch.setOnClickListener(new ZxingSearchClickListener());
+        db = new Database(this);
+        db.write();
+        adapter = new LibraryListAdapter(this, db);
+        borrowList.setAdapter(adapter);
         
         RelativeLayout loginLayout = (RelativeLayout)findViewById(R.id.lib_login);
         if(contentValues == null) {
@@ -66,9 +70,11 @@ public class Library extends Activity implements Runnable{
 	        Thread thread = new Thread(this);
 	        thread.start();
         }
-
-        //ContentValues cv = loginHelper.getLoginData();
-        //cv.toString();
+    }
+    
+    public void onPause() {
+    	super.onPause();
+    	db.close();
     }
     
     private void getInitData() {
@@ -84,7 +90,7 @@ public class Library extends Activity implements Runnable{
     }
     
     private String getOpenTime(int yearMonthDay) {
-    	Database db = new Database(this);
+    	db = new Database(this);
     	db.read();
     	String where = "begin<=" + yearMonthDay + " AND end>=" + yearMonthDay;
     	String[] timeTexts = db.getString("lib_time", "value", where, "_id DESC", 0);
@@ -128,21 +134,44 @@ public class Library extends Activity implements Runnable{
     }
 	
 	public Handler mHandler = new Handler() {
+		@SuppressWarnings("unchecked")
 		@Override
 		public void handleMessage(Message msg) {
+			ArrayList<MyLibList> myLibList =
+					(ArrayList<MyLibList>)msg.getData().getSerializable("1");
+			adapter.setData(myLibList);
     	}
 	};
 	
 	public void run() {
 		if(!Thread.interrupted()) {
-			MyLibraryFetcher mlf = new MyLibraryFetcher(
-					"http://lib.ustb.edu.cn:8080/reader/book_lst.php", contentValues);
+			String htmlBody = null;
+			MyLibraryFetcher mlf = new MyLibraryFetcher(contentValues);
 			try {
-				mlf.fetchData();
+				htmlBody = mlf.fetchData();
 			} catch (Exception e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+				Log.e("MyLibraryFetcher Exception", e2.toString());
 			}
+			ArrayList<MyLibList> myLibList = mlf.parseData(htmlBody);
+			Message msg = Message.obtain();
+			Bundle bul = new Bundle();
+			bul.putSerializable("1", myLibList);
+			msg.setData(bul);
+			mHandler.sendMessage(msg);
 		}
+	}
+}
+class MyLibList{
+	public String barCode, marcNo, title, author, store;
+	public int borrow, returns;
+	public MyLibList(String barCode, String marcNo, String title,
+			String author, String store, int borrow, int returns) {
+		this.barCode = barCode;
+		this.marcNo = marcNo;
+		this.title = title;
+		this.author = author;
+		this.store = store;
+		this.borrow = borrow;
+		this.returns = returns;
 	}
 }

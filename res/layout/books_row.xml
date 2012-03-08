@@ -8,9 +8,9 @@
     android:layout_below="@+id/book_author"
     android:padding="8dip">
     <TextView 
+        android:id="@+id/book_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/book_title"
         android:layout_marginRight="4dp"
         android:textStyle="bold"
         android:textSize="14dip"/>

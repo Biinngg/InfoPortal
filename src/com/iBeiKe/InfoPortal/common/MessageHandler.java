@@ -16,7 +16,7 @@ public class MessageHandler {
 		msg = Message.obtain();
 		bul = new Bundle();
 	}
-	
+
 	public void bundle(String key, String value) {
 		bul.putString(key, value);
 	}

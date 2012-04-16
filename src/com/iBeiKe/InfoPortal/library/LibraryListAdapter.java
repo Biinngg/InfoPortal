@@ -22,8 +22,9 @@ public class LibraryListAdapter extends BaseAdapter {
 	private String[] columns;
 	private String tableName, orderBy;
 	
-	public LibraryListAdapter(Context context, Database db) {
-		this.db = db;
+	public LibraryListAdapter(Context context) {
+		this.context = context;
+		db = new Database(context);
 		tableName = "lib_my";
 		orderBy = "returns ASC";
 		columns = new String[] {"bar_code", "marc_no", "title",
@@ -35,6 +36,7 @@ public class LibraryListAdapter extends BaseAdapter {
 		int num = myLibList.size();
 		long timeMillis = System.currentTimeMillis();
 		ContentValues cv = new ContentValues();
+		db.write();
 		for(int i=0;i<num;i++) {
 			cv.put(columns[0], myLibList.get(i).barCode);
 			cv.put(columns[1], myLibList.get(i).marcNo);
@@ -49,6 +51,7 @@ public class LibraryListAdapter extends BaseAdapter {
 		}
 		String where = "time!=" + timeMillis;
 		db.delete(tableName, where);
+		db.close();
 	}
 	
 	public void setData(ArrayList<MyLibList> myLibList) {
@@ -57,16 +60,21 @@ public class LibraryListAdapter extends BaseAdapter {
 	}
 	
 	public int getCount() {
+		db.read();
 		Cursor cursor = db.getCursor(tableName, columns, null, orderBy);
-		return cursor.getCount();
+		int count = cursor.getCount();
+		db.close();
+		return count;
 	}
 
 	public MyLibList getItem(int arg0) {
+		db.read();
 		Cursor cursor = db.getCursor(tableName, columns, null, orderBy);
 		cursor.moveToPosition(arg0);
 		MyLibList libList = new MyLibList(cursor.getString(0),
 				cursor.getString(1), cursor.getString(2), cursor.getString(3),
 				cursor.getString(4), cursor.getInt(5), cursor.getInt(6));
+		db.close();
 		return libList;
 	}
 

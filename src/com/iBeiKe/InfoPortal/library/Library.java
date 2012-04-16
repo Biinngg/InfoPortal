@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,14 +33,18 @@ public class Library extends Activity implements Runnable{
     private EditText txt, userName, password;
     private ImageButton btn;
     private ListView borrowList;
+    private RelativeLayout loginLayout;
 	private LibraryListAdapter adapter;
+	private ProgressBar bar;
+	private TextView status;
+	private Button login;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.library);
 
-        getInitData();
+        getTimeData();
         TextView timeToday = (TextView)findViewById(R.id.library_time_today);
         TextView timeTomorrow = (TextView)findViewById(R.id.library_time_tomorrow);
         timeToday.setText(timeTodayText);
@@ -52,40 +57,35 @@ public class Library extends Activity implements Runnable{
         btn.setOnClickListener(new SearchClickListener());
         Button roomSearch = (Button) findViewById(R.id.top_back);
         roomSearch.setOnClickListener(new ZxingSearchClickListener());
-        db = new Database(this);
-        db.write();
-        adapter = new LibraryListAdapter(this, db);
+        bar = (ProgressBar)findViewById(R.id.lib_login_progress);
+        status = (TextView)findViewById(R.id.lib_login_status);
+        login = (Button)findViewById(R.id.lib_login_button);
+        adapter = new LibraryListAdapter(this);
         borrowList.setAdapter(adapter);
         
-        RelativeLayout loginLayout = (RelativeLayout)findViewById(R.id.lib_login);
+        loginLayout = (RelativeLayout)findViewById(R.id.lib_login);
+        getLoginData();
         if(contentValues == null) {
-        	loginLayout.setVisibility(View.VISIBLE);
-            userName = (EditText)findViewById(R.id.lib_username);
-            password = (EditText)findViewById(R.id.lib_password);
-            Button login = (Button)findViewById(R.id.lib_login_button);
-            login.setOnClickListener(new LoginClickListener());
+        	relogin();
         } else {
-        	Log.d("content value", contentValues.toString());
-
+        	Log.d("visibility", "gone");
 	        Thread thread = new Thread(this);
 	        thread.start();
         }
     }
     
-    public void onPause() {
-    	super.onPause();
-    	db.close();
-    }
-    
-    private void getInitData() {
+    private void getTimeData() {
     	ct = new ComTimes(this);
-    	loginHelper = new LoginHelper(this);
     	int yearMonthDay = ct.getYear() * 10000 + ct.getMonth() * 100 + ct.getDay();
     	timeTodayText = getOpenTime(yearMonthDay);
     	Log.d("getInitData", timeTodayText);
     	ct.moveToNextDays(1);
     	yearMonthDay = ct.getYear() * 10000 + ct.getMonth() * 100 + ct.getDay();
     	timeTomorrowText = getOpenTime(yearMonthDay);
+    }
+    
+    private void getLoginData() {
+    	loginHelper = new LoginHelper(this);
     	contentValues = loginHelper.getLoginData();
     }
     
@@ -108,12 +108,33 @@ public class Library extends Activity implements Runnable{
     	return timeText;
     }
     
+    public void setStatus(CharSequence charSequence) {
+        TextView status = (TextView)Library.this.findViewById(R.id.lib_login_status);
+        status.setText(charSequence);
+    }
+    
+    private void relogin() {
+        bar.setVisibility(View.GONE);
+        login.setClickable(true);
+    	loginLayout.setVisibility(View.VISIBLE);
+        userName = (EditText)findViewById(R.id.lib_username);
+        password = (EditText)findViewById(R.id.lib_password);
+        login.setOnClickListener(new LoginClickListener());
+    }
+    
     class LoginClickListener implements OnClickListener {
     	public void onClick(View v) {
 	        String userString = userName.getText().toString();
 	        String passString = password.getText().toString();
-	        if(userString != null && passString != null)
+	        if(userString != null && passString != null) {
+	            login.setClickable(false);
+	            bar.setVisibility(View.VISIBLE);
+	            status.setVisibility(View.VISIBLE);
+	            setStatus(getText(R.string.logining));
 	        	loginHelper.saveLoginData(userString, passString);
+		        Thread thread = new Thread(Library.this);
+		        thread.start();
+	        }
     	}
     }
     
@@ -137,25 +158,42 @@ public class Library extends Activity implements Runnable{
 		@SuppressWarnings("unchecked")
 		@Override
 		public void handleMessage(Message msg) {
-			ArrayList<MyLibList> myLibList =
-					(ArrayList<MyLibList>)msg.getData().getSerializable("1");
-			adapter.setData(myLibList);
+			Bundle data = msg.getData();
+			if(data.containsKey("0")){
+				loginLayout.setVisibility(View.GONE);
+				ArrayList<MyLibList> myLibList =
+						(ArrayList<MyLibList>)msg.getData().getSerializable("0");
+				adapter.setData(myLibList);
+			} else if(data.containsKey("1")) {
+				relogin();
+				setStatus(getText(R.string.login_faile));
+			} else {
+				relogin();
+				setStatus((String)data.get("2"));
+			}
     	}
 	};
 	
 	public void run() {
 		if(!Thread.interrupted()) {
-			String htmlBody = null;
-			MyLibraryFetcher mlf = new MyLibraryFetcher(contentValues);
+			String loginStatus = null;
+			Bundle bul = new Bundle();
+			Message msg = Message.obtain();
+			getLoginData();
+			MyLibraryFetcher mlf = new MyLibraryFetcher(Library.this, contentValues);
 			try {
-				htmlBody = mlf.fetchData();
+				loginStatus = mlf.fetchData();
 			} catch (Exception e2) {
 				Log.e("MyLibraryFetcher Exception", e2.toString());
 			}
-			ArrayList<MyLibList> myLibList = mlf.parseData(htmlBody);
-			Message msg = Message.obtain();
-			Bundle bul = new Bundle();
-			bul.putSerializable("1", myLibList);
+			if(loginStatus.equals("0")) {
+				ArrayList<MyLibList> myLibList = mlf.parseData();
+				bul.putSerializable("0", myLibList);
+			} else if(loginStatus.equals("1")){
+				bul.putString("1", loginStatus);
+			} else {
+				bul.putString("2", loginStatus);
+			}
 			msg.setData(bul);
 			mHandler.sendMessage(msg);
 		}

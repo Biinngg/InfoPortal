@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.http.HttpClientConnection;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -24,19 +25,26 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
+import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.library.MyLibList;
 
+import android.content.Context;
 import android.net.wifi.WifiConfiguration.Status;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyLibraryFetcher {
+	private Context context;
 	private static String logUrl, myUrl;
 	private static List<NameValuePair> nvps;
 	private ArrayList<MyLibList> myLib;
-	private String idItem, titleNoInItem, endTimeInItem;
+	private String idItem, titleNoInItem, endTimeInItem, htmlBody;
 	
 	
-	public MyLibraryFetcher(Map<String,String> loginData) {
+	public MyLibraryFetcher(Context context, Map<String,String> loginData) {
+		this.context = context;
 		loginDataHandler(loginData);
 		myLib = new ArrayList<MyLibList>();
 	}
@@ -56,6 +64,10 @@ public class MyLibraryFetcher {
         DefaultHttpClient httpclient = new DefaultHttpClient();
         HttpGet httpget = new HttpGet(logUrl);
         HttpResponse response = httpclient.execute(httpget);
+        String status = response.getStatusLine().toString();
+        if(!status.contains("200")) {
+        	return status;
+        }
         HttpEntity entity = response.getEntity();
         if (entity != null) {
             entity.consumeContent();
@@ -64,6 +76,7 @@ public class MyLibraryFetcher {
         if (cookies.isEmpty()) {
             Log.e("Cookies", "MyLibraryFetcher.java: Cookies is empty");
         }
+        
         
         HttpPost httpost = new HttpPost(logUrl);
         httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
@@ -84,10 +97,15 @@ public class MyLibraryFetcher {
         while((tmp=reader.readLine())!=null) {
         	htmlRet += tmp + "\r\n";
         }
-        String responseBody = new String(htmlRet.getBytes("UTF-8"), "UTF-8");
-        return responseBody;
-        
-    } 
+        htmlBody = new String(htmlRet.getBytes("UTF-8"), "UTF-8");
+
+        if(htmlBody.contains("注销")) {
+        	status = "0";
+        } else {
+        	status = "1";
+        }
+        return status;
+    }
     
 	public static StringBuffer decodeUnicode(String dataStr) {
 		dataStr=dataStr.replace("&#x", "\\u");
@@ -123,7 +141,12 @@ public class MyLibraryFetcher {
 		return buffer;
 	}
     
-    public ArrayList<MyLibList> parseData(String htmlBody) {
+	/**
+	 * 
+	 * @param htmlBody
+	 * @return
+	 */
+    public ArrayList<MyLibList> parseData() {
     	String barCode = null, marcNo = null, title = null, author = null, store = null;
     	int borrow = 0, returns = 0;
 		idItem = "(<td[^>]*>)(.*)(?=<(\\/td)>)";
@@ -169,5 +192,4 @@ public class MyLibraryFetcher {
         }
         return myLib;
     }
-    
 }

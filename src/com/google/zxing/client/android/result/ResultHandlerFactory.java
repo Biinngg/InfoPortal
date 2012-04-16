@@ -35,12 +35,7 @@ public final class ResultHandlerFactory {
   public static ResultHandler makeResultHandler(Activity activity, Result rawResult) {
     ParsedResult result = parseResult(rawResult);
     ParsedResultType type = result.getType();
-    if (type.equals(ParsedResultType.ISBN)) {
-      return new ISBNResultHandler(activity, result, rawResult);
-    } else {
-      // The TextResultHandler is the fallthrough for unsupported formats.
-      return new TextResultHandler(activity, result, rawResult);
-    }
+    return new ISBNResultHandler(activity, result, rawResult);
   }
 
   private static ParsedResult parseResult(Result rawResult) {

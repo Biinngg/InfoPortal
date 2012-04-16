@@ -20,10 +20,13 @@ import com.google.zxing.Result;
 import com.google.zxing.client.result.ISBNParsedResult;
 import com.google.zxing.client.result.ParsedResult;
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.library.BookSearch;
+import com.iBeiKe.InfoPortal.library.Library;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 
 /**
  * Handles books encoded by their ISBN values.
@@ -31,6 +34,7 @@ import android.content.DialogInterface;
  * @author dswitkin@google.com (Daniel Switkin)
  */
 public final class ISBNResultHandler extends ResultHandler {
+	Activity activity;
   private static final int[] buttons = {
       R.string.button_product_search,
       R.string.button_book_search,
@@ -40,6 +44,7 @@ public final class ISBNResultHandler extends ResultHandler {
 
   public ISBNResultHandler(Activity activity, ParsedResult result, Result rawResult) {
     super(activity, result, rawResult);
+    this.activity = activity;
   }
 
   @Override
@@ -59,14 +64,16 @@ public final class ISBNResultHandler extends ResultHandler {
         ISBNParsedResult isbnResult = (ISBNParsedResult) getResult();
         switch (index) {
           case 0:
+        	  
             break;
           case 1:
             openBookSearch(isbnResult.getISBN());
             break;
           case 2:
+              openURL();
             break;
           case 3:
-            openURL(fillInCustomSearchURL(isbnResult.getISBN()));
+            openURL();
             break;
         }
       }

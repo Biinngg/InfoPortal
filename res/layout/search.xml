@@ -7,7 +7,7 @@
   android:background="@color/body_background"
   >
   	 <!-- Header -->
-  	 <include layout="@layout/header_search"/>
+  	 <include layout="@layout/header_sort"/>
 	 <!-- 复合列表，包含保存的搜索和热门搜索 -->
 	 <ListView
 	    android:id="@+id/myList"

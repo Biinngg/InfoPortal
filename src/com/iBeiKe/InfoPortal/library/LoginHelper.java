@@ -86,6 +86,7 @@ public class LoginHelper {
 		cv.put("passwd", passwd);
 		cv.put("type", type);
 		db.write();
+		db.delete("login", "table_name=\'lib_login\'");
 		db.insert("login", cv);
 		db.close();
 	}

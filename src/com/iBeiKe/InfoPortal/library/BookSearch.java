@@ -21,7 +21,9 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.classes.Search.MyOnFloorSelectedListener1;
 import com.iBeiKe.InfoPortal.common.MessageHandler;
+import com.iBeiKe.InfoPortal.database.Database;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -35,6 +37,9 @@ import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,10 +47,10 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class BookSearch extends Activity implements Runnable {
-    private WebView show;
     private EditText txt;
     private ImageButton btn;
     private Map<String,String> item;
@@ -54,7 +59,9 @@ public class BookSearch extends Activity implements Runnable {
 	private MessageHandler mcr;
 	private ExecutorService exec;
 	private boolean execMark = false;
-	private int listNum;
+	private int listNum, sortNum;
+	private String baseUrl;
+	private String sorts[],sortUrl[];
 	
     private LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -71,6 +78,7 @@ public class BookSearch extends Activity implements Runnable {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+        getInitData();
 
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -111,14 +119,13 @@ public class BookSearch extends Activity implements Runnable {
         
         
 		queue = new LinkedBlockingQueue<Map<String,String>>();
-        final Button roomSearch = (Button) findViewById(R.id.top_back);
-        roomSearch.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent();
-				intent.setClass(BookSearch.this, com.google.zxing.client.android.CaptureActivity.class);
-				startActivityForResult(intent,0);
-			}
-		});
+        Spinner sortSpinner = (Spinner) findViewById(R.id.header_sort);
+        ArrayAdapter<String> floorAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, sorts);
+        floorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(floorAdapter);
+        sortSpinner.setOnItemSelectedListener(new MyOnSortSelectedListener());
+        sortSpinner.setSelection(0);
         
         txt = (EditText)findViewById(R.id.search_edit);
         btn = (ImageButton)findViewById(R.id.search);
@@ -159,12 +166,32 @@ public class BookSearch extends Activity implements Runnable {
         }); 
     }
     
+    private void getInitData() {
+    	Database db = new Database(this);
+    	db.read();
+    	baseUrl = db.getString("lib_urls", "value", "name=\'lib_search\'", null, 0)[0];
+    	sorts = db.getString("lib_search", "name", null, null, 0);
+    	sortUrl = db.getString("lib_search", "value", null, null, 0);
+    	db.close();
+    }
+    
     private static String toHexString(String s) {
     	String str= "";
     	for(byte b: s.getBytes()) {
     		str += "%" + Integer.toHexString(b & 0XFF);
     	}
     	return str;
+    }
+    
+    public class MyOnSortSelectedListener implements OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        	sortNum = pos + 1;
+        }
+
+        public void onNothingSelected(AdapterView parent) {
+          // Do nothing.
+        }
     }
 	
 	public Handler mHandler = new Handler() {

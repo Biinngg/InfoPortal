@@ -8,7 +8,22 @@
       android:gravity="center_vertical"
       android:layout_alignParentTop="true"
       >
-        <!-- title -->
+      <TextView
+          android:id="@+id/header_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_marginTop="12dip"
+          android:layout_marginLeft="3dip"
+          android:gravity="center_vertical"
+          android:shadowColor="#666"
+          android:shadowRadius="1"
+          android:shadowDx="0"
+          android:shadowDy="-1"
+          android:text="@string/app_name"
+          android:textColor="#fff"
+          android:textSize="15sp"/>
+        <!-- title 
         <TextView android:id="@+id/title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -19,7 +34,7 @@
           android:clickable="true"
           style="@style/logo_button"
           />
-            
+            -->
         <!-- 搜索按钮 -->
         <ImageButton android:id="@+id/search"
            android:background="@null"
@@ -31,7 +46,7 @@
            android:paddingLeft="10dip"
            /> 
             
-        <!-- 发布消息按钮 
+        <!-- 发布消息按钮 -->  
         <ImageButton android:id="@+id/writeMessage"
            android:background="@null"
            android:src="@drawable/top_msg_selector"
@@ -41,7 +56,7 @@
            android:paddingRight="10dip"
            android:paddingLeft="10dip"
            />
-         -->  
+         
          <!-- 刷新按钮 
         <ImageButton android:id="@+id/top_refresh"
            android:background="@null"
@@ -97,14 +112,14 @@
         />
          -->
          
-	    <!-- Global Progress Bar -->
+	    <!-- Global Progress Bar 
 	    <ProgressBar 
 	        android:id="@+id/progress_bar"
 	        android:layout_width="fill_parent"
 	        android:layout_height="2dip"
 	        android:layout_alignParentBottom="true"
 	        style="@style/gProgressBar.Horizontal"
-	    />
+	    />-->
     </RelativeLayout>
     
       

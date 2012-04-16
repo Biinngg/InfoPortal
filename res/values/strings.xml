@@ -42,7 +42,8 @@
     <string name="about_text">提供对无课表内容特定时间，特定楼层的搜索，方便同学们上自习。\n
     	同时提供校园最新动态，第一时间得到最新的消息。\n</string>
     <string name="copy_text">Copyright © 2001-2011 iBeiKe All Rights Reserved\n</string>
-    <string name="page_label_go_back">扫描</string>
+    <string name="scan">扫描</string>
+    <string name="back">返回</string>
     <string name="lib_search_tip">名称或ISBN码</string>
     <string name="book_author">责任者</string>
     <string name="book_num">索书号</string>
@@ -66,4 +67,7 @@
     <string name="encrypt_error">加密时产生错误，请重新输入密码。</string>
     <string name="decrypt_error">解密时产生错误，请重新输入密码。</string>
     <string name="reborrow">续借</string>
+    <string name="login">登录</string>
+    <string name="logining">正在登录...</string>
+    <string name="login_faile">登录失败，请检查用户名密码后重新登录</string>
 </resources>

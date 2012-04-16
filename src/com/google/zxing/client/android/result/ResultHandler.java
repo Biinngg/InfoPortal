@@ -23,6 +23,7 @@ import com.google.zxing.client.android.PreferencesActivity;
 import com.google.zxing.client.result.ParsedResult;
 import com.google.zxing.client.result.ParsedResultType;
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.library.BookSearch;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -172,24 +173,35 @@ public abstract class ResultHandler {
   final void openBookSearch(String isbn) {
     Uri uri = Uri.parse("http://books.google." + LocaleManager.getBookSearchCountryTLD() +
         "/books?vid=isbn" + isbn);
-    launchIntent(new Intent(Intent.ACTION_VIEW, uri));
+    launchIntent(1, new Intent(Intent.ACTION_VIEW, uri));
   }
 
-  final void openURL(String url) {
-    launchIntent(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+  final void openURL() {
+	  launchIntent(2, new Intent());
   }
 
   final void webSearch(String query) {
     Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
     intent.putExtra("query", query);
-    launchIntent(intent);
+    launchIntent(0, intent);
   }
 
-  void launchIntent(Intent intent) {
+  void launchIntent(int buttonIndex, Intent intent) {
     if (intent != null) {
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
       Log.d(TAG, "Launching intent: " + intent + " with extras: " + intent.getExtras());
       try {
+    	switch(buttonIndex) {
+    	case 0:
+    		break;
+    	case 1:
+    		Log.e("openbs", "openbs");
+    		break;
+    	case 2:
+    		Log.e("openURI", "openURI");
+    		intent.setClass(activity, BookSearch.class);
+    		break;
+    	}
         activity.startActivity(intent);
       } catch (ActivityNotFoundException e) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

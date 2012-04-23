@@ -70,4 +70,18 @@
     <string name="login">登录</string>
     <string name="logining">正在登录...</string>
     <string name="login_faile">登录失败，请检查用户名密码后重新登录</string>
+    <string name="camp_stu_info">学生基本信息</string>
+    <string name="camp_stu_name">姓名</string>
+    <string name="camp_stu_id">学号</string>
+    <string name="camp_card_id">卡号</string>
+    <string name="camp_card_left">余额</string>
+    <string name="camp_card_cur">当前卡状态</string>
+    <string name="camp_card_dis">卡户冻结状态</string>
+    <string name="camp_cost_dm">当日/月消费总额</string>
+    <string name="camp_username_tip">您的工号、学号或别名</string>
+    <string name="camp_password_tip">缺省密码:身份证后6位</string>
+    <string name="camp_time">时间</string>
+    <string name="camp_place">地点</string>
+    <string name="camp_cost">消费</string>
+    <string name="camp_left">余额</string>
 </resources>

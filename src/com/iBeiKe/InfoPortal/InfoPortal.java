@@ -4,6 +4,7 @@ import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.classes.Search;
 import com.iBeiKe.InfoPortal.library.Library;
 import com.iBeiKe.InfoPortal.news.News;
+import com.iBeiKe.InfoPortal.campus.Campus;
 
 import android.app.ActivityGroup;
 import android.content.Intent;
@@ -29,6 +30,7 @@ public class InfoPortal extends ActivityGroup {
 	Button classes;
 	Button lib;
 	Button news;
+	Button camp;
 	Intent intent;
 	TextView textView;
 	private int click;
@@ -49,6 +51,7 @@ public class InfoPortal extends ActivityGroup {
 	private void navigationButtonEvent() {
 		classes = (Button) findViewById(R.id.classes);
 		lib = (Button) findViewById(R.id.lib);
+		camp = (Button) findViewById(R.id.camp);
 		news = (Button) findViewById(R.id.news);
 		textView = (TextView) findViewById(R.id.title);
 		
@@ -81,6 +84,17 @@ public class InfoPortal extends ActivityGroup {
 				}
 			}
 		});
+		camp.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (click != clickLib) {
+					click = clickLib;
+					classes.setEnabled(true);
+					lib.setEnabled(false);
+					news.setEnabled(true);
+					SwitchActivity(2);
+				}
+			}
+		});
 		news.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (click != clickNews) {
@@ -88,7 +102,7 @@ public class InfoPortal extends ActivityGroup {
 					classes.setEnabled(true);
 					lib.setEnabled(true);
 					news.setEnabled(false);
-					SwitchActivity(2);
+					SwitchActivity(3);
 				}
 			}
 		});
@@ -103,6 +117,8 @@ public class InfoPortal extends ActivityGroup {
 		} else if(id == 1) {
 			intent = new Intent(InfoPortal.this, Library.class);
 		} else if(id == 2) {
+			intent = new Intent(InfoPortal.this, Campus.class);
+		} else if(id == 3) {
 			intent = new Intent(InfoPortal.this, News.class);
 		}
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

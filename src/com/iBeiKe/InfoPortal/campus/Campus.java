@@ -3,7 +3,10 @@ package com.iBeiKe.InfoPortal.campus;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.json.JSONException;
+
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,11 +24,13 @@ import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.common.ComTimes;
+import com.iBeiKe.InfoPortal.common.MessageHandler;
+import com.iBeiKe.InfoPortal.common.iBeiKeApi;
 import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.library.BookSearch;
 import com.iBeiKe.InfoPortal.library.Library;
 import com.iBeiKe.InfoPortal.library.LibraryListAdapter;
-import com.iBeiKe.InfoPortal.library.LoginHelper;
+import com.iBeiKe.InfoPortal.common.LoginHelper;
 import com.iBeiKe.InfoPortal.library.MyLibraryFetcher;
 
 public class Campus extends Activity implements Runnable{
@@ -43,30 +48,15 @@ public class Campus extends Activity implements Runnable{
 	private ProgressBar bar;
 	private TextView status;
 	private Button login;
+	private CampusHandler handler;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.campus);
 
-        JsonHandler jh = new JsonHandler(this);
-        TextView timeToday = (TextView)findViewById(R.id.library_time_today);
-        TextView timeTomorrow = (TextView)findViewById(R.id.library_time_tomorrow);
-        timeToday.setText(timeTodayText);
-        timeTomorrow.setText(timeTomorrowText);
-        borrowList = (ListView)findViewById(R.id.library_borrow_list);
-        txt = (EditText)findViewById(R.id.search_edit);
-        txt.setFocusable(false);
-        txt.setOnClickListener(new SearchClickListener());
-        btn = (ImageButton)findViewById(R.id.search);
-        btn.setOnClickListener(new SearchClickListener());
-        Button roomSearch = (Button) findViewById(R.id.top_back);
-        roomSearch.setOnClickListener(new ZxingSearchClickListener());
-        bar = (ProgressBar)findViewById(R.id.lib_login_progress);
-        status = (TextView)findViewById(R.id.lib_login_status);
-        login = (Button)findViewById(R.id.lib_login_button);
-        adapter = new LibraryListAdapter(this);
-        borrowList.setAdapter(adapter);
+        handler = new CampusHandler(this);
+        
         
         loginLayout = (RelativeLayout)findViewById(R.id.lib_login);
         getLoginData();
@@ -77,6 +67,21 @@ public class Campus extends Activity implements Runnable{
 	        Thread thread = new Thread(this);
 	        thread.start();
         }
+    }
+    
+    private void getInitData() {
+    	LoginHelper login = new LoginHelper(this);
+    	ContentValues cv = login.getLoginData("card_info");
+    	if(cv == null) {
+    		return;
+    	} else {
+    		
+    	}
+    	String userName = cv.getAsString("user");
+    	String passWord = cv.getAsString("passwd");
+    	String flag = cv.getAsString("type");
+    	iBeiKeApi api = new iBeiKeApi(this);
+    	api.getApiUrl("camp_info", userName, passWord, flag);
     }
     
     private void getCache() {
@@ -164,40 +169,20 @@ public class Campus extends Activity implements Runnable{
 		@Override
 		public void handleMessage(Message msg) {
 			Bundle data = msg.getData();
-			if(data.containsKey("0")){
-				loginLayout.setVisibility(View.GONE);
-				ArrayList<MyLibList> myLibList =
-						(ArrayList<MyLibList>)msg.getData().getSerializable("0");
-			} else if(data.containsKey("1")) {
-				relogin();
-				setStatus(getText(R.string.login_faile));
-			} else {
-				relogin();
-				setStatus((String)data.get("2"));
+	        try {
+				handler.parseAndSave(data.getString("1"));
+			} catch (JSONException e) {
+				Log.e("Campus.onCreate()", e.toString());
 			}
     	}
 	};
 	
 	public void run() {
 		if(!Thread.interrupted()) {
-			String loginStatus = null;
-			Bundle bul = new Bundle();
-			Message msg = Message.obtain();
-			getLoginData();
-			MyLibraryFetcher mlf = new MyLibraryFetcher(Campus.this, contentValues);
-			try {
-				loginStatus = mlf.fetchData();
-			} catch (Exception e2) {
-				Log.e("MyLibraryFetcher Exception", e2.toString());
-			}
-			if(loginStatus.equals("0")) {
-			} else if(loginStatus.equals("1")){
-				bul.putString("1", loginStatus);
-			} else {
-				bul.putString("2", loginStatus);
-			}
-			msg.setData(bul);
-			mHandler.sendMessage(msg);
+	        String htmlBody = handler.fetchData();
+	        MessageHandler mh = new MessageHandler();
+	        mh.bundle("1", htmlBody);
+	        mHandler.sendMessage(mh.get());
 		}
 	}
 }

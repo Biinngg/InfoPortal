@@ -51,6 +51,10 @@ public class Database extends SQLiteOpenHelper {
 		}
 	}
 	
+	public int clean(String table) {
+		return db.delete(table, null, null);
+	}
+	
 	public int delete(String table, String where) {
 		return db.delete(table, where, null);
 	}

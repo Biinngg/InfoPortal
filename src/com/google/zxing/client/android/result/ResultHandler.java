@@ -31,6 +31,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import java.text.DateFormat;
 import java.text.ParsePosition;
@@ -176,8 +177,12 @@ public abstract class ResultHandler {
     launchIntent(1, new Intent(Intent.ACTION_VIEW, uri));
   }
 
-  final void openURL() {
-	  launchIntent(2, new Intent());
+  final void openURL(String isbn) {
+	  Intent intent = new Intent();
+	  Bundle bl = new Bundle();
+	  bl.putString("isbn", isbn);
+	  intent.putExtras(bl);
+	  launchIntent(2, intent);
   }
 
   final void webSearch(String query) {

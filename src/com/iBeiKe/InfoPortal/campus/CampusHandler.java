@@ -11,7 +11,6 @@ import org.json.JSONTokener;
 import com.iBeiKe.InfoPortal.common.ComTimes;
 import com.iBeiKe.InfoPortal.common.LoginHelper;
 import com.iBeiKe.InfoPortal.common.iBeiKeApi;
-import com.iBeiKe.InfoPortal.database.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,7 +18,8 @@ import android.util.Log;
 
 public class CampusHandler extends iBeiKeApi {
 	private Context context;
-	private iBeiKeApi api;
+	private CampusHelper helper;
+	private String apiUrl;
 	private String spaFilter = "\\S";
 	private String retFilter = "[^\\r]";
 	private String intFilter = "\\d";
@@ -27,63 +27,78 @@ public class CampusHandler extends iBeiKeApi {
 	public CampusHandler(Context context) {
 		super(context);
 		this.context = context;
-		api = new iBeiKeApi(context);
 	}
 	
-	public String getApiUrl() {
+	public String getApiUrl(String type) {
+		String userName, passWord, flag;
 		LoginHelper login = new LoginHelper(context);
-		ContentValues cv = login.getLoginData("card_info");
-		String userName = cv.getAsString("user");
-		String passWord = cv.getAsString("passwd");
-		String flag = cv.getAsString("type");
-		return getApiUrl("camp_info", userName, passWord, flag);
+		ContentValues cv = login.getLoginData(Campus.campInfoTable);
+		if(cv == null) {
+			apiUrl = null;
+		} else {
+			userName = cv.getAsString("user");
+			passWord = cv.getAsString("passwd");
+			if(type==null) {
+				flag = cv.getAsString("type");
+			} else {
+				flag = type;
+			}
+			apiUrl = getApiUrl(Campus.campInfoTable, userName, passWord, flag);
+		}
+		return apiUrl;
 	}
 	
 	public String fetchData() {
 		String htmlBody = "";
 		try {
-			htmlBody = fetchData(getApiUrl());
+			htmlBody = fetchData(apiUrl);
 		} catch (Exception e) {
 			Log.e("CampusHandler.fetchData()", e.toString());
 		}
 		return htmlBody;
 	}
 
-	public void parseAndSave(String string) throws JSONException {
-		Database db = new Database(context);
-		db.write();
+	public boolean parseAndSave(String string) throws JSONException {
 		JSONTokener jsonTokener = new JSONTokener(string);
 		JSONObject jsonObject = (JSONObject)jsonTokener.nextValue();
-		ContentValues cv = api.converter(jsonObject);
+		ContentValues cv = converter(jsonObject);
 		jsonObject = (JSONObject)jsonTokener.nextValue();
-		cv.putAll(api.converter(jsonObject));
+		cv.putAll(converter(jsonObject));
 		cv = parseInfo(cv);
-		saveContentValues(cv, "camp_info");
+		if(cv == null) {
+			return false;
+		}
+		helper = new CampusHelper(context);
+		helper.saveContentValues(cv, Campus.campInfoTable);
 		JSONArray jsonArray = (JSONArray)jsonTokener.nextValue();
 		int length = jsonArray.length();
 		for(int i=0; i<length; i++) {
 			jsonObject = jsonArray.getJSONObject(i);
-			cv = api.converter(jsonObject);
+			cv = converter(jsonObject);
 			cv = parseDetail(cv);
-			saveContentValues(cv, "camp_detail");
+			helper.saveContentValues(cv, Campus.campDetailTable);
 		}
-		db.close();
+		return true;
 	}
 	
 	private ContentValues parseInfo(ContentValues cv) {
-		String[] keys = new String[]{"name", "id", "cardid",
-				"currentState", "disableState"};
+		ContentValues result = new ContentValues();
+		String[] keys = Campus.campInfoColumns;
+		if(cv.getAsString(keys[1]) == "null") {
+			return null;
+		}
 		for(int i=0; i<keys.length; i++) {
 			String value = cv.getAsString(keys[i]);
 			value = filter(value, spaFilter);
 			value = filter(value, retFilter);
-			cv.put(keys[i], value);
+			result.put(keys[i], value);
 		}
-		return cv;
+		return result;
 	}
 	
 	private ContentValues parseDetail(ContentValues cv) {
-		String[] keys = new String[]{"time", "place", "cost", "left"};
+		ContentValues result = new ContentValues();
+		String[] keys = Campus.campDetailColumns;
 		ComTimes cm = new ComTimes(context);
 		String type = "yyyyMMddkkmmss";
 		for(int i=0; i<keys.length; i++) {
@@ -93,26 +108,18 @@ public class CampusHandler extends iBeiKeApi {
 			switch(i) {
 			case 0:
 				value = filter(value, intFilter);
-				cv.put(keys[i], cm.stringToMillis(type, value));
+				result.put(keys[i], cm.stringToMillis(type, value));
 				break;
 			case 1:
-				cv.put(keys[i], value);
+				result.put(keys[i], value);
 				break;
 			default:
 				value = filter(value, intFilter);
-				cv.put(keys[i], Integer.parseInt(value));
+				result.put(keys[i], Integer.parseInt(value));
 				break;
 			}
 		}
-		return cv;
-	}
-	
-	public void saveContentValues(ContentValues cv, String tableName) {
-		Database db = new Database(context);
-		db.write();
-		db.clean(tableName);
-		db.insert(tableName, cv);
-		db.close();
+		return result;
 	}
 	
 	public String filter(String src, String filter) {

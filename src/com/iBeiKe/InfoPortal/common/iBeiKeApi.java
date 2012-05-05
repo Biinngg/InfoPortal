@@ -22,8 +22,8 @@ import android.util.Log;
 
 public class iBeiKeApi {
 	private Context context;
-	private final String table = "api_urls";
-	private final String baseUrl;
+	private String table = "api_urls";
+	private String baseUrl;
 	
 	public iBeiKeApi(Context context) {
 		this.context = context;
@@ -32,21 +32,23 @@ public class iBeiKeApi {
 	
 	private String getBaseUrl() {
 		Database db = new Database(context);
+		db.read();
 		String[] result = db.getString(table, "value", "name=\'api\'", null, 0);
 		db.close();
 		return result[0];
 	}
 
-	public String getApiUrl(String apiName) {
+	public String getBaseUrl(String apiName) {
 		String sel = "name=\'" + apiName + "\'";
 		Database db = new Database(context);
+		db.read();
 		String[] result = db.getString(table, "value", sel, null, 0);
 		db.close();
 		String apiUrl = baseUrl + result[0];
 		return apiUrl;
 	}
 	public String getApiUrl(String apiName, String userName, String passWord, String flag) {
-		String apiUrl = baseUrl + getApiUrl(apiName) + "?";
+		String apiUrl = getBaseUrl(apiName) + "?";
 		apiUrl += "username=" + userName + "&passwd=" + passWord + "&flag=" + flag;
 		return apiUrl;
 	}
@@ -85,7 +87,6 @@ public class iBeiKeApi {
         htmlRet.replace("</body>", "");
         String htmlBody = new String(htmlRet.getBytes("UTF-8"), "UTF-8");
         reader.close();
-        Log.d("body", htmlBody);
         return htmlBody;
 	}
 }

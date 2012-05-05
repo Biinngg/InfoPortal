@@ -25,7 +25,7 @@ public class LoginHelper {
 	
 	public ContentValues getLoginData(String name) {
 		String[] columns = new String[] {"user", "passwd", "type"};
-		String where = "table_name=\'" + name + "\'";
+		String where = "name=\'" + name + "\'";
 		ContentValues result = new ContentValues();
 		db.read();
 		Cursor cursor = db.getCursor("login", columns, where, null);
@@ -67,7 +67,7 @@ public class LoginHelper {
         }
         loginData.put("passwd", passwd);
 		db.write();
-		db.delete("login", "table_name=\'" + tableName + "\'");
+		db.delete("login", "name=\'" + tableName + "\'");
 		db.insert("login", loginData);
 		db.close();
 	}

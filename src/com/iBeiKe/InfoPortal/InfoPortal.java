@@ -37,7 +37,8 @@ public class InfoPortal extends ActivityGroup {
 	public LinearLayout container;
 	private static final int clickClasses = 0;
 	private static final int clickLib = 1;
-	private static final int clickNews = 2;
+	private static final int clickCamp = 2;
+	private static final int clickNews = 3;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class InfoPortal extends ActivityGroup {
 		click = clickClasses;
 		classes.setEnabled(false);
 		lib.setEnabled(true);
+		camp.setEnabled(true);
 		news.setEnabled(true);
 		SwitchActivity(0);
 
@@ -68,6 +70,7 @@ public class InfoPortal extends ActivityGroup {
 					click = clickClasses;
 					classes.setEnabled(false);
 					lib.setEnabled(true);
+					camp.setEnabled(true);
 					news.setEnabled(true);
 					SwitchActivity(0);
 				}
@@ -79,6 +82,7 @@ public class InfoPortal extends ActivityGroup {
 					click = clickLib;
 					classes.setEnabled(true);
 					lib.setEnabled(false);
+					camp.setEnabled(true);
 					news.setEnabled(true);
 					SwitchActivity(1);
 				}
@@ -86,10 +90,11 @@ public class InfoPortal extends ActivityGroup {
 		});
 		camp.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (click != clickLib) {
-					click = clickLib;
+				if (click != clickCamp) {
+					click = clickCamp;
 					classes.setEnabled(true);
-					lib.setEnabled(false);
+					lib.setEnabled(true);
+					camp.setEnabled(false);
 					news.setEnabled(true);
 					SwitchActivity(2);
 				}
@@ -101,6 +106,7 @@ public class InfoPortal extends ActivityGroup {
 					click = clickNews;
 					classes.setEnabled(true);
 					lib.setEnabled(true);
+					camp.setEnabled(true);
 					news.setEnabled(false);
 					SwitchActivity(3);
 				}

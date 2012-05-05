@@ -25,7 +25,7 @@ public class LoginHelper {
 	
 	public Map<String,String> getLoginData() {
 		String[] columns = new String[] {"user", "passwd", "type"};
-		String where = "table_name=\'lib_login\'";
+		String where = "name=\'lib_login\'";
 		Map<String,String> result = new HashMap<String,String>();
 		db.read();
 		Cursor cursor = db.getCursor("login", columns, where, null);
@@ -81,7 +81,7 @@ public class LoginHelper {
             Toast.makeText(context, context.getString(R.string.encrypt_error), Toast.LENGTH_SHORT);
         }
         Log.d("saveLoginData", "user=" + user + " passwd=" + passwd);
-        cv.put("table_name", "lib_login");
+        cv.put("name", "lib_login");
 		cv.put("user", user);
 		cv.put("passwd", passwd);
 		cv.put("type", type);

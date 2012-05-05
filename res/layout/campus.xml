@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
   	 <!-- Header -->
-  	 <include layout="@layout/header_search"/>
+  	 <include layout="@layout/header_back"/>
   	 
 	<TextView
 		android:id="@+id/camp_info_title"
@@ -18,112 +18,6 @@
 	    android:textColor="@color/status_text"
 	    android:textStyle="bold"
 	/>
-	<LinearLayout 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical">
-		<LinearLayout 
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-	    	android:layout_weight="1"
-	    	android:orientation="horizontal">
-	    	<TextView 
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:text="@string/camp_stu_name"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    	    android:id="@+id/camp_stu_name"
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:text="@string/camp_stu_id"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    		android:id="@+id/camp_stu_id"
-	    		android:layout_width="fill_parent"
-	    		android:layout_height="wrap_content"
-	    		android:gravity="center"
-	    		android:textColor="@color/black"/>
-	    	<TextView 
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:text="@string/camp_card_id"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    		android:id="@+id/camp_card_id"
-	    		android:layout_width="fill_parent"
-	    		android:layout_height="wrap_content"
-	    		android:gravity="center"
-	    		android:textColor="@color/black"/>
-	    </LinearLayout>
-		<LinearLayout 
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-	    	android:layout_weight="1"
-	    	android:orientation="horizontal">
-	    	<TextView 
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:text="@string/camp_card_left"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    	    android:id="@+id/camp_card_left"
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:text="@string/camp_card_cur"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    		android:id="@+id/camp_card_cur"
-	    		android:layout_width="fill_parent"
-	    		android:layout_height="wrap_content"
-	    		android:gravity="center"
-	    		android:textColor="@color/black"/>
-	    	<TextView 
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	        	android:gravity="center"
-	    	    android:text="@string/camp_card_dis"
-	    	    android:textStyle="bold"
-	    	    android:textColor="@color/black"/>
-	    	<TextView 
-	    		android:id="@+id/camp_card_dis"
-	    		android:layout_width="fill_parent"
-	    		android:layout_height="wrap_content"
-	    		android:gravity="center"
-	    		android:textColor="@color/black"/>
-	    </LinearLayout>
-	</LinearLayout>
-	<TextView
-		android:id="@+id/camp_cost_dm"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="@string/camp_cost_dm"
-	    android:padding="3dip"
-	    android:background="#65999999"
-	    android:textColor="@color/status_text"
-	    android:textStyle="bold" />
 	<RelativeLayout 
 	    android:id="@+id/camp_login"
 	    android:layout_width="fill_parent"
@@ -156,7 +50,7 @@
 	    	android:textColor="@color/black"
 	    	android:textStyle="bold" />
 		<EditText 
-		    android:id="@+id/lib_password"
+		    android:id="@+id/camp_password"
 		    android:layout_width="200dip"
 		    android:layout_height="wrap_content"
 		    android:layout_alignLeft="@id/camp_username"
@@ -164,34 +58,157 @@
 		    android:hint="@string/camp_password_tip"
 		    android:inputType="textPassword" />
 		<Button 
-		    android:id="@+id/lib_login_button"
+		    android:id="@+id/camp_login_button"
 		    android:layout_width="80dip"
 		    android:layout_height="wrap_content"
 		    android:text="@string/login"
-		    android:layout_alignLeft="@id/lib_password"
-		    android:layout_below="@id/lib_password"/>
+		    android:layout_alignLeft="@id/camp_password"
+		    android:layout_below="@id/camp_password"/>
 		<ProgressBar
-		    android:id="@+id/lib_login_progress"
+		    android:id="@+id/camp_login_progress"
 		    android:layout_width="20dip"
 		    android:layout_height="20dip"
-		    android:layout_toRightOf="@id/lib_login_button"
-		    android:layout_below="@id/lib_password"
+		    android:layout_toRightOf="@id/camp_login_button"
+		    android:layout_below="@id/camp_password"
 		    android:layout_marginTop="15dip"
 		    android:layout_marginLeft="5dip"
 		    style="?android:attr/progressBarStyleLarge"
 		    mce_style="?android:attr/progressBarStyleLarge"
 		    android:visibility="gone" />
 		<TextView 
-		    android:id="@+id/lib_login_status"
+		    android:id="@+id/camp_login_status"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:width="120dip"
 		    android:layout_marginLeft="5dip"
-		    android:layout_below="@id/lib_password"
-		    android:layout_toRightOf="@id/lib_login_progress"
-		    android:layout_alignTop="@id/lib_login_progress"
+		    android:layout_below="@id/camp_password"
+		    android:layout_toRightOf="@id/camp_login_progress"
+		    android:layout_alignTop="@id/camp_login_progress"
 		    android:visibility="gone"/>
 	</RelativeLayout>
+	<LinearLayout 
+	    android:id="@+id/camp_info"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+		<LinearLayout 
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_weight="1"
+	    	android:orientation="horizontal">
+	    	<TextView 
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	        	android:gravity="center"
+	    	    android:text="@string/camp_stu_name"
+	    	    android:textStyle="bold"
+	    	    android:textColor="@color/black"/>
+	    	<TextView 
+	    	    android:id="@+id/camp_stu_name"
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	        	android:gravity="center"
+	    	    android:textStyle="bold"
+	    	    android:textColor="@color/black"/>
+	    	<TextView 
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginLeft="20dip"
+	        	android:gravity="center"
+	    	    android:text="@string/camp_stu_id"
+	    	    android:textStyle="bold"
+	    	    android:textColor="@color/black"/>
+	    	<TextView 
+	    		android:id="@+id/camp_stu_id"
+	    		android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:gravity="center"
+	    		android:textColor="@color/black"/>
+	    	<TextView 
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginLeft="20dip"
+	        	android:gravity="center"
+	    	    android:text="@string/camp_card_id"
+	    	    android:textStyle="bold"
+	    	    android:textColor="@color/black"/>
+	    	<TextView 
+	    		android:id="@+id/camp_card_id"
+	    		android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:gravity="center"
+	    		android:textColor="@color/black"/>
+	    </LinearLayout>
+		<LinearLayout 
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_weight="1"
+	    	android:orientation="horizontal">
+	    	<TextView 
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	        	android:gravity="center"
+	    	    android:text="@string/camp_card_cur"
+	    	    android:textStyle="bold"
+	    	    android:textColor="@color/black"/>
+	    	<TextView 
+	    		android:id="@+id/camp_card_cur"
+	    		android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:gravity="center"
+	    		android:textColor="@color/black"/>
+	    	<TextView 
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginLeft="20dip"
+	        	android:gravity="center"
+	    	    android:text="@string/camp_card_dis"
+	    	    android:textStyle="bold"
+	    	    android:textColor="@color/black"/>
+	    	<TextView 
+	    		android:id="@+id/camp_card_dis"
+	    		android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:gravity="center"
+	    		android:textColor="@color/black"/>
+	    </LinearLayout>
+	</LinearLayout>
+	<TextView
+		android:id="@+id/camp_detail"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/camp_detail"
+	    android:padding="3dip"
+	    android:background="#65999999"
+	    android:textColor="@color/status_text"
+	    android:textStyle="bold" />
+	<RadioGroup 
+	    android:id="@+id/camp_type"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:checkedButton="@+id/camp_type_day" >
+		<RadioButton 
+		    android:id="@+id/camp_type_day"
+		    android:text="@string/camp_type_day"
+		    android:textColor="@color/black"
+		    android:layout_marginLeft="5dip" />
+		<RadioButton 
+		    android:id="@+id/camp_type_mon"
+		    android:text="@string/camp_type_mon"
+		    android:textColor="@color/black"
+		    android:layout_marginLeft="5dip" />
+		<RadioButton 
+		    android:id="@+id/camp_type_lastmon"
+		    android:text="@string/camp_type_lastmon"
+		    android:textColor="@color/black"
+		    android:layout_marginLeft="5dip" />
+		<RadioButton 
+		    android:id="@+id/camp_type_year"
+		    android:text="@string/camp_type_year"
+		    android:textColor="@color/black"
+		    android:layout_marginLeft="5dip" />
+	</RadioGroup>
 	<ListView
 	    android:id="@+id/camp_card_list"
 	  	android:layout_width="fill_parent"

@@ -70,6 +70,7 @@
     <string name="login">登录</string>
     <string name="logining">正在登录...</string>
     <string name="login_faile">登录失败，请检查用户名密码后重新登录</string>
+    <string name="camp_title">校园卡信息</string>
     <string name="camp_stu_info">学生基本信息</string>
     <string name="camp_stu_name">姓名:</string>
     <string name="camp_stu_id">学号:</string>

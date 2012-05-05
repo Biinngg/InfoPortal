@@ -49,7 +49,7 @@
 	         android:layout_height="fill_parent"
 	         android:layout_weight="1"
 	         android:scaleType="center"
-	         android:text="图书馆"
+	         android:text="校园卡"
 	         android:textColor="#FFF"
 	         android:textSize="15sp"
 	         />
@@ -60,7 +60,7 @@
 	         android:layout_height="fill_parent"
 	         android:layout_weight="1"
 	         android:scaleType="center"
-	         android:text="校园卡"
+	         android:text="今日贝壳"
 	         android:textColor="#FFF"
 	         android:textSize="15sp"
 	         />
@@ -71,7 +71,7 @@
 	         android:layout_height="fill_parent"
 	         android:layout_weight="1"
 	         android:scaleType="center"
-	         android:text="今日贝壳"
+	         android:text="意见建议"
 	         android:textColor="#FFF"
 	         android:textSize="15sp"
 	         />

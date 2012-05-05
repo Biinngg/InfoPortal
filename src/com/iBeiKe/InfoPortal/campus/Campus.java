@@ -73,13 +73,17 @@ public class Campus extends Activity implements Runnable{
     }
     
     private void initial() {
+    	TextView title = (TextView)findViewById(R.id.header_title);
+    	title.setText(R.string.camp_title);
+    	Button back = (Button)findViewById(R.id.top_back);
+    	back.setVisibility(View.GONE);
     	ListView list = (ListView)findViewById(R.id.camp_card_list);
+    	list.setAdapter(adapter);
+		RadioGroup rg = (RadioGroup)findViewById(R.id.camp_type);
+		rg.setOnCheckedChangeListener(new radioGroupChangedListener());
 		status = (TextView)findViewById(R.id.camp_login_status);
 		infoLayout = (LinearLayout)findViewById(R.id.camp_info);
 		loginLayout = (RelativeLayout)findViewById(R.id.camp_login);
-		RadioGroup rg = (RadioGroup)findViewById(R.id.camp_type);
-		rg.setOnCheckedChangeListener(new radioGroupChangedListener());
-    	list.setAdapter(adapter);
     	String apiUrl = handler.getApiUrl(null);
     	if(apiUrl == null) {
     		relogin();

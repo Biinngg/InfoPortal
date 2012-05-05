@@ -60,7 +60,7 @@ public class BookSearch extends Activity implements Runnable {
 	private ExecutorService exec;
 	private boolean execMark = false;
 	private int listNum, sortNum;
-	private String baseUrl;
+	private String baseUrl, isbn;
 	private String sorts[],sortUrl[];
 	
     private LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
@@ -130,6 +130,25 @@ public class BookSearch extends Activity implements Runnable {
         txt = (EditText)findViewById(R.id.search_edit);
         btn = (ImageButton)findViewById(R.id.search);
         
+        if(isbn!=null) {
+			msg = new LinkedBlockingQueue<Integer>();
+	    	String newFeed = "http://lib.ustb.edu.cn:8080/opac/search_rss.php?isbn=" + isbn;
+	    	Log.i("Library", "newFeed: " + newFeed);
+	    	URL url;
+			try {
+				url = new URL(newFeed);
+    			exec = Executors.newCachedThreadPool();
+    			execMark = true;
+    			exec.execute(new RSSParser(url));
+				msg.add(15);
+    	        Thread thread = new Thread(BookSearch.this);
+    	        thread.start();
+			} catch (MalformedURLException e) {
+				Log.e("Library: ", "rss parse1: " + e.toString());
+			}
+    		txt.setText(isbn);
+        }
+        
         btn.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
         		if(txt.getText().toString() != null) {
@@ -173,6 +192,10 @@ public class BookSearch extends Activity implements Runnable {
     	sorts = db.getString("lib_search", "name", null, null, 0);
     	sortUrl = db.getString("lib_search", "value", null, null, 0);
     	db.close();
+		Intent intent=this.getIntent();
+		Bundle bl=intent.getExtras();
+		if(bl!=null)
+			isbn = bl.getString("isbn");
     }
     
     private static String toHexString(String s) {

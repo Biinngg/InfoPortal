@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class Library extends Activity implements Runnable{
@@ -33,7 +34,7 @@ public class Library extends Activity implements Runnable{
     private EditText txt, userName, password;
     private ImageButton btn;
     private ListView borrowList;
-    private RelativeLayout loginLayout;
+    private ScrollView loginLayout;
 	private LibraryListAdapter adapter;
 	private ProgressBar bar;
 	private TextView status;
@@ -63,7 +64,7 @@ public class Library extends Activity implements Runnable{
         adapter = new LibraryListAdapter(this);
         borrowList.setAdapter(adapter);
         
-        loginLayout = (RelativeLayout)findViewById(R.id.lib_login);
+        loginLayout = (ScrollView)findViewById(R.id.lib_login);
         getLoginData();
         if(contentValues == null) {
         	relogin();

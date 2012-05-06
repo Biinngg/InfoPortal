@@ -76,6 +76,7 @@ public class InfoPortal extends ActivityGroup {
 					lib.setEnabled(true);
 					camp.setEnabled(true);
 					news.setEnabled(true);
+					advise.setEnabled(true);
 					SwitchActivity(0);
 				}
 			}
@@ -88,6 +89,7 @@ public class InfoPortal extends ActivityGroup {
 					lib.setEnabled(false);
 					camp.setEnabled(true);
 					news.setEnabled(true);
+					advise.setEnabled(true);
 					SwitchActivity(1);
 				}
 			}
@@ -100,6 +102,7 @@ public class InfoPortal extends ActivityGroup {
 					lib.setEnabled(true);
 					camp.setEnabled(false);
 					news.setEnabled(true);
+					advise.setEnabled(true);
 					SwitchActivity(2);
 				}
 			}
@@ -112,6 +115,7 @@ public class InfoPortal extends ActivityGroup {
 					lib.setEnabled(true);
 					camp.setEnabled(true);
 					news.setEnabled(false);
+					advise.setEnabled(true);
 					SwitchActivity(3);
 				}
 			}

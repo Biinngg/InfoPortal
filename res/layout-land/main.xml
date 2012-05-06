@@ -43,26 +43,37 @@
 	         android:textSize="15sp"
 	         />
 	    <Button 
-	         android:id="@+id/news"
-	        android:background="@drawable/iphone_button_selector_land"
+	         android:id="@+id/camp"
+	         android:background="@drawable/iphone_button_selector"
 	         android:layout_width="fill_parent"
 	         android:layout_height="fill_parent"
 	         android:layout_weight="1"
 	         android:scaleType="center"
-	         android:text="今日贝壳"
+	         android:text="校园卡"
 	         android:textColor="#FFF"
 	         android:textSize="15sp"
 	         />
 	    <Button 
-	         android:id="@+id/new_message"
-	        android:background="@drawable/iphone_button_selector_land"
+	         android:id="@+id/news"
+	        android:background="@drawable/iphone_button_selector"
 	         android:layout_width="fill_parent"
 	         android:layout_height="fill_parent"
 	         android:layout_weight="1"
 	         android:scaleType="center"
 	         android:text="今日贝壳"
 	         android:textColor="#FFF"
-	         android:textSize="15sp"
+	         android:textSize="13sp"
+	         />
+	    <Button 
+	         android:id="@+id/advise"
+	        android:background="@drawable/iphone_button_selector"
+	         android:layout_width="fill_parent"
+	         android:layout_height="fill_parent"
+	         android:layout_weight="1"
+	         android:scaleType="center"
+	         android:text="意见建议"
+	         android:textColor="#FFF"
+	         android:textSize="13sp"
 	         />
 	</LinearLayout>
 </RelativeLayout>

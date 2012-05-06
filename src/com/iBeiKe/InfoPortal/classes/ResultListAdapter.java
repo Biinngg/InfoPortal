@@ -95,6 +95,9 @@ public class ResultListAdapter extends BaseAdapter {
 				holder.view[n].setVisibility(View.VISIBLE);
 			holder.layout[n].setOnClickListener(new OnClickListener() {
 		        public void onClick(View v) {
+		        	if(v.getId() == 0) {
+		        		return;
+		        	}
 					Intent intent = new Intent();
 					intent.setClass(context, RoomInfo.class);
 					Log.d("id", "id=" + v.getId());

@@ -90,6 +90,7 @@ public class RoomInfo extends Activity {
 		
 		String where = "_id=" + id;
 		String[] columns = new String[] {"build", "room"};
+		Log.d("roomCursor", "tableName=" + tableName + " columns=" + columns + " where=" + where);
 		Cursor roomCursor = db.getCursor(tableName, columns, where, null);
 		roomCursor.moveToNext();
 		buildNum = roomCursor.getInt(0);

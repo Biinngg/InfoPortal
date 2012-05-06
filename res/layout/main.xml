@@ -62,7 +62,7 @@
 	         android:scaleType="center"
 	         android:text="今日贝壳"
 	         android:textColor="#FFF"
-	         android:textSize="15sp"
+	         android:textSize="13sp"
 	         />
 	    <Button 
 	         android:id="@+id/advise"
@@ -73,7 +73,7 @@
 	         android:scaleType="center"
 	         android:text="意见建议"
 	         android:textColor="#FFF"
-	         android:textSize="15sp"
+	         android:textSize="13sp"
 	         />
 	</LinearLayout>
 </RelativeLayout>

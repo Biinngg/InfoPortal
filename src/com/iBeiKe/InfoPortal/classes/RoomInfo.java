@@ -11,6 +11,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,8 +33,14 @@ public class RoomInfo extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.room_info);
 		ListView listView = (ListView)findViewById(R.id.room_info_list);
-		TextView titleView = (TextView)findViewById(R.id.title);
+		TextView titleView = (TextView)findViewById(R.id.header_title);
 		TextView roomTitle1 = (TextView)findViewById(R.id.room_info_title1);
+        Button button = (Button)findViewById(R.id.header_back);
+        button.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v) {
+        		finish();
+        	}
+        });
 		stateAdapter = new RoomInfoWeeklyAdapter(this);
 		
 		db = new Database(this);
@@ -41,6 +51,22 @@ public class RoomInfo extends Activity {
 		listView.setAdapter(stateAdapter);
 		titleView.setText(title);
 		roomTitle1.setText(roomInfoTitle1);
+		setShareButton();
+	}
+	
+	private void setShareButton() {
+		ImageButton shareButton = (ImageButton)findViewById(R.id.header_share);
+		shareButton.setOnClickListener(new OnClickListener(){
+			public void onClick(View arg0) {
+		        Intent intent=new Intent(Intent.ACTION_SEND);
+		        String text = "我在";
+		        text += title;
+		        intent.setType("text/plain");
+		        intent.putExtra(Intent.EXTRA_SUBJECT, "iBeiKe InfoPortal");
+		        intent.putExtra(Intent.EXTRA_TEXT, text);
+		        startActivity(Intent.createChooser(intent, getTitle()));
+			}
+		});
 	}
 	
 	private void getInitData() {

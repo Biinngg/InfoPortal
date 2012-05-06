@@ -10,6 +10,9 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;  
 
@@ -44,6 +47,14 @@ public class Result extends Activity {
 
 		TextView title = (TextView)findViewById(R.id.class_result_title);
         ListView listView = (ListView) findViewById(R.id.class_result_list);
+        Button button = (Button)findViewById(R.id.top_back);
+        button.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v) {
+        		finish();
+        	}
+        });
+        TextView tv = (TextView)findViewById(R.id.header_title);
+        tv.setText(R.string.room_search_result);
         adapter = new ResultListAdapter(this, searchMillis);
         db = new Database(this);
         db.read();
@@ -95,7 +106,7 @@ public class Result extends Activity {
 			int floor2 = floorNum2 * 100;
 			where += "room>" + floor1 + " AND room<" + floor2 + " AND ";
 		}
-		for(int i=1; filter<buiSelection; i++) {
+		for(int i=1; filter<=buiSelection; i++) {
 			int res = buiSelection & filter;
 			if(res == filter) {
 				String selection = where + "build=" + i;

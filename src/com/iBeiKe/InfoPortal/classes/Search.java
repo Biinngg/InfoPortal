@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -95,6 +96,9 @@ public class Search extends Activity {
 					bl.putInt("floorNum2", floorNum2);
 					bl.putInt("classNum1", classNum1);
 					bl.putInt("classNum2", classNum2);
+					Log.d("search button", "searchMillis=" + searchMillis + " buiSelection=" + buiSelection
+							+ " floorNum1=" + floorNum1 + " floorNum2=" + floorNum2 + " classNum1=" + classNum1
+							+ " classNum2=" + classNum2);
 					intent.putExtras(bl);
 					startActivityForResult(intent, 0);
             	}

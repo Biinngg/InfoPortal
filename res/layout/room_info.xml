@@ -6,7 +6,7 @@
     android:orientation="vertical"
   	android:background="@color/body_background">
     
-    <include layout="@layout/header_back"/>
+    <include layout="@layout/header_share"/>
     
 	<TextView
 		android:id="@+id/room_info_title1"

@@ -9,6 +9,7 @@
     <string name="class_name">节次</string>
     <string name="search_button">确定</string>
     <string name="room_search">教室搜索</string>
+    <string name="room_search_result">教室搜索结果</string>
     <string name="editor_name">教室: </string>
     <string name="set_date">设置时间</string>
     <string name="current_classes">当前无课教室</string>

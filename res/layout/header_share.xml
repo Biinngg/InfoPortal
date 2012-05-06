@@ -10,7 +10,7 @@
       >
       
         <!-- BACK Button -->
-      <Button android:id="@+id/top_back"
+      <Button android:id="@+id/header_back"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
@@ -23,9 +23,9 @@
           android:id="@+id/header_title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_toRightOf="@id/top_back"
+          android:layout_toRightOf="@id/header_back"
           android:layout_marginTop="12dip"
-          android:layout_marginLeft="3dip"
+          android:layout_marginLeft="5dip"
           android:gravity="center_vertical"
           android:shadowColor="#666"
           android:shadowRadius="1"
@@ -35,5 +35,17 @@
           android:textColor="#fff"
           android:textSize="15sp"/>
          
+        <!-- Share Button -->
+      <ImageButton
+        android:id="@+id/header_share"
+        android:layout_width="40dip"
+        android:layout_height="38dip"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dip"
+        android:layout_marginTop="4dip"
+        android:background="@null"
+        android:src="@drawable/share_button"
+        />
 </RelativeLayout>
     

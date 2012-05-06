@@ -46,7 +46,7 @@
            android:paddingLeft="10dip"
            /> 
             
-        <!-- 发布消息按钮 -->  
+        <!-- 发布消息按钮 
         <ImageButton android:id="@+id/writeMessage"
            android:background="@null"
            android:src="@drawable/top_msg_selector"
@@ -56,7 +56,7 @@
            android:paddingRight="10dip"
            android:paddingLeft="10dip"
            />
-         
+         -->  
          <!-- 刷新按钮 
         <ImageButton android:id="@+id/top_refresh"
            android:background="@null"

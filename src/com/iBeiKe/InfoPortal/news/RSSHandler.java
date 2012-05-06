@@ -29,24 +29,12 @@ public class RSSHandler extends DefaultHandler {
 				"description", "category", "author", "pubDate"};
 	}
 	
-	private void fetchNum() {
-		//Use blocking queue to control parse progress.
-		try {
-			itemNum = msg.take();
-		} catch (InterruptedException e) {
-			Log.e("RSSHandler", "Exception: " + e.getMessage());
-		}
-	}
-	
 	@Override
 	public void startDocument() throws SAXException {
-		fetchNum();
 	}
 
 	@Override
 	public void endDocument() throws SAXException {
-		content.put(";", ";");
-		queue.add(content);
 	}
 
 	@Override
@@ -54,10 +42,6 @@ public class RSSHandler extends DefaultHandler {
 			String qName, Attributes atts) throws SAXException {
 		sb.setLength(0);//必须每次清空，以排除夹在关闭标签与开启标签之间的字符
 		if(localName.equals(tags[0])) {
-			if(itemNum <= 0) {
-				fetchNum();
-			}
-			itemNum--;
 			inItem = true;
 		}
 	}
@@ -77,10 +61,19 @@ public class RSSHandler extends DefaultHandler {
 				queue.add(content);
 				content = new HashMap<String,String>();
 				inItem = false;
+			} else if(localName.equals("description")) {
+				character = formatDescription(character);
+				content.put(localName, character);
 			} else	if(sb.length() != 0) {
 				content.put(localName, character);
 			}
 		}
 		sb.setLength(0);//使用完毕，不再有意义
+	}
+	
+	public String formatDescription(String description) {
+		String result;
+		result = description.replace("<br />\n", "");
+		return result;
 	}
 }

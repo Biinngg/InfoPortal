@@ -65,7 +65,7 @@
 	         android:textSize="15sp"
 	         />
 	    <Button 
-	         android:id="@+id/new_message"
+	         android:id="@+id/advise"
 	        android:background="@drawable/iphone_button_selector"
 	         android:layout_width="fill_parent"
 	         android:layout_height="fill_parent"

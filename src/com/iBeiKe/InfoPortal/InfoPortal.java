@@ -4,6 +4,7 @@ import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.classes.Search;
 import com.iBeiKe.InfoPortal.library.Library;
 import com.iBeiKe.InfoPortal.news.News;
+import com.iBeiKe.InfoPortal.news.advise;
 import com.iBeiKe.InfoPortal.campus.Campus;
 
 import android.app.ActivityGroup;
@@ -30,6 +31,7 @@ public class InfoPortal extends ActivityGroup {
 	Button classes;
 	Button lib;
 	Button news;
+	Button advise;
 	Button camp;
 	Intent intent;
 	TextView textView;
@@ -54,6 +56,7 @@ public class InfoPortal extends ActivityGroup {
 		lib = (Button) findViewById(R.id.lib);
 		camp = (Button) findViewById(R.id.camp);
 		news = (Button) findViewById(R.id.news);
+		advise = (Button)findViewById(R.id.advise);
 		textView = (TextView) findViewById(R.id.title);
 		
 		/*******************Initial state*****************/
@@ -62,6 +65,7 @@ public class InfoPortal extends ActivityGroup {
 		lib.setEnabled(true);
 		camp.setEnabled(true);
 		news.setEnabled(true);
+		advise.setEnabled(true);
 		SwitchActivity(0);
 
 		classes.setOnClickListener(new OnClickListener() {
@@ -112,6 +116,19 @@ public class InfoPortal extends ActivityGroup {
 				}
 			}
 		});
+		advise.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (click != clickNews) {
+					click = clickNews;
+					classes.setEnabled(true);
+					lib.setEnabled(true);
+					camp.setEnabled(true);
+					news.setEnabled(true);
+					advise.setEnabled(false);
+					SwitchActivity(4);
+				}
+			}
+		});
 	}
 	
 	void SwitchActivity(int id)
@@ -126,6 +143,8 @@ public class InfoPortal extends ActivityGroup {
 			intent = new Intent(InfoPortal.this, Campus.class);
 		} else if(id == 3) {
 			intent = new Intent(InfoPortal.this, News.class);
+		} else if(id == 4) {
+			intent = new Intent(InfoPortal.this, advise.class);
 		}
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		//Activity 转为 View

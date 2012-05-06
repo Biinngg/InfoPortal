@@ -66,6 +66,10 @@
                   android:label="@string/app_name">
         </activity>
         
+        <activity android:name=".news.advise"
+                  android:label="@string/app_name">
+        </activity>
+        
         <activity android:name=".classes.Result"
                   android:label="@string/app_name">
         </activity>

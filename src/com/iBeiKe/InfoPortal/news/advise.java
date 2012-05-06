@@ -16,13 +16,13 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.ListView;
 
-public class News extends Activity implements Runnable {
+public class advise extends Activity implements Runnable {
 	private NewsHandler handler;
 	private NewsHelper helper;
 	private NewsListAdapter adapter;
 	private BlockingQueue<Map<String, String>> queue;
 	private BlockingQueue<Integer> msg;
-	private String urlString = "http://city.ibeike.com/rss.php?fid=197&auth=1";
+	private String urlString = "http://city.ibeike.com/rss.php?fid=74&auth=1";
 	static String table = "news_list";
 	static String[] columns = new String[]{"title", "link",
 			"description", "category", "author", "pubDate"};

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/body_background"
+    android:orientation="vertical" >
+	
+  	 <!-- Header -->
+  	 <include layout="@layout/header_back"/>
+  	 
 	<TextView
 		android:id="@+id/news_title"
 		android:layout_width="fill_parent"
@@ -11,9 +15,14 @@
 		android:text="今日北科"
 		android:background="#55999999"
 	/>
-	<WebView
-		android:id="@+id/web_view"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_weight="1.0" />
+	<ListView
+	    android:id="@+id/news_list"
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="fill_parent"
+ 	    android:cacheColorHint="#00000000"
+	    android:fadeScrollbars="true"
+    	android:divider="@drawable/dashed_line"
+    	android:dividerHeight="1dip"
+    	android:fastScrollEnabled="true"
+	/>
 </LinearLayout>

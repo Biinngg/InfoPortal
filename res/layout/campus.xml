@@ -34,7 +34,7 @@
 	    	android:textStyle="bold" />
 		<EditText 
 		    android:id="@+id/camp_username"
-		    android:layout_width="200dip"
+		    android:layout_width="250dip"
 		    android:layout_height="wrap_content"
 		    android:layout_toRightOf="@id/camp_username_name"
 		    android:hint="@string/camp_username_tip"
@@ -51,7 +51,7 @@
 	    	android:textStyle="bold" />
 		<EditText 
 		    android:id="@+id/camp_password"
-		    android:layout_width="200dip"
+		    android:layout_width="250dip"
 		    android:layout_height="wrap_content"
 		    android:layout_alignLeft="@id/camp_username"
 		    android:layout_below="@id/camp_username"

@@ -25,18 +25,36 @@
         android:layout_below="@id/lib_title"
         android:textSize="14dip"/>
     <TextView 
+        android:id="@+id/lib_borrow_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lib_borrow"
+        android:textColor="@color/black"
+        android:layout_below="@id/lib_author"
+        android:textSize="12dip"/>
+    <TextView 
         android:id="@+id/lib_borrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
+        android:layout_toRightOf="@id/lib_borrow_name"
         android:layout_below="@id/lib_author"
-        android:layout_marginRight="4dp"
+        android:layout_marginRight="10dip"
+        android:textSize="12dip"/>
+    <TextView 
+        android:id="@+id/lib_returns_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lib_return"
+        android:layout_toRightOf="@id/lib_borrow"
+        android:textColor="@color/black"
+        android:layout_alignTop="@id/lib_borrow"
         android:textSize="12dip"/>
     <TextView 
         android:id="@+id/lib_returns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/lib_borrow"
+        android:layout_toRightOf="@id/lib_returns_name"
         android:textColor="@color/black"
         android:layout_alignTop="@id/lib_borrow"
         android:textSize="12dip"/>

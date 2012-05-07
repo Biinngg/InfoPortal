@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.common.ComTimes;
 import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.library.MyLibList;
 
@@ -100,11 +101,20 @@ public class LibraryListAdapter extends BaseAdapter {
 		holder.libList = getItem(position);
 		holder.title.setText(holder.libList.title);
 		holder.author.setText(holder.libList.author);
-		holder.borrow.setText(holder.libList.borrow + "");
-		holder.returns.setText(holder.libList.returns + "");
+		holder.borrow.setText(parseDate(holder.libList.borrow));
+		holder.returns.setText(parseDate(holder.libList.returns));
 		holder.store.setText(holder.libList.store);
 		v.setTag(holder);
 		return v;
+	}
+	
+	public String parseDate(int date) {
+		String result;
+		int year = date/10000;
+		result = year + "-";
+		result += (date - (year*10000))/100 + "-";
+		result += date % 100;
+		return result;
 	}
 	
 	public class ViewHolder {

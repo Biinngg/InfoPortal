@@ -10,6 +10,7 @@
         android:id="@+id/news_list_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="14dip"/>
     <TextView 
@@ -17,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="12dip"/>
 </LinearLayout>

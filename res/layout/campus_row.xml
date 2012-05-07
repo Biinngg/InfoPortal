@@ -15,12 +15,14 @@
         	android:layout_height="wrap_content"
         	android:text="@string/camp_time"
         	android:textStyle="bold"
+        android:textColor="@color/black"
         	android:textSize="14dip"/>
     	<TextView 
         	android:id="@+id/camp_time"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginLeft="10dip"
+        android:textColor="@color/black"
         	android:textStyle="bold"
         	android:textSize="14dip"/>
     </LinearLayout>
@@ -33,6 +35,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:text="@string/camp_place"
+        android:textColor="@color/black"
         	android:textStyle="bold"
         	android:textSize="14dip"/>
     	<TextView 
@@ -40,6 +43,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginLeft="10dip"
+        android:textColor="@color/black"
         	android:textSize="14dip"/>
     </LinearLayout>
 	<LinearLayout
@@ -50,6 +54,7 @@
     	<TextView 
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
+        android:textColor="@color/black"
         	android:text="@string/camp_cost"
         	android:textStyle="bold"
         	android:textSize="14dip"/>
@@ -58,12 +63,14 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginLeft="10dip"
+        android:textColor="@color/black"
         	android:layout_marginRight="4dp"
         	android:textSize="12dip"/>
     	<TextView 
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginLeft="15dip"
+        android:textColor="@color/black"
         	android:text="@string/camp_left"
         	android:textStyle="bold"
         	android:textSize="14dip"/>
@@ -72,6 +79,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginLeft="10dip"
+        android:textColor="@color/black"
         	android:textSize="12dip"/>
     </LinearLayout>
 </LinearLayout>

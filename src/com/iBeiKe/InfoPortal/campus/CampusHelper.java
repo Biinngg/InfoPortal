@@ -69,12 +69,7 @@ public class CampusHelper {
     }
     
     public int getCampDetailCount() {
-    	Database db = new Database(context);
-    	SQLiteCursor cursor;
-    	db.read();
-    	cursor = db.getCursor(Campus.campDetailTable, Campus.campDetailColumns, null, null);
     	int num = cursor.getCount();
-    	db.close();
     	return num;
     }
 	

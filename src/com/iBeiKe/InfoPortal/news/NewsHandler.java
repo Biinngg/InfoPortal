@@ -43,7 +43,7 @@ public class NewsHandler {
     		input.close();
     	} else {
         	String httpResponse = httpconn.getResponseMessage();
-    		Log.e("Library:", "Connect Error: " + httpResponse);
+    		Log.e("News:", "Connect Error: " + httpResponse);
     	}
     }
 }

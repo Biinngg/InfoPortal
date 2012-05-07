@@ -14,18 +14,21 @@
         android:id="@+id/lib_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="14dip"/>
     <TextView 
         android:id="@+id/lib_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_below="@id/lib_title"
         android:textSize="14dip"/>
     <TextView 
         android:id="@+id/lib_borrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_below="@id/lib_author"
         android:layout_marginRight="4dp"
         android:textSize="12dip"/>
@@ -34,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/lib_borrow"
+        android:textColor="@color/black"
         android:layout_alignTop="@id/lib_borrow"
         android:textSize="12dip"/>
     <TextView 
@@ -41,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lib_borrow"
+        android:textColor="@color/black"
         android:textSize="12dip"/>
 </RelativeLayout>
 <RelativeLayout

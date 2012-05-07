@@ -49,7 +49,7 @@
         		android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         
-        <activity android:name=".library.BookSearch"
+        <activity android:name=".library.Book"
         		android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         

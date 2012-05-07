@@ -157,6 +157,7 @@ public class Campus extends Activity implements Runnable{
 	            status.setVisibility(View.VISIBLE);
 	            status.setText(getText(R.string.logining));
 	        	helper.saveLoginData(userString, passString, type[typeNum]);
+				handler.getApiUrl("day");
 		        Thread thread = new Thread(Campus.this);
 		        thread.start();
 	        }
@@ -166,29 +167,37 @@ public class Campus extends Activity implements Runnable{
 	public Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			Bundle data = msg.getData();
-			boolean result = false;
-	        try {
-				result = handler.parseAndSave(data.getString("1"));
-			} catch (JSONException e) {
-				Log.e("Campus.onCreate()", e.toString());
-			}
-	        if(result == true) {
-	        	disCampInfo();
-	        	adapter.notifyDataSetChanged();
-	        } else {
+			if(msg.getData().containsKey("0")) {
 	        	status.setVisibility(View.VISIBLE);
 	        	status.setText(R.string.login_faile);
 	        	relogin();
-	        }
+			} else {
+	        	disCampInfo();
+	        	adapter.notifyDataSetChanged();
+			}
     	}
 	};
 	
 	public void run() {
 		if(!Thread.interrupted()) {
-	        String htmlBody = handler.fetchData();
 	        MessageHandler mh = new MessageHandler();
-	        mh.bundle("1", htmlBody);
+	        String htmlBody = handler.fetchData();
+	        boolean result = false;
+	        if(htmlBody.length() == 0) {
+	        	mh.bundle("0", "");
+	        } else {
+	        	try {
+	        		result = handler.parseAndSave(htmlBody);
+	        	} catch (JSONException e) {
+	        		Log.e("Campus.run", e.toString());
+	        	}
+	        	if(result) {
+	        		mh.bundle("1", "");
+	        	} else {
+	        		mh.bundle("0", "");
+	        	}
+			}
+	        Log.d("campus run", htmlBody + " test");
 	        mHandler.sendMessage(mh.get());
 		}
 	}

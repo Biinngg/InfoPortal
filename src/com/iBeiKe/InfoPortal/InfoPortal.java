@@ -41,6 +41,7 @@ public class InfoPortal extends ActivityGroup {
 	private static final int clickLib = 1;
 	private static final int clickCamp = 2;
 	private static final int clickNews = 3;
+	private static final int clickAdvise = 4;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,8 +123,8 @@ public class InfoPortal extends ActivityGroup {
 		});
 		advise.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (click != clickNews) {
-					click = clickNews;
+				if (click != clickAdvise) {
+					click = clickAdvise;
 					classes.setEnabled(true);
 					lib.setEnabled(true);
 					camp.setEnabled(true);

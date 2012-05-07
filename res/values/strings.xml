@@ -24,6 +24,7 @@
     <string name="quit_shortcut">q</string>
     <string name="refresh_label">刷新</string>
     <string name="refresh_shortcut">r</string>
+    <string name="advise">意见建议</string>
     <string name="feed_back">意见反馈</string>
     <string name="feed_back_summary">反馈错误的教室，以及对此软件的意见，帮助我们改进。</string>
     <string name="db_settings">无课表设置</string>
@@ -49,6 +50,8 @@
     <string name="book_author">责任者</string>
     <string name="book_num">索书号</string>
     <string name="book_publisher">出版信息</string>
+    <string name="searching">正在查询...</string>
+    <string name="book_list_null">本馆没有您检索的馆藏书目</string>
     <string name="lib_time_title">开放时间:</string>
     <string name="lib_borrow_title">当前借阅:</string>
     <string name="out_of_term">查询时间超出本地存储的无课表数据范围，请修改查询时间或者更新无课表数据。</string>
@@ -63,6 +66,9 @@
     <string name="tomorrow">明天</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
+    <string name="more">更多...</string>
+    <string name="book_total">馆藏:</string>
+    <string name="book_left">可借:</string>
     <string name="lib_username_tip">输入学号或邮箱</string>
     <string name="lib_password_tip">密码</string>
     <string name="encrypt_error">加密时产生错误，请重新输入密码。</string>

@@ -23,7 +23,7 @@ import com.google.zxing.client.android.PreferencesActivity;
 import com.google.zxing.client.result.ParsedResult;
 import com.google.zxing.client.result.ParsedResultType;
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.library.BookSearch;
+import com.iBeiKe.InfoPortal.library.Book;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -204,7 +204,7 @@ public abstract class ResultHandler {
     		break;
     	case 2:
     		Log.e("openURI", "openURI");
-    		intent.setClass(activity, BookSearch.class);
+    		intent.setClass(activity, Book.class);
     		break;
     	}
         activity.startActivity(intent);

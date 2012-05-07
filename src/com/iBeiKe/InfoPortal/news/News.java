@@ -14,7 +14,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class News extends Activity implements Runnable {
 	private NewsHandler handler;
@@ -42,6 +45,10 @@ public class News extends Activity implements Runnable {
     	list.setAdapter(adapter);
         ExecutorService exec = Executors.newCachedThreadPool();
         exec.execute(new RSSParser());
+        Button btn = (Button)findViewById(R.id.top_back);
+        btn.setVisibility(View.GONE);
+        TextView tv = (TextView)findViewById(R.id.header_title);
+        tv.setText(R.string.news);
         
         Thread thread = new Thread(this);
         thread.start();

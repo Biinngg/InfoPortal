@@ -20,7 +20,6 @@ import com.google.zxing.Result;
 import com.google.zxing.client.result.ISBNParsedResult;
 import com.google.zxing.client.result.ParsedResult;
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.library.BookSearch;
 import com.iBeiKe.InfoPortal.library.Library;
 
 import android.app.Activity;

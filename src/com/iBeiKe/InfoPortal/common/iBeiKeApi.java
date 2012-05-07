@@ -82,6 +82,9 @@ public class iBeiKeApi {
         		mark = true;
         	} else if(tmp.contains("</body>")) {
         		mark = false;
+        	} else if(tmp.contains("{")) {
+        		htmlRet += tmp;
+        		mark = true;
         	}
         }
         htmlRet.replace("</body>", "");

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/book_more"
+    android:layout_width="fill_parent"
+    android:layout_height="50dip"
+    android:orientation="horizontal"
+    android:padding="8dip">
+	<ProgressBar
+		 android:id="@+id/book_more_progress"
+		 android:layout_width="30dip"
+		 android:layout_height="30dip"
+		 android:layout_marginTop="7dip"
+		 android:layout_marginLeft="80dip"
+		 style="?android:attr/progressBarStyleLarge"
+		 mce_style="?android:attr/progressBarStyleLarge"/>
+    <TextView 
+        android:id="@+id/book_more_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_marginTop="10dip"
+		android:layout_marginLeft="20dip"
+        android:textStyle="bold"
+        android:textSize="16dip"/>
+</LinearLayout>

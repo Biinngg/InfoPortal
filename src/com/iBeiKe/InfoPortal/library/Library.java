@@ -142,7 +142,7 @@ public class Library extends Activity implements Runnable{
     class SearchClickListener implements OnClickListener {
     	public void onClick(View v) {
     		Intent intent = new Intent();
-    		intent.setClass(Library.this, BookSearch.class);
+    		intent.setClass(Library.this, Book.class);
     		startActivityForResult(intent,0);
     	}
     }

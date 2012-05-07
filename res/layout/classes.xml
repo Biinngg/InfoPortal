@@ -28,7 +28,7 @@
 	    	android:text="@string/build_name"
 	    	android:layout_below="@+id/LinearLayout01"
 	    	android:background="#65999999"
-	    	android:textColor="@color/status_text"
+	    	android:textColor="@color/black"
 		/>
 		
 	 	<HorizontalScrollView
@@ -49,7 +49,7 @@
 		    android:layout_below="@+id/cla_build"
 		    android:padding="3dip"
 		    android:background="#65999999"
-	    	android:textColor="@color/status_text"
+	    	android:textColor="@color/black"
 		/>
 		<TextView
 			android:id="@+id/floor_from"
@@ -103,7 +103,7 @@
 		    android:layout_below="@+id/floor_spinner2"
 		    android:padding="3dip"
 		    android:background="#65999999"
-	    	android:textColor="@color/status_text"
+	    	android:textColor="@color/black"
 		/>
 		<TextView
 			android:id="@+id/class_from"

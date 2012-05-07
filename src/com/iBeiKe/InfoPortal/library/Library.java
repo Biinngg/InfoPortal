@@ -187,6 +187,9 @@ public class Library extends Activity implements Runnable{
 			} catch (Exception e2) {
 				Log.e("MyLibraryFetcher Exception", e2.toString());
 			}
+			if(loginStatus == null) {
+				return;
+			}
 			if(loginStatus.equals("0")) {
 				ArrayList<MyLibList> myLibList = mlf.parseData();
 				bul.putSerializable("0", myLibList);

@@ -84,8 +84,19 @@ public class Search extends Activity {
             		showAlert();
             	} else {
 	            	times.setTime(searchMillis);
-	            	turnASC(floorNum1, floorNum2);
-	            	turnASC(classNum1, classNum2);
+
+	        		if(floorNum1 > floorNum2) {
+	        			int swap;
+	        			swap = floorNum1;
+	        			floorNum1 = floorNum2;
+	        			floorNum2 = swap;
+	        		}
+	        		if(classNum1 > classNum2) {
+	        			int swap;
+	        			swap = classNum1;
+	        			classNum1 = classNum2;
+	        			classNum2 = swap;
+	        		}
 	
 					Intent intent = new Intent();
 					intent.setClass(Search.this, Result.class);
@@ -121,15 +132,6 @@ public class Search extends Activity {
 			}
 		});
     }
-    
-	private void turnASC(int num1, int num2) {
-		if(num1 > num2) {
-			int swap;
-			swap = num1;
-			num1 = num2;
-			num2 = swap;
-		}
-	}
 	
 	private void showAlert() {
 		AlertDialog dialog = new AlertDialog.Builder(this).create();

@@ -29,6 +29,7 @@ public class RoomInfo extends Activity {
 	private int roomNum;
 	private RoomInfoWeeklyAdapter stateAdapter;
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.room_info);

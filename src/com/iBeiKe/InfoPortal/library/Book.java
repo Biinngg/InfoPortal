@@ -1,14 +1,9 @@
 package com.iBeiKe.InfoPortal.library;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import org.json.JSONException;
 
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.common.MessageHandler;
-import com.iBeiKe.InfoPortal.database.Database;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,22 +11,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.LinearLayout.LayoutParams;
 
 public class Book extends Activity implements Runnable {
 	private int pageNum = 1;
@@ -49,6 +38,7 @@ public class Book extends Activity implements Runnable {
 	static String[] columnsList = new String[]{"bookName",
 		"marc_no", "ID", "libHave", "canBorrow", "author", "authority"};
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.books);

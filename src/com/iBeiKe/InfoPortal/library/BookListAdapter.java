@@ -6,13 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteCursor;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,6 +30,7 @@ public class BookListAdapter extends BaseAdapter {
 		helper.updateNewsCursor(table, columns);
 	}
 	
+	@Override
 	public void notifyDataSetChanged() {
 		SQLiteCursor cursor = helper.updateNewsCursor(table, columns);
 		super.notifyDataSetChanged();

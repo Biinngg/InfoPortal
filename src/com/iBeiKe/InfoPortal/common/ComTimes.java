@@ -4,8 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.text.DateFormat;
-
 import com.iBeiKe.InfoPortal.database.Database;
 
 import android.content.Context;

@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.About;
 
 public class ResultListAdapter extends BaseAdapter {
 	private Context context;
@@ -79,7 +78,7 @@ public class ResultListAdapter extends BaseAdapter {
 				holder.result[i] = (TextView)v.findViewById(resultId[i]);
 				holder.layout[i] = (LinearLayout)v.findViewById(layoutId[i]);
 				if(i<num-1)
-					holder.view[i] = (View)v.findViewById(separateId[i]);
+					holder.view[i] = v.findViewById(separateId[i]);
 			}
 			v.setTag(holder);
 		} else {

@@ -18,7 +18,6 @@ import com.iBeiKe.InfoPortal.database.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.util.Log;
 
 public class iBeiKeApi {
 	private Context context;

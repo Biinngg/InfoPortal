@@ -1,8 +1,5 @@
 package com.iBeiKe.InfoPortal.common;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.common.AESEncryptor;
 import com.iBeiKe.InfoPortal.database.Database;
@@ -10,7 +7,6 @@ import com.iBeiKe.InfoPortal.database.Database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 import android.widget.Toast;
 
 public class LoginHelper {

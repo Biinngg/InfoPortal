@@ -21,6 +21,7 @@ public class CampusListAdapter extends BaseAdapter {
 		helper.updateCampDetailCursor();
 	}
 	
+	@Override
 	public void notifyDataSetChanged() {
 		helper.updateCampDetailCursor();
 		super.notifyDataSetChanged();

@@ -20,12 +20,9 @@ import com.google.zxing.Result;
 import com.google.zxing.client.result.ISBNParsedResult;
 import com.google.zxing.client.result.ParsedResult;
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.library.Library;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 
 /**
  * Handles books encoded by their ISBN values.

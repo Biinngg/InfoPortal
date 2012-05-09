@@ -12,7 +12,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
-import com.iBeiKe.InfoPortal.common.ComTimes;
 import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.library.MyLibList;
 

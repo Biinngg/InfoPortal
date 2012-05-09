@@ -1,18 +1,15 @@
 package com.iBeiKe.InfoPortal.campus;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.util.Log;
 
 import com.iBeiKe.InfoPortal.common.ComTimes;
 import com.iBeiKe.InfoPortal.common.LoginHelper;
-import com.iBeiKe.InfoPortal.common.iBeiKeApi;
 import com.iBeiKe.InfoPortal.database.Database;
 
 public class CampusHelper {

@@ -13,7 +13,6 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.zxing.client.android.LocaleManager;
 import com.iBeiKe.InfoPortal.R;
 
 public class NewsListAdapter extends BaseAdapter {
@@ -30,6 +29,7 @@ public class NewsListAdapter extends BaseAdapter {
 		helper.updateNewsCursor(table, columns);
 	}
 	
+	@Override
 	public void notifyDataSetChanged() {
 		helper.updateNewsCursor(table, columns);
 		super.notifyDataSetChanged();

@@ -9,6 +9,13 @@ import com.iBeiKe.InfoPortal.database.Database;
 import android.content.Context;
 import android.util.Log;
 
+/**
+ * 通用的对时间数据的获取、转换、以及格式化函数。
+ * 提供对处理时间的设置，迭代、任意格式时间转换为Unix时间戳，
+ * 获取学期开始时间，获取某时刻距离学期开始的周数，
+ * 将Unix时间戳转换为任意格式时间，获取年月日，获取星期以及时刻。
+ *
+ */
 public class ComTimes {
 	private long timeMillis;
 	private Context context;

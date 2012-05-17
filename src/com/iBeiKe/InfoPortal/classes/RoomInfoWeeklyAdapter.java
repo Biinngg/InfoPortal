@@ -11,6 +11,12 @@ import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
 
+/**
+ * 教室一周占用情况列表显示控制。
+ * 继承自BaseAdapter，提供对教室一周中每节课使用情况的显示，
+ * 获取数据条数，获取元素，获取元素ID以及对列表内元素以及动作进行维护支持。
+ *
+ */
 public class RoomInfoWeeklyAdapter extends BaseAdapter {
 	private final int[] roomInfoId;
 	private LayoutInflater mInflater;

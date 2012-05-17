@@ -12,6 +12,14 @@ import com.iBeiKe.InfoPortal.common.ComTimes;
 import com.iBeiKe.InfoPortal.common.LoginHelper;
 import com.iBeiKe.InfoPortal.database.Database;
 
+/**
+ * 校园卡消费记录与基本信息的数据库辅助类。
+ * 提供对数据库的访问，为消费记录的listView中的cursor提供更新，
+ * 获取数据库中的消费记录内容条数，获取存储的意基本信息与消费记录
+ * 以及提供对从服务器获取到的数据的保存功能，
+ * 对登录信息的格式化存储，以及对时间与钱数的特定格式化。
+ * 
+ */
 public class CampusHelper {
 	private Context context;
 	private SQLiteCursor cursor;

@@ -25,6 +25,13 @@ import com.iBeiKe.InfoPortal.library.MyLibList;
 import android.content.Context;
 import android.util.Log;
 
+/**
+ * 已借图书网站页面获取，对其中内容解析显示。
+ * 提供对登录信息的格式化，建立键值对。
+ * 对页面访问获取并存储cookie，post方式登陆以及对已借图书页面的获取，
+ * 对页面编码格式的转换，对页面的解析，对列表的更新。
+ *
+ */
 public class MyLibraryFetcher {
 	private Context context;
 	private static String logUrl, myUrl;

@@ -23,8 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * 整个程序主要可见Activity的容器，提供底部导航按钮;
- * 提供程序常量
+ * 提供程序的主界面，作为整个程序主界面的Activity容器，
+ * 对不同Activity进行管理，切换，提供导航与程序的常量。
+ * 提供菜单以及对点击事件响应。
  *
  */
 public class InfoPortal extends ActivityGroup {

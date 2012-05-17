@@ -10,7 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * 提供数据库的创建、插入、查询功能
+ * 对数据库进行维护，
+ * 提供数据库的重建、数据表清空，数据项删除、插入、获取cursor，
+ * 获取查询字符串数组、获取查询结果整型数组，以及数据库的读取、写入、开启、关闭功能。
  * 
  */
 public class Database extends SQLiteOpenHelper {

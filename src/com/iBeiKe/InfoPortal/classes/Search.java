@@ -26,6 +26,14 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * 教室搜索主界面。
+ * 提供用户搜索条件，并且传递到下一个Activity，
+ * 对搜索条件的格式化，提供界面基本元素的事件。
+ * 查询错误警示窗口，对查询条件的检测，
+ * 以及提供时间控件的方法、对所有查询条件的汇总，格式化。
+ *
+ */
 public class Search extends Activity {
 	private String[] build;
 	private String[] floor;

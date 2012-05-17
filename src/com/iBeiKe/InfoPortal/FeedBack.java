@@ -9,6 +9,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * 意见反馈，将意见提交到服务器。
+ *
+ */
 public class FeedBack extends Activity {
 	private Button btnOK;
 	private Button btnCancel;

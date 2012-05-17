@@ -24,6 +24,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * 提供单个教室搜索的界面及其功能。
+ * 获取程序的初始数据，对当前系统状况的检测，
+ * 提供按钮点击事件，显示警示窗口，
+ * 对教学楼选择spinner提供方法，以及提供时间控件的方法。
+ *
+ */
 public class RoomSearch extends Activity {
 	private ComTimes times;
 	private EditText editRoom;

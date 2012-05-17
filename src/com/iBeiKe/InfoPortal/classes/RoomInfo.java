@@ -18,6 +18,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * 单个教室一周的占用信息。
+ * 提供传入数据的获取处理，界面基本元素的显示，
+ * 查询语句的构建，数据库内容的获取，
+ * 系统基本信息的获取以及格式化输出显示。
+ *
+ */
 public class RoomInfo extends Activity {
 	private Database db;
 	private ComTimes ct;

@@ -25,6 +25,13 @@ import android.widget.TextView;
 import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.common.MessageHandler;
 
+/**
+ * 校园卡信息的获取显示类。
+ * 对基本界面内容的显示，初始化，并且建立子线程，
+ * 登录空间的显示，radioGroup的点击时间处理，
+ * 获取单选按钮的id，登录按钮事件，以及异步的服务器数据获取存储、界面的更新。
+ *
+ */
 public class Campus extends Activity implements Runnable{
 	private ProgressBar bar;
 	private Button button;

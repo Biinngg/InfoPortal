@@ -9,6 +9,12 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * 提供对数据库xml文件的解析。
+ * 继承自DefaultHandler，提供数据库初始化以及更新的标准xml文件的解析，
+ * 使用阻塞队列传递文件解析结果，传递控制信息。
+ *
+ */
 public class XMLHandler extends DefaultHandler {
 	//xml structure
 	private boolean strMark=false;

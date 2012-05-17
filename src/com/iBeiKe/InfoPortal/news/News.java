@@ -19,6 +19,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * 信息通知获取显示。
+ * 建立两个子线程，用于处理对从服务器的信息通知的获取
+ * 以及通过一个阻塞队列对获取的信息存储，对界面更新显示。
+ *
+ */
 public class News extends Activity implements Runnable {
 	private NewsHandler handler;
 	private NewsHelper helper;

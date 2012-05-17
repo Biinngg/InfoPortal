@@ -16,6 +16,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;  
 
+/**
+ * 空闲教室搜索结果类。
+ * 提供对传入数据的获取处理，界面基本元素的显示，
+ * 对屏幕方向的检测，基本数据的获取，查询语句的建立，
+ * 对数据的查询以及查询结果的格式化显示。
+ *
+ */
 public class Result extends Activity {
 	private Database db;
 	private long searchMillis;

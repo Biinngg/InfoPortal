@@ -15,6 +15,13 @@ import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.database.Database;
 import com.iBeiKe.InfoPortal.library.MyLibList;
 
+/**
+ * 已借图书列表显示控制。
+ * 继承自BaseAdapter，提供对已借图书的保存、显示，
+ * 获取已借图书数量，获取元素，
+ * 获取元素ID以及对列表内元素以及动作进行维护支持，对显示数据的格式化。
+ *
+ */
 public class LibraryListAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	private Database db;

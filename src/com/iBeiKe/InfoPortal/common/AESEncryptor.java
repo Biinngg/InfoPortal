@@ -6,6 +6,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 /**
  * AES加密器
+ * 对登录密码提供AES对称加密解密功能。
  * @author Eric_Ni
  *
  */

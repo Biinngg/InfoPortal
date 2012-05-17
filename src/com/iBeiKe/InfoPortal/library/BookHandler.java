@@ -14,6 +14,14 @@ import android.util.Log;
 
 import com.iBeiKe.InfoPortal.common.iBeiKeApi;
 
+/**
+ * 图书搜索API数据的下载与解析。
+ * 继承自iBeiKeApi，提供了对ApiUrl的更新，
+ * 用以对图书搜索结果翻页，获取API接口数据，
+ * 对接口数据解析并保存到数据库中，
+ * 对数据进行格式化、转换为Unicode以及对数据组织为供数据库存储的键值对格式。
+ *
+ */
 public class BookHandler extends iBeiKeApi {
 	private Context context;
 	private BookHelper helper;

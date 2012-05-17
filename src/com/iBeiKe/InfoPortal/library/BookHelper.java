@@ -12,6 +12,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteCursor;
 import android.util.Log;
 
+/**
+ * 图书搜索的数据库类。
+ * 提供对数据库的访问，为listView中的cursor提供更新，
+ * 获取数据库中的图书搜索结果，
+ * 获取存储的图书搜索结果数据以及提供对搜索结果的保存功能。
+ *
+ */
 public class BookHelper {
 	private Context context;
 	private SQLiteCursor cursor;

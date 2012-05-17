@@ -9,6 +9,10 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 
+/**
+ * 设置页面提供的功能。
+ *
+ */
 public class Settings extends PreferenceActivity {
 	
 	@Override

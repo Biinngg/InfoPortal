@@ -8,6 +8,12 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * RSS数据解析类。
+ * 继承自DefaultHandler，提供对RSS文件的解析，
+ * 对获取到的特定数据的格式化，并且通过阻塞队列来传递数据。
+ *
+ */
 public class RSSHandler extends DefaultHandler {
 	private int itemNum;
 	private boolean inItem;

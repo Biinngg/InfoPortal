@@ -5,6 +5,10 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+/**
+ * 提供初始化的动画显示，提供新的线程，防止被主线程操作干扰动画显示。
+ *
+ */
 public class LoadingView extends ImageView implements Runnable
 {
 	private boolean isStop = false;

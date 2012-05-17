@@ -9,6 +9,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.widget.Toast;
 
+/**
+ * 通用的login数据表访问类，
+ * 提供登录信息获取，密码解密，以及存储登录信息，加密密码的功能。
+ *
+ */
 public class LoginHelper {
 	Context context;
 	Database db;

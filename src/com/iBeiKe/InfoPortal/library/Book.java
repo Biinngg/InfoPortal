@@ -22,6 +22,13 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+/**
+ * 图书搜索界面，
+ * 提供对传入的数据的处理，对界面中按钮的点击事件，
+ * 在list view底部提供状态栏，显示状态信息，
+ * 以及建立线程来获取网络数据，保存内容，更新listView显示。
+ *
+ */
 public class Book extends Activity implements Runnable {
 	private int pageNum = 1;
 	private Thread thread;

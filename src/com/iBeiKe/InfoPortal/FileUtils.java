@@ -8,6 +8,10 @@ import java.io.OutputStream;
 
 import android.os.Environment;
 
+/**
+ * 文件的通用操作。
+ * TODO:早期代码，将废弃
+ */
 public class FileUtils {	
 	private String SDPATH;
 	

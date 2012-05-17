@@ -13,6 +13,12 @@ import android.database.Cursor;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * 登录的辅助类，
+ * 提供对已存于数据库中的登录用户名、密码、账户类型的读取以及存储，
+ * 并且对密码进行加密解密操作。
+ * TODO:早期类，需要与com.iBeiKe.InfoPortal.commom中LoginHelper合并。
+ */
 public class LoginHelper {
 	Context context;
 	Database db;

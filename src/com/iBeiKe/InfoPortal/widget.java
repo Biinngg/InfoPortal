@@ -19,6 +19,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+/**
+ * 提供桌面小插件显示，更新。
+ *
+ */
 public class widget extends AppWidgetProvider {
 	private static String result;
 	

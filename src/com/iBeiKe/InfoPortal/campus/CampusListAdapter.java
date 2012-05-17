@@ -11,6 +11,12 @@ import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
 
+/**
+ * 校园卡消费记录列表显示控制。
+ * 继承自BaseAdapter，提供对校园卡消费记录的更新显示，
+ * 获取已下载数据数量，获取元素，获取元素ID以及对列表内元素以及动作进行维护支持。
+ *
+ */
 public class CampusListAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	private CampusHelper helper;

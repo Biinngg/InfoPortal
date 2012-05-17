@@ -10,6 +10,11 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import android.util.Log;
 
+/**
+ * 对图书馆搜索结果rss文件解析
+ * TODO:早期类，将废弃。
+ *
+ */
 public class RSSHandler extends DefaultHandler {
 	private int itemNum;
 	private boolean inItem;

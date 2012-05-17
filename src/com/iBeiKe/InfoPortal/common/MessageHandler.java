@@ -6,6 +6,11 @@ import java.util.Map;
 import android.os.Bundle;
 import android.os.Message;
 
+/**
+ * 利用Android系统提供的不同线程之间消息的传递功能来传递消息。
+ * 提供对消息数据的绑定，格式化，以及对传递来的消息解绑。
+ *
+ */
 public class MessageHandler {
 	private Message msg;
 	private Bundle bul;

@@ -19,6 +19,12 @@ import com.iBeiKe.InfoPortal.database.Database;
 import android.content.ContentValues;
 import android.content.Context;
 
+/**
+ * 从api_url数据表中获取基本的api url，
+ * 提供完整的url获取方法，将JSONObject转换为键值对，
+ * 对指定url数据的获取以及大致格式化以剥离出纯净JSON数据。
+ *
+ */
 public class iBeiKeApi {
 	private Context context;
 	private String table = "api_urls";

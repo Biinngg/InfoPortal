@@ -9,6 +9,11 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * 提供对rss文件的解析。
+ * TODO:早期代码，将废弃。
+ *
+ */
 public class RssParser extends DefaultHandler {
 	private String table;
 	private int table_num;

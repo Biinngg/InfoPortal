@@ -16,6 +16,12 @@ import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
 
+/**
+ * 空闲教室搜索结果列表显示控制。
+ * 继承自BaseAdapter，提供对空闲教室号的显示，
+ * 获取数据条数，获取元素，获取元素ID以及对列表内元素以及动作进行维护支持。
+ * 
+ */
 public class ResultListAdapter extends BaseAdapter {
 	private Context context;
 	private long timeMillis;

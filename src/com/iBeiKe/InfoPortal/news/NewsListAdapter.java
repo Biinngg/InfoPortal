@@ -15,6 +15,12 @@ import android.widget.TextView;
 
 import com.iBeiKe.InfoPortal.R;
 
+/**
+ * 意见建议与信息通知列表显示控制。
+ * 继承自BaseAdapter，提供对已下载数据的更新显示，
+ * 获取已下载数据数量，获取元素，获取元素ID以及对列表内元素以及动作进行维护支持。
+ *
+ */
 public class NewsListAdapter extends BaseAdapter {
 	private Context context;
 	private LayoutInflater mInflater;

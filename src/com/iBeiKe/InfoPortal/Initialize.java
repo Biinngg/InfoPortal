@@ -31,8 +31,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 /**
- * 初始化：用于第一次启动时创建数据库，第一次启动显示介绍画面，读取系统时间以及数据库中的课程时间，学期时间。
- * 并且调用检测更新，附有进度条。
+ * 软件数据库初始化类，每次启动检测数据库完整性以及在第一次启动时创建数据库，
+ * 创建子线程以提供初始化动画显示，创建子线程以提供xml的数据获取解析，
+ * 数据库的创建，以及通过阻塞队列来异步传递数据、控制信息。
  * 
  */
 public class Initialize extends Activity implements Runnable {

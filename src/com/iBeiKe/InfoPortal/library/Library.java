@@ -23,6 +23,14 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+/**
+ * 图书馆主界面，
+ * 提供对开馆时间数据的获取显示，获取登录信息，
+ * 验证失败后重新登录，提供点击时间，
+ * 以及建立新线程处理网络数据，数据存储，列表更新，
+ * 提供对列表数据结构的定义。
+ *
+ */
 public class Library extends Activity implements Runnable{
 	private Database db;
 	private ComTimes ct;

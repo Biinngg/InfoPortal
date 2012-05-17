@@ -10,6 +10,13 @@ import android.util.Log;
 
 import com.iBeiKe.InfoPortal.database.Database;
 
+/**
+ * 意见建议与信息通知的数据库辅助类。
+ * 提供对数据库的访问，为listView中的cursor提供更新，
+ * 获取数据库中的意见建议与信息通知内容条数，
+ * 获取存储的意见建议、信息通知数据以及提供对从服务器获取到的数据的保存功能。
+ *
+ */
 public class NewsHelper {
 	private Context context;
 	private SQLiteCursor cursor;

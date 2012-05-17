@@ -16,6 +16,11 @@ import com.iBeiKe.InfoPortal.news.RSSHandler;
 
 import android.util.Log;
 
+/**
+ * 意见建议和信息通知数据获取的辅助类，
+ * 提供对服务器数据的获取，使用阻塞队列来传递数据与控制信息。
+ *
+ */
 public class NewsHandler {
 	private BlockingQueue<Map<String, String>> queue;
 	private BlockingQueue<Integer> msg;

@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-//TODO:����������Ĵ��󣬻��������á�
+/**
+ * 错误处理模块，提供通用的错误显示与提示。
+ * TODO:早期代码，将废弃。
+ */
 public class ErrorHandler extends Activity {
 	private StringBuilder builder = new StringBuilder();
 	private String error_msg;

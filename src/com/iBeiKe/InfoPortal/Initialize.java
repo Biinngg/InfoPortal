@@ -35,6 +35,8 @@ import android.widget.TextView;
  * 创建子线程以提供初始化动画显示，创建子线程以提供xml的数据获取解析，
  * 数据库的创建，以及通过阻塞队列来异步传递数据、控制信息。
  * 
+ * TODO:在解析更新数据时用到，不再在初始化时使用。
+ * 
  */
 public class Initialize extends Activity implements Runnable {
 	private String message = "初始化...";

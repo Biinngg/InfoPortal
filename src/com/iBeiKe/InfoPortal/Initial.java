@@ -118,9 +118,7 @@ public class Initial extends Activity implements Runnable {
     			BufferedInputStream bis = new BufferedInputStream(is);
     			File f = new File("/data/data/" +
     					"com.iBeiKe.InfoPortal/databases");
-    			Log.d("File info", f.getPath());
     			f.mkdirs();
-        		Log.d("file available", "bool: " + f.exists());
     			FileOutputStream fos = new FileOutputStream("/data/data/" +
     					"com.iBeiKe.InfoPortal/databases/infoportal.db");
     			while((size = bis.read(buf)) != -1)

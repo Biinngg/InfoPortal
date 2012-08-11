@@ -21,7 +21,7 @@ import android.util.Log;
  * 继承自iBeiKeApi，提供了对ApiUrl的获取，获取API接口数据，
  * 对接口数据解析并保存到数据库中，将消费记录与学生信息格式化为键值对、对数据的过滤。
  * 
- */
+ */ 
 public class CampusHandler extends iBeiKeApi {
 	private Context context;
 	private CampusHelper helper;

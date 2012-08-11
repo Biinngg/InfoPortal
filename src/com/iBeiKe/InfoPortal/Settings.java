@@ -2,6 +2,7 @@ package com.iBeiKe.InfoPortal;
 
 
 import com.iBeiKe.InfoPortal.R;
+import com.iBeiKe.InfoPortal.update.Update;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,8 @@ public class Settings extends PreferenceActivity {
 		} else if(preference.getKey().equals("about")) {
 			Intent intent = new Intent(this,About.class);
 			startActivity(intent);
+		} else if(preference.getKey().equals("db_update")) {
+			Update update = new Update();
 		}
 	return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}

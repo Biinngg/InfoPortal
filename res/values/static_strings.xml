@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="path_database">/data/data/com.iBeiKe.InfoPortal/databases/infoportal.db</string>
+    <string name="path_download">/infoportal/tmp/db.zip</string>
+</resources>

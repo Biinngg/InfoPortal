@@ -9,9 +9,9 @@ import java.util.zip.ZipFile;
 public class Archive {
 	public void unzip(String source, String dest) throws IOException {
 		ZipFile zipFile = new ZipFile(source);
-		Enumeration enu = zipFile.entries();
+		Enumeration<? extends ZipEntry> enu = zipFile.entries();
 		while(enu.hasMoreElements()) {
-			ZipEntry entry = (ZipEntry)enu.nextElement();
+			ZipEntry entry = enu.nextElement();
 			InputStream stream = zipFile.getInputStream(entry);
 			Files file = new Files(dest);
 			file.saveStream(stream);

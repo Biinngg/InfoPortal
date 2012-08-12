@@ -1,10 +1,5 @@
 package com.iBeiKe.InfoPortal.common;
 
-import static com.iBeiKe.InfoPortal.Constants.BUILDING;
-import static com.iBeiKe.InfoPortal.Constants.CLASS;
-import static com.iBeiKe.InfoPortal.Constants.ROOM;
-import static com.iBeiKe.InfoPortal.Constants.TABLE;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -29,6 +24,12 @@ public class RssParser extends DefaultHandler {
 	private String tagName;
 	private String info;
 	private int i;
+	public static final String DATABASE_NAME = "infoportal.db";
+	
+	public static final String BUILDING = "build";
+	public static final String ROOM = "room";
+	public static final String CLASS = "class";
+	public static final String TABLE = "table";
 
 	@Override
 	public void startDocument() throws SAXException {

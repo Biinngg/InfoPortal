@@ -7,8 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.util.Log;
-
 public class Files extends File {
 	/**
 	 * 
@@ -34,21 +32,18 @@ public class Files extends File {
 			fos = new FileOutputStream(this.getPath());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			Log.e("Files.saveStream() FileNotFoundException", e.toString());
 		}
 		try {
 			while((size = bis.read(buf)) != -1)
 				fos.write(buf, 0, size);
 		} catch (IOException e) {
 			e.printStackTrace();
-			Log.e("Files.saveStream() IOException", e.toString());
 		}
 		try {
 			fos.close();
 			bis.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			Log.e("Files.saveStream() IOException", e.toString());
 		}
 	}
 }

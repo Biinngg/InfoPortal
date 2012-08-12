@@ -16,17 +16,19 @@ import android.preference.PreferenceScreen;
  */
 public class Settings extends PreferenceActivity {
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.layout.settings);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
 			Preference preference) {
 		if(preference.getKey().equals("db_initialize")) {
-			Intent intent = new Intent(this,Initialize.class);
+			Intent intent = new Intent(this,Initial.class);
 			startActivity(intent);
 		} else if(preference.getKey().equals("feed_back")) {
 			Intent intent = new Intent(this,FeedBack.class);
@@ -35,7 +37,7 @@ public class Settings extends PreferenceActivity {
 			Intent intent = new Intent(this,About.class);
 			startActivity(intent);
 		} else if(preference.getKey().equals("db_update")) {
-			Update update = new Update();
+			Update update = new Update(this);
 		}
 	return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}

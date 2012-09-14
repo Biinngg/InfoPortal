@@ -4,8 +4,8 @@ import com.iBeiKe.InfoPortal.R;
 import com.iBeiKe.InfoPortal.classes.Search;
 import com.iBeiKe.InfoPortal.library.Library;
 import com.iBeiKe.InfoPortal.news.News;
-import com.iBeiKe.InfoPortal.news.advise;
 import com.iBeiKe.InfoPortal.campus.Campus;
+import com.iBeiKe.InfoPortal.teach.Teach;
 
 import android.app.ActivityGroup;
 import android.content.Intent;
@@ -148,9 +148,9 @@ public class InfoPortal extends ActivityGroup {
 		} else if(id == 2) {
 			intent = new Intent(InfoPortal.this, Campus.class);
 		} else if(id == 3) {
-			intent = new Intent(InfoPortal.this, News.class);
+			intent = new Intent(InfoPortal.this, Teach.class);
 		} else if(id == 4) {
-			intent = new Intent(InfoPortal.this, advise.class);
+			intent = new Intent(InfoPortal.this, News.class);
 		}
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		//Activity 转为 View

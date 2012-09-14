@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="teach_tab">本科教学网</string>
+    <string name="teach_tab1">课表</string>
+    <string name="teach_tab2">成绩</string>
+</resources>

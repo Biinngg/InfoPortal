@@ -60,7 +60,7 @@
 	         android:layout_height="fill_parent"
 	         android:layout_weight="1"
 	         android:scaleType="center"
-	         android:text="今日贝壳"
+	         android:text="@string/teach_tab"
 	         android:textColor="#FFF"
 	         android:textSize="13sp"
 	         />
@@ -71,7 +71,7 @@
 	         android:layout_height="fill_parent"
 	         android:layout_weight="1"
 	         android:scaleType="center"
-	         android:text="意见建议"
+	         android:text="今日贝壳"
 	         android:textColor="#FFF"
 	         android:textSize="13sp"
 	         />

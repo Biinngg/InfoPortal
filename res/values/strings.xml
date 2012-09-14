@@ -93,8 +93,8 @@
     <string name="camp_place">地点:</string>
     <string name="camp_cost">消费:</string>
     <string name="camp_left">余额:</string>
-    <string name="camp_type_day">今天</string>
-    <string name="camp_type_mon">本月</string>
+    <string name="camp_type_day">当前</string>
+    <string name="camp_type_mon">当月</string>
     <string name="camp_type_lastmon">上月</string>
     <string name="camp_type_year">今年</string>
 </resources>

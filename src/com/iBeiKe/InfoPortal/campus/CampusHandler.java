@@ -77,10 +77,12 @@ public class CampusHandler extends iBeiKeApi {
 		helper = new CampusHelper(context);
 		helper.saveContentValues(cv, Campus.campInfoTable);
 		JSONArray jsonArray = null;
-		if(jsonTokener.nextValue().equals(new JSONArray()))
+		try{
 			jsonArray = (JSONArray)jsonTokener.nextValue();
-		else
+		} catch(ClassCastException e) {
+			e.printStackTrace();
 			return true;
+		}
 		int length = jsonArray.length();
 		for(int i=0; i<length; i++) {
 			jsonObject = jsonArray.getJSONObject(i);

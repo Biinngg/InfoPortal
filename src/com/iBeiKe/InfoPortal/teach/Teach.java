@@ -21,8 +21,9 @@ import android.view.View;
 import android.widget.TabHost;
 
 
-public class Teach extends Activity {
+public class Teach extends FragmentActivity {
     TabHost mTabHost;
+    TabManager mTabManager;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,47 +31,34 @@ public class Teach extends Activity {
         mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
         
-        LayoutInflater inflater =  (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View tab1View = inflater.inflate(R.layout.teach_tab, null);
-        TextView tab1TextView = (TextView) tab1View.findViewById(R.id.teach_tab_label);
-        tab1TextView.setText(R.string.teach_tab1);
-        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator(tab1View).setContent(R.id.teach_tab1));
-        View tab2View = inflater.inflate(R.layout.teach_tab, null);
-        TextView tab2TextView = (TextView)tab2View.findViewById(R.id.teach_tab_label);
-        tab2TextView.setText(R.string.teach_tab2);
-        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator(tab2View).setContent(R.id.teach_tab2));
-        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-			
-			public void onTabChanged(String tabId) {
-	            TabInfo newTab = mTabs.get(tabId);
-	            if (mLastTab != newTab) {
-	                FragmentTransaction ft = mActivity.getSupportFragmentManager().beginTransaction();
-	                if (mLastTab != null) {
-	                    if (mLastTab.fragment != null) {
-	                        ft.detach(mLastTab.fragment);
-	                    }
-	                }
-	                if (newTab != null) {
-	                    if (newTab.fragment == null) {
-	                        newTab.fragment = Fragment.instantiate(mActivity,
-	                                newTab.clss.getName(), newTab.args);
-	                        ft.add(mContainerId, newTab.fragment, newTab.tag);
-	                    } else {
-	                        ft.attach(newTab.fragment);
-	                    }
-	                }
+        //LayoutInflater inflater =  (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View tab1View = inflater.inflate(R.layout.teach_tab, null);
+        //TextView tab1TextView = (TextView) tab1View.findViewById(R.id.teach_tab_label);
+        //tab1TextView.setText(R.string.teach_tab1);
+        //mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator(tab1View).setContent(R.id.teach_tab1));
+        //View tab2View = inflater.inflate(R.layout.teach_tab, null);
+        //TextView tab2TextView = (TextView)tab2View.findViewById(R.id.teach_tab_label);
+        //tab2TextView.setText(R.string.teach_tab2);
+        //mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator(tab2View).setContent(R.id.teach_tab2));
+        //mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {});
+        ClassListAdapter adapter = new ClassListAdapter(this);
+        ListView listView  = new ListView(this);
+        listView.setAdapter(adapter);
 
-	                mLastTab = newTab;
-	                ft.commit();
-	                mActivity.getSupportFragmentManager().executePendingTransactions();
-	            }
-			}
-		});
+        mTabManager = new TabManager(this, mTabHost, R.id.realtabcontent);
+
+        mTabManager.addTab(mTabHost.newTabSpec("simple").setIndicator("Simple"),
+                listView, null);
+        mTabManager.addTab(mTabHost.newTabSpec("contacts").setIndicator("Contacts"),
+                LoaderCursorSupport.CursorLoaderListFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec("custom").setIndicator("Custom"),
+                LoaderCustomSupport.AppListFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec("throttle").setIndicator("Throttle"),
+                LoaderThrottleSupport.ThrottledLoaderListFragment.class, null);
 
         if (savedInstanceState != null) {
             mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab"));
         }
-
 	}
 	
     @Override
@@ -78,7 +66,7 @@ public class Teach extends Activity {
         super.onSaveInstanceState(outState);
         outState.putString("tab", mTabHost.getCurrentTabTag());
     }
-
+    
     public static class TabManager implements TabHost.OnTabChangeListener {
         private final FragmentActivity mActivity;
         private final TabHost mTabHost;
@@ -166,5 +154,4 @@ public class Teach extends Activity {
             }
         }
     }
-
 }
